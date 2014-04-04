@@ -1,0 +1,55 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".KoordinationFire" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfosKoordination"
+    		layout="@layout/einsatzinfo" />
+
+      <ScrollView 
+		    android:layout_width="725dp"
+		    android:layout_height="fill_parent"
+		    android:background="@color/white" >  
+     <LinearLayout
+            android:id="@+id/llOberkommandant"
+            style="?buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+     
+       		<TextView
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="10dip"
+	            android:text="Koordination Oberkommandant"
+	            android:textColor="@color/black_overlay"
+	            android:paddingTop="30dip"
+	            android:paddingLeft="20dip"
+	            android:textSize="25dip"
+	            android:textStyle="bold" />
+       		
+       		<Button
+		            android:id="@+id/addKommandant"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="20dip"
+		            android:text="Kommandant hinzufügen" />
+       		
+       		
+       </LinearLayout>
+       </ScrollView>   
+		<include
+    		android:id="@+id/leisteKoordination"
+    		layout="@layout/leistefire" />
+     </LinearLayout>
+</FrameLayout>

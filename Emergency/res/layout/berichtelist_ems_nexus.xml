@@ -1,0 +1,87 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".BerichteList" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfosBerichteList"
+    		layout="@layout/einsatzinfo" />
+        
+       <!--   <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="910dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:text="@string/dummy_content"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold" /> -->
+      
+     <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+            
+         <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Berichte"
+              android:textColor="@color/black_overlay"
+              android:paddingLeft="20dip"
+              android:textSize="25dip"
+              android:layout_marginTop="30dip"
+              android:textStyle="bold"/>
+         
+         <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Weitere Berichte"
+              android:textColor="#000000"
+              android:paddingLeft="30dip"
+              android:textSize="20dip"
+              android:layout_marginTop="50dip"/>
+         
+         <Spinner
+		    android:id="@+id/bericht_spinner"
+		    android:layout_width="fill_parent"
+		    android:layout_height="50dip"
+		    android:textSize="20dip"
+		    android:background="@color/black_overlay"
+		    android:layout_marginTop="20dip"
+		    android:layout_marginLeft="30dip"
+	        android:layout_marginRight="30dip" />
+     
+	      <Button android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="OK"
+	        android:textSize="20dip"
+	        android:textStyle="bold"
+	        android:id="@+id/btnOk"
+	        android:background="@drawable/shape"
+	        android:layout_marginTop="30dip"
+	        android:layout_marginLeft="30dip"
+	        android:layout_marginRight="30dip"/>
+	        
+	       
+            
+           
+          </LinearLayout>
+          
+
+        
+  		<include
+    		android:id="@+id/leistemenu"
+    		layout="@layout/leiste" />
+  		
+     </LinearLayout>
+</FrameLayout>

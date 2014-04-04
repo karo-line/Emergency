@@ -1,0 +1,128 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".FullscreenActivity" >
+
+    <!--
+         The primary full-screen view. This can be replaced with whatever view
+         is needed to present your content, e.g. VideoView, SurfaceView,
+         TextureView, etc.
+    -->
+
+    
+
+    <!--
+         This FrameLayout insets its children based on system windows using
+         android:fitsSystemWindows.
+    -->
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="?buttonBarStyle"
+            android:layout_width="300dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|center_vertical"
+            android:background="@drawable/border"
+            android:orientation="vertical"
+            tools:ignore="UselessParent" >
+            
+          
+            
+            <ImageView
+                android:id="@+id/play"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="650dp"
+                android:src="@drawable/icon_play"
+                android:onClick="startCctv"/>
+            
+        </LinearLayout>
+        
+        <!--<TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="910dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:text="@string/dummy_content"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold" /> -->
+        
+       <fragment
+          android:id="@+id/map"
+          android:layout_width="910dp"
+          android:layout_height="match_parent"
+          android:name="com.google.android.gms.maps.MapFragment"/>
+        
+        
+          <!-- <MapView
+            android:id="@+id/map"
+            android:layout_width="910dp"
+        android:layout_height="match_parent"
+         android:name="com.google.android.gms.maps.MapFragment"/> -->
+        
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="?buttonBarStyle"
+            android:layout_width="70dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right|center_vertical"
+            android:background="@color/black_overlay"
+            android:orientation="vertical"
+            tools:ignore="UselessParent" >
+
+            <!-- 
+                android:id="@+id/dummy_button"
+                style="?buttonBarButtonStyle"
+                android:layout_width="20dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/dummy_button" 
+              -->
+            
+            <ImageView
+                android:id="@+id/dummy_button"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp"
+                android:src="@drawable/ic_menu_home"
+                android:onClick="startMenu"/>
+            
+            <ImageView 
+                android:id="@+id/cctv"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="380dp"
+                android:src="@drawable/icon_cctv"
+                android:onClick="startCctv"/>
+            
+            <ImageView 
+                android:id="@+id/arrow"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:src="@drawable/icon_arrow"
+                android:onClick="back"/>
+            
+          
+        </LinearLayout>
+        
+        
+       
+    </LinearLayout>
+
+</FrameLayout>
