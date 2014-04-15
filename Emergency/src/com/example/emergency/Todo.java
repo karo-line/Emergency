@@ -1,15 +1,26 @@
 package com.example.emergency;
 
+import android.widget.EditText;
+
 public class Todo {
 
 	private String todoText;
 	private int id;
 	private int done;
+	private EditText editText;
 	
-	public Todo(String todoText, int id, int done) {
+	public Todo(String todoText) {
 		this.todoText = todoText;
-		this.id = id;
-		this.done = done;
+		
+		
+	}
+
+	public EditText getEditText() {
+		return editText;
+	}
+
+	public void setEditText(EditText editText) {
+		this.editText = editText;
 	}
 
 	public int getDone() {

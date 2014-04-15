@@ -45,7 +45,7 @@ public class TodoFunction {
         return json;
     }
     
-    public JSONObject storeUser(String kommandant, String todo, String einsatzID){
+    public JSONObject storeUser(String kommandant, String todo, String einsatzID, String id){
         // Building Parameters
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         params.add(new BasicNameValuePair("tag", store_tag));
@@ -53,6 +53,7 @@ public class TodoFunction {
         params.add(new BasicNameValuePair("todo", todo));
         params.add(new BasicNameValuePair("done", "0"));
         params.add(new BasicNameValuePair("einsatzID", "1"));
+        params.add(new BasicNameValuePair("id", id));
          
         // getting JSON Object
         JSONObject json = jsonParser.getJSONFromUrl(storeURL, params);

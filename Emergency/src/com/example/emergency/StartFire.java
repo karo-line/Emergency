@@ -166,6 +166,9 @@ GooglePlayServicesClient.OnConnectionFailedListener{
         WindFunction windFunction = new WindFunction();
         JSONObject json = windFunction.getWind("http://api.openweathermap.org/data/2.5/weather?",48.202668, 16.344140);
         String wind="";
+        if(json==null) {
+        	Log.i("json", "null");
+        }
         
         try {
 			JSONObject json_wind = json.getJSONObject("wind");

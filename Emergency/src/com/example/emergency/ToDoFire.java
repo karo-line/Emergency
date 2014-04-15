@@ -67,12 +67,16 @@ public class ToDoFire extends Activity {
 					
 					
 					if(map.containsKey(kommandant)) {
-						Todo t = new Todo(todo,Integer.parseInt(id),Integer.parseInt(done));
+						Todo t = new Todo(todo);
+						t.setId(Integer.parseInt(id));
+						t.setDone(Integer.parseInt(done));
 						ArrayList<Todo> todos = map.get(kommandant);
 						todos.add(t);
 						map.put(kommandant, todos);
 					} else {
-						Todo t = new Todo(todo,Integer.parseInt(id),Integer.parseInt(done));
+						Todo t = new Todo(todo);
+						t.setId(Integer.parseInt(id));
+						t.setDone(Integer.parseInt(done));
 						kommArray.add(kommandant);
 						ArrayList<Todo> todos = new ArrayList<Todo>();
 						todos.add(t);
