@@ -13,6 +13,9 @@ public class Berichte extends Activity {
 
 	private Intent i;
 	Button btnWeitere;
+	Button btnTransport;
+	Button btnEinsatz;
+	Button btnKrankenhaus;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 			
@@ -29,6 +32,36 @@ public class Berichte extends Activity {
 		            	i= new Intent(getApplicationContext(), BerichteList.class);
 		            	startActivity(i);
 		            	overridePendingTransition(R.layout.fadeout, R.layout.fadein);	
+		            }
+			});
+			
+			btnTransport = (Button) findViewById(R.id.btnTransport);
+			btnTransport.setOnClickListener(new View.OnClickListener() {
+				 
+		            public void onClick(View view) {
+		            	i= new Intent(getApplicationContext(), BerichtTransport.class);
+		            	startActivity(i);
+		            	overridePendingTransition(R.layout.fadeout, R.layout.fadein);	
+		            }
+			});
+			
+			btnEinsatz = (Button) findViewById(R.id.btnEinsatz);
+			btnEinsatz.setOnClickListener(new View.OnClickListener() {
+				 
+		            public void onClick(View view) {
+		            	/**i= new Intent(getApplicationContext(), BerichtEinsatz.class);
+		            	startActivity(i);
+		            	overridePendingTransition(R.layout.fadeout, R.layout.fadein);	*/
+		            }
+			});
+			
+			btnKrankenhaus = (Button) findViewById(R.id.btnKrankenhaus);
+			btnKrankenhaus.setOnClickListener(new View.OnClickListener() {
+				 
+		            public void onClick(View view) {
+		            	/**i= new Intent(getApplicationContext(), BerichtKrankenhaus.class);
+		            	startActivity(i);
+		            	overridePendingTransition(R.layout.fadeout, R.layout.fadein);	*/
 		            }
 			});
 	}

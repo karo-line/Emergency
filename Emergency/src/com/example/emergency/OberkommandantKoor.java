@@ -13,6 +13,7 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -24,6 +25,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,6 +39,7 @@ public class OberkommandantKoor extends Activity {
 	Button addKommandant;
 	Button btnTruppen;
 	LinearLayout ll;
+	LinearLayout llTodo;
 	EditText newKommandant;
 	HashMap<EditText, ArrayList<Todo>> todosMap;
 	//ArrayList<EditText> todos;
@@ -58,6 +61,7 @@ public class OberkommandantKoor extends Activity {
 			
 			addKommandant = (Button) findViewById(R.id.addKommandant);
 			ll =(LinearLayout) findViewById(R.id.llOberkommandant);
+			llTodo =(LinearLayout) findViewById(R.id.todos);
 			
 			
 			
@@ -122,12 +126,30 @@ public class OberkommandantKoor extends Activity {
 					viewTodo.setText(todos.get(j).getTodoText());
 					viewTodo.setTextColor(getResources().getColor(R.color.black_overlay));
 					todos.get(j).setEditText(viewTodo);
+					final String id = String.valueOf(todos.get(j).getId());
 					
-					int id = Resources.getSystem().getIdentifier("btn_check_holo_light", "drawable", "android");
+					Resources.getSystem().getIdentifier("btn_check_holo_light", "drawable", "android");
 					todosEdit.add(viewTodo);
 					todosMap.put(viewKomm, todos);
 					
+					ImageButton delete = new ImageButton(getApplicationContext());
+					//Uri imgUri=Uri.parse("drawable/ic_action_discard");
+					delete.setImageResource(R.drawable.ic_action_discard);
 					ll.addView(viewTodo,viewIndex+j+1);
+					int todoIndex = ll.indexOfChild(viewTodo);
+					ll.addView(delete);
+					
+					/**
+					 * delete ausgewähltes todo
+					 * wird nicht mehr angezeigt und vom server entfernt
+					 */
+					delete.setOnClickListener(new View.OnClickListener() {
+						public void onClick(View view) {
+							TodoFunction todoFunction = new TodoFunction();
+							JSONObject json = todoFunction.deleteTodo(id);
+						}
+					});
+					
 				}
 				Button addTodo = new Button(getApplicationContext());
 				addTodo.setText("+ Todo");
@@ -186,6 +208,9 @@ public class OberkommandantKoor extends Activity {
 					ll.addView(todo,index+2);
 					ll.addView(addTodo,index+3);
 					
+					/**
+					 * fügt neues Todo hinzu und speichert Todo in Hashmap mit allen Todos
+					 */
 					addTodo.setOnClickListener(new View.OnClickListener() {
 						public void onClick(View view) {
 							int index = ll.indexOfChild(view);
@@ -209,6 +234,11 @@ public class OberkommandantKoor extends Activity {
 			speichern.setText("Speichern");
 			ll.addView(speichern);
 			
+			/**
+			 * speichern aller vorhandenen todos, 
+			 * interiert über hashmap mit allen todos
+			 * verbindet sich mit server
+			 */
 			speichern.setOnClickListener(new View.OnClickListener() {
 				public void onClick(View view) {
 					Log.i("komm",kommandanten.get(0).getText().toString());
@@ -227,7 +257,21 @@ public class OberkommandantKoor extends Activity {
 							} else {
 								id =String.valueOf(-1);
 							}
-							JSONObject json = todoFunction.storeUser(kommandanten.get(i).getText().toString(), todoList.get(j).getTodoText(),"", id);
+							Log.i("TodoListe", todoList.get(j).getEditText().getText().toString());
+							Log.i("id", id);
+							JSONObject json = todoFunction.storeUser(kommandanten.get(i).getText().toString(), todoList.get(j).getEditText().getText().toString(),"", id);
+							/**
+							 * aus json die id auslesen und in Todo abspeichern
+							 */
+							try {
+								JSONObject json_user=json.getJSONObject("user");
+								String newID = json_user.getString("id");
+								Log.i("newID",newID);
+								todoList.get(j).setId(Integer.valueOf(newID));
+							} catch (JSONException e) {
+								// TODO Auto-generated catch block
+								e.printStackTrace();
+							}
 						}
 					}
 					

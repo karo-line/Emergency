@@ -85,7 +85,7 @@ public class GefahrengutResult extends Activity {
                 public void onClick(View arg0) {
                     // TODO Auto-generated method stub
                     //userFunctions.logoutUser(getApplicationContext());
-                    Intent login = new Intent(getApplicationContext(), GefahrengutActivity.class);
+                    Intent login = new Intent(getApplicationContext(), GefahrengutFire.class);
                     login.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(login);
                     overridePendingTransition(R.layout.fadeout, R.layout.fadein);

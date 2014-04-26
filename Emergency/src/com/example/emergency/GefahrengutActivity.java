@@ -27,7 +27,7 @@ public class GefahrengutActivity extends Activity {
 	
 	Button btnLogin;
     Button btnLinkToRegister;
-    EditText inputEmail;
+    EditText inputNummer;
     EditText inputPassword;
     TextView loginErrorMsg;
  
@@ -36,18 +36,21 @@ public class GefahrengutActivity extends Activity {
     private static String KEY_ERROR = "error";
     private static String KEY_ERROR_MSG = "error_msg";
     private static String KEY_UID = "uid";
+    private static String KEY_NUMMER = "nummer";
     private static String KEY_NAME = "name";
-    private static String KEY_SEX = "sex";
-    private static String KEY_NATIONALITY = "nationality";
-    private static String KEY_BIRTHDAY = "birthday";
-    private static String KEY_REASON = "reason";
-    private static String KEY_ALIAS = "alias";
-    private static String KEY_SECNAME = "secName";
-    private static String KEY_BIRTHPLACE = "birthplace";
-    private static String KEY_SPECIALATTR = "specialattr";
-    private static String KEY_ARMED = "armed";
-    private static String KEY_VIOLENT = "violent";
-    private static String KEY_ACTIONS = "actions";
+    private static String KEY_KLASSE = "klasse";
+    private static String KEY_KATEGORIE = "kategorie";
+    private static String KEY_TUNNELCODE = "tunnelcode";
+    private static String KEY_EIGENSCHAFTEN = "eigenschaften";
+    private static String KEY_GEFAHREN = "gefahren";
+    private static String KEY_SCHUTZ = "persoenlicherschutz";
+    private static String KEY_ALLGMASSNAHMEN = "allgmassnahmen";
+    private static String KEY_STOFFAUSTRITT = "massnahmenbeistoffaustritt";
+    private static String KEY_FEUER = "massnahmenbeifeuer";
+    private static String KEY_ERSTEHILFE = "erstehilfe";
+    private static String KEY_BERGUNG = "bergung";
+    private static String KEY_KLEIDUNG = "ablegenschutzkleidung";
+    private static String KEY_AUSRUESTUNG = "reinigungausruestung";
  
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -59,7 +62,8 @@ public class GefahrengutActivity extends Activity {
 		setContentView(R.layout.gefahrengut);
  
         // Importing all assets like buttons, text fields
-        inputEmail = (EditText) findViewById(R.id.sucheNummer);
+		inputNummer = (EditText) findViewById(R.id.sucheNummer);
+        
         //inputPassword = (EditText) findViewById(R.id.loginPassword);
         btnLogin = (Button) findViewById(R.id.btnSuche);
         //btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
@@ -69,10 +73,9 @@ public class GefahrengutActivity extends Activity {
         btnLogin.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View view) {
-                String email = inputEmail.getText().toString();
-                String password = "";
-                UserFunctions userFunction = new UserFunctions();
-                JSONObject json = userFunction.loginUser(email, password);
+            	String nummer = inputNummer.getText().toString();
+                GefahrgutEmsFunction gefahrgutFunction = new GefahrgutEmsFunction();
+                JSONObject json = gefahrgutFunction.sucheGefahrgut(nummer);
  
                 // check for login response
                 try {
@@ -90,19 +93,22 @@ public class GefahrengutActivity extends Activity {
                             //db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_SEX), json.getString(KEY_UID), json_user.getString(KEY_NATIONALITY), json_user.getString(KEY_BIRTHDAY), json_user.getString(KEY_REASON), json_user.getString(KEY_ALIAS));                       
                             Log.i("username", json_user.getString(KEY_NAME));
                             // Launch Dashboard Screen
-                            Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
+                            Intent dashboard = new Intent(getApplicationContext(), GefahrengutEmsResult.class);
                             dashboard.putExtra("name", json_user.getString(KEY_NAME));
-                            dashboard.putExtra("mail", json_user.getString(KEY_SEX));
-                            dashboard.putExtra("nationality", json_user.getString(KEY_NATIONALITY));
-                            dashboard.putExtra("birthday", json_user.getString(KEY_BIRTHDAY));
-                            dashboard.putExtra("reason", json_user.getString(KEY_REASON));
-                            dashboard.putExtra("alias", json_user.getString(KEY_ALIAS));
-                            dashboard.putExtra("secname", json_user.getString(KEY_SECNAME));
-                            dashboard.putExtra("birthplace", json_user.getString(KEY_BIRTHPLACE));
-                            dashboard.putExtra("specialattr", json_user.getString(KEY_SPECIALATTR));
-                            dashboard.putExtra("armed", json_user.getString(KEY_ARMED));
-                            dashboard.putExtra("violent", json_user.getString(KEY_VIOLENT));
-                            dashboard.putExtra("actions", json_user.getString(KEY_ACTIONS));
+                            dashboard.putExtra("nummer", json_user.getString(KEY_NUMMER));
+                            dashboard.putExtra("kategorie", json_user.getString(KEY_KATEGORIE));
+                            dashboard.putExtra("klasse", json_user.getString(KEY_KLASSE));
+                            dashboard.putExtra("tunnelcode", json_user.getString(KEY_TUNNELCODE));
+                            dashboard.putExtra("eigenschaften", json_user.getString(KEY_EIGENSCHAFTEN));
+                            dashboard.putExtra("gefahren", json_user.getString(KEY_GEFAHREN));
+                            dashboard.putExtra("schutz", json_user.getString(KEY_SCHUTZ));
+                            dashboard.putExtra("allgmassnahmen", json_user.getString(KEY_ALLGMASSNAHMEN));
+                            dashboard.putExtra("stoffaustritt", json_user.getString(KEY_STOFFAUSTRITT));
+                            dashboard.putExtra("feuer", json_user.getString(KEY_FEUER));
+                            dashboard.putExtra("erstehilfe", json_user.getString(KEY_ERSTEHILFE));
+                            dashboard.putExtra("bergung", json_user.getString(KEY_BERGUNG));
+                            dashboard.putExtra("kleidung", json_user.getString(KEY_KLEIDUNG));
+                            dashboard.putExtra("ausruestung", json_user.getString(KEY_AUSRUESTUNG));
                             // Close all views before launching Dashboard
                             //dashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                             startActivity(dashboard);
@@ -111,7 +117,7 @@ public class GefahrengutActivity extends Activity {
                             finish();
                         }else{
                             // Error in login
-                            loginErrorMsg.setText("Person nicht im Register vorhanden!");
+                            loginErrorMsg.setText("Gefahrgutnummer nicht vorhanden");
                         }
                     }
                 } catch (JSONException e) {

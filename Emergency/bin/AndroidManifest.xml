@@ -342,7 +342,21 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
+            android:name=".GefahrengutEmsResult">
+         </activity>
+         
+         <activity
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme"
             android:name=".OberkommandantKoor">
+         </activity>
+         
+         <activity
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme"
+            android:name=".BerichtTransport">
          </activity>
          
         <meta-data android:name="com.google.android.gms.version"

@@ -39,7 +39,6 @@
 	        android:textSize="20dip"
 	        android:textStyle="bold"
 	        android:id="@+id/btnTransport"
-	        android:background="@drawable/shape"
 	        android:layout_marginTop="30dip"
 	        android:layout_marginLeft="30dip"
 	        android:layout_marginRight="30dip"/>
@@ -50,7 +49,6 @@
 	        android:textSize="20dip"
 	        android:textStyle="bold"
 	        android:id="@+id/btnEinsatz"
-	        android:background="@drawable/shape"
 	        android:layout_marginTop="20dip"
 	        android:layout_marginLeft="30dip"
 	        android:layout_marginRight="30dip"/>
@@ -61,7 +59,6 @@
 	        android:textSize="20dip"
 	        android:textStyle="bold"
 	        android:id="@+id/btnKrankenhaus"
-	        android:background="@drawable/shape"
 	        android:layout_marginTop="20dip"
 	        android:layout_marginLeft="30dip"
 	        android:layout_marginRight="30dip"/>
@@ -74,14 +71,13 @@
 	        android:textSize="20dip"
 	        android:textStyle="bold"
 	        android:id="@+id/btnWeitere"
-	        android:background="@drawable/shape"
 	        android:layout_marginTop="50dip"
 	        android:layout_marginLeft="30dip"
 	        android:layout_marginRight="30dip"/>
             
            
           </LinearLayout>
-          
+           
         
   		<include
     		android:id="@+id/leistemenu"

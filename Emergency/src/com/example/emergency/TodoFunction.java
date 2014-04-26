@@ -22,6 +22,7 @@ public class TodoFunction {
     private static String login_tag = "login";
     private static String store_tag = "include";
     private static String done_tag = "done";
+    private static String delete_tag = "delete";
      
     // constructor
     public TodoFunction(){
@@ -67,6 +68,18 @@ public class TodoFunction {
         params.add(new BasicNameValuePair("tag", done_tag));
         params.add(new BasicNameValuePair("id", checkID));
         params.add(new BasicNameValuePair("done", done));
+        
+        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
+     
+        return json;
+    }
+    
+    public JSONObject deleteTodo(String id){
+        // Building Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tag", delete_tag));
+        params.add(new BasicNameValuePair("id", id));
+        
         
         JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
      
