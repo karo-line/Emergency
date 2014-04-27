@@ -16,7 +16,7 @@ public class TodoFunction {
      
     // Testing in localhost using wamp or xampp
     // use http://10.0.2.2/ to connect to your localhost ie http://localhost/
-    private static String loginURL = "http://lmattano.dyndns-at-home.com:8443/android_todo_api/";
+    private static String loginURL;
     private static String storeURL = "http://lmattano.dyndns-at-home.com:8443/android_todo_api/";
      
     private static String login_tag = "login";
@@ -28,6 +28,8 @@ public class TodoFunction {
     public TodoFunction(){
     	jsonParser = new JSONParser();
         jsonTodoParser = new JSONTodoParser();
+        ServerConnection sC = new ServerConnection();
+        loginURL = sC.getServerAdr("local")+"android_todo_api/";
     }
      
     /**
@@ -57,7 +59,7 @@ public class TodoFunction {
         params.add(new BasicNameValuePair("id", id));
          
         // getting JSON Object
-        JSONObject json = jsonParser.getJSONFromUrl(storeURL, params);
+        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
         // return json
         return json;
     }

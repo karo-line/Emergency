@@ -8,15 +8,18 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
  
 import android.content.Context;
+import android.util.Log;
  
 public class LoginFunctions {
      
     private JSONParser jsonParser;
+    private static String loginURL;
+    private static String registerURL;
      
     // Testing in localhost using wamp or xampp
     // use http://10.0.2.2/ to connect to your localhost ie http://localhost/
-    private static String loginURL = "http://lmattano.dyndns-at-home.com:8443/android_user_api/";
-    private static String registerURL = "http://lmattano.dyndns-at-home.com:8443/android_login_api/";
+    //private static String loginURL = "http://lmattano.dyndns-at-home.com:8443/android_user_api/";
+    //private static String registerURL = "http://lmattano.dyndns-at-home.com:8443/android_login_api/";
      
     private static String login_tag = "login";
     private static String register_tag = "register";
@@ -24,6 +27,10 @@ public class LoginFunctions {
     // constructor
     public LoginFunctions(){
         jsonParser = new JSONParser();
+        ServerConnection sC = new ServerConnection();
+        loginURL = sC.getServerAdr("local")+"android_user_api/";
+        Log.i("uri",loginURL);
+        registerURL = sC.getServerAdr("local")+"android_login_api/";
     }
      
     /**

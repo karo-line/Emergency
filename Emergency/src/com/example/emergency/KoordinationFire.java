@@ -34,6 +34,15 @@ public class KoordinationFire extends Activity {
 					
 				}
 			});
+			
+			btnTruppen.setOnClickListener(new View.OnClickListener() {
+				public void onClick(View view) {
+					i= new Intent(getApplicationContext(), TickerFire.class);
+					startActivity(i);		
+					overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+					
+				}
+			});
 	}
 	
 	public void startMenu(View v) {

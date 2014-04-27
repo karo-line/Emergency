@@ -12,10 +12,11 @@ import android.content.Context;
 public class OperationFunction {
      
     private JSONParser jsonParser;
+    private static String loginURL;
      
     // Testing in localhost using wamp or xampp
     // use http://10.0.2.2/ to connect to your localhost ie http://localhost/
-    private static String loginURL = "http://lmattano.dyndns-at-home.com:8443/android_einsatz_api/";
+    //private static String loginURL = "http://lmattano.dyndns-at-home.com:8443/android_einsatz_api/";
     //private static String registerURL = "http://10.0.0.7/android_kennzeichen_api/";
      
     private static String login_tag = "login";
@@ -24,6 +25,9 @@ public class OperationFunction {
     // constructor
     public OperationFunction(){
         jsonParser = new JSONParser();
+        
+        ServerConnection sC = new ServerConnection();
+        loginURL = sC.getServerAdr("local")+"android_einsatz_api/";
     }
      
     /**
