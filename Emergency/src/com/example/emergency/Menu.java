@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.Time;
 import android.view.View;
@@ -40,6 +41,7 @@ public class Menu extends Activity {
 	
 	TextView einsatzinfos;
 	TextView refresh;
+	scheduleEinsatz s;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -51,6 +53,10 @@ public class Menu extends Activity {
 		setContentView(R.layout.menu_nexus);
 		einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
 		refresh = (TextView) findViewById(R.id.aktualisiert);
+		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+		s = new scheduleEinsatz();
+		s.scheduleUpdateText(einsatzinfos, refresh);
 	}
 	
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -94,8 +100,13 @@ public class Menu extends Activity {
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosmenu));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosmenu),einsatzID);
+		 }
 		 /**  String id = "1";
            
            OperationFunction operationFunction = new OperationFunction();

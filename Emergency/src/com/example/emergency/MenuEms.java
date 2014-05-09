@@ -5,8 +5,10 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -20,6 +22,7 @@ public class MenuEms extends Activity {
 	
 	TextView einsatzinfos;
 	TextView refresh;
+	scheduleEinsatz s;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -31,6 +34,10 @@ public class MenuEms extends Activity {
 		setContentView(R.layout.menu_ems_nexus);
 		einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
 		refresh = (TextView) findViewById(R.id.aktualisiert);
+		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+		s = new scheduleEinsatz();
+		s.scheduleUpdateText(einsatzinfos, refresh);
 	}
 	
 	protected void onPostCreate(Bundle savedInstanceState) {
@@ -50,6 +57,9 @@ public class MenuEms extends Activity {
 	
 	public void startTranslator(View v) {
 		i= new Intent(this, TranslatorEms.class);
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		String einsatzID2 = settings.getString("einsatzID", "nosuchvalue");
+		Log.i("einsatz",einsatzID2);
 		startActivity(i);		
 		overridePendingTransition(R.layout.fadeout, R.layout.fadein);			
 	}
@@ -85,8 +95,13 @@ public class MenuEms extends Activity {
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosmenu));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosmenu),einsatzID);
+		 }
 	}
 	
 	public void startReport(View v) {

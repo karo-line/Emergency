@@ -2,6 +2,7 @@ package com.example.emergency;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -27,6 +28,9 @@ public class GefahrengutResult extends Activity {
     TextView gesundheitView;
     TextView anfahrenView;
     TextView schutzvorkehrungView;
+    TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,13 @@ public class GefahrengutResult extends Activity {
         	//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	          //  WindowManager.LayoutParams.FLAG_FULLSCREEN);
             setContentView(R.layout.gefahrengutresult_fire_nexus);
+            
+            einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+    		refresh = (TextView) findViewById(R.id.aktualisiert);
+    		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+    		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+    		s = new scheduleEinsatz();
+			s.scheduleUpdateText(einsatzinfos, refresh);
             
             nummerView = (TextView) findViewById(R.id.nummer);
             nameView = (TextView) findViewById(R.id.name);
@@ -125,9 +136,21 @@ public class GefahrengutResult extends Activity {
 				
 	}
 	
+	public void startTicker(View v) {
+		i= new Intent(this, TickerFire.class);
+		startActivity(i);	
+		overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+				
+	}
+	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosGefahrgutResult));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosGefahrgutResult),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

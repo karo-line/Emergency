@@ -2,6 +2,7 @@ package com.example.emergency;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -10,11 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class BerichteList extends Activity {
 
 	private Intent i;
 	Button btnWeitere;
+	TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 			
@@ -24,6 +29,15 @@ public class BerichteList extends Activity {
 			//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 			setContentView(R.layout.berichtelist_ems_nexus);
+			
+			einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+			refresh = (TextView) findViewById(R.id.aktualisiert);
+			
+			einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+			refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+			
+			s = new scheduleEinsatz();
+			s.scheduleUpdateText(einsatzinfos, refresh);
 			
 			Spinner spinner = (Spinner) findViewById(R.id.bericht_spinner);
 			// Create an ArrayAdapter using the string array and a default spinner layout
@@ -55,8 +69,13 @@ public class BerichteList extends Activity {
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosBerichteList));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosBerichteList),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

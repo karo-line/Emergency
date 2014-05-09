@@ -17,12 +17,16 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 public class TranslatorList extends Activity {
 
 	private Intent i;
 	Button btnWeitere;
 	boolean skype;
+	TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 			
@@ -32,6 +36,13 @@ public class TranslatorList extends Activity {
 			//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 			setContentView(R.layout.translatorlist_nexus);
+			
+			einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+			refresh = (TextView) findViewById(R.id.aktualisiert);
+			einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+			refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+			s = new scheduleEinsatz();
+			s.scheduleUpdateText(einsatzinfos, refresh);
 			
 			final Spinner spinner = (Spinner) findViewById(R.id.language_spinner);
 			// Create an ArrayAdapter using the string array and a default spinner layout
@@ -110,8 +121,13 @@ public class TranslatorList extends Activity {
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosTranslatorList));
+		SharedPreferences settings = getPreferences(0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosTranslatorList),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

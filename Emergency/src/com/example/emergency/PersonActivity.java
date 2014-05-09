@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +49,9 @@ public class PersonActivity extends Activity {
     private static String KEY_ARMED = "armed";
     private static String KEY_VIOLENT = "violent";
     private static String KEY_ACTIONS = "actions";
+    TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
  
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,13 @@ public class PersonActivity extends Activity {
 		//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.login);
+		
+		einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+		refresh = (TextView) findViewById(R.id.aktualisiert);
+		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+		s = new scheduleEinsatz();
+		s.scheduleUpdateText(einsatzinfos, refresh);
  
         // Importing all assets like buttons, text fields
         inputEmail = (EditText) findViewById(R.id.loginEmail);
@@ -154,8 +165,13 @@ public class PersonActivity extends Activity {
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosPersonen));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosPersonen),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

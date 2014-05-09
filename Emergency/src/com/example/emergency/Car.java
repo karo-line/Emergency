@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,9 @@ public class Car extends Activity {
 	EditText inputKennzeichen;
 	TextView loginErrorMsg;
 	Button btnSuche;
+	TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 			
@@ -39,6 +43,15 @@ public class Car extends Activity {
 			//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 			setContentView(R.layout.car);
+			
+			einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+			refresh = (TextView) findViewById(R.id.aktualisiert);
+			
+			einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+			refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+			
+			s = new scheduleEinsatz();
+			s.scheduleUpdateText(einsatzinfos, refresh);
 			
 			inputKennzeichen = (EditText) findViewById(R.id.inputKennzeichen);
 			loginErrorMsg = (TextView) findViewById(R.id.login_error);
@@ -105,8 +118,13 @@ public class Car extends Activity {
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosCar));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosCar),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

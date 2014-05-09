@@ -3,6 +3,7 @@ package com.example.emergency;
 import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ public class VideoEms extends Activity {
 
 	private Intent i;
 	Button btnWeitere;
+	scheduleEinsatz s;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 			
@@ -50,8 +52,13 @@ public class VideoEms extends Activity {
 	
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosVideoEms));
+		SharedPreferences settings = getPreferences(0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosVideoEms),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

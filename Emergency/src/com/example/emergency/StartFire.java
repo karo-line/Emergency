@@ -2,10 +2,14 @@ package com.example.emergency;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 import com.example.emergency.util.SystemUiHider;
 import com.google.android.gms.common.ConnectionResult;
@@ -18,29 +22,40 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener;
 import com.google.android.gms.maps.GoogleMap.OnMarkerDragListener;
+import com.google.android.maps.GeoPoint;
+import com.google.android.maps.MapView;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ClipData;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -48,6 +63,8 @@ import android.os.Parcelable;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
@@ -58,10 +75,12 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
@@ -107,12 +126,17 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	private Intent i;
 	GoogleMap map;
 	boolean cctvStarted = false;
+	boolean naviStarted = false;
 	ArrayList<Marker> markerList;
 	public static ArrayList<Marker> markerFireCar = new ArrayList<Marker>();
 	private LocationClient mLocationClient;
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	ImageView deleteMarker;
 	LatLng origMarkerPos;
+	String einsatzID;
+	Polyline line = null;
+	private final int FIVE_SECONDS = 120000;
+	scheduleEinsatz s;
 	
 	public static class ErrorDialogFragment extends DialogFragment {
 
@@ -145,6 +169,42 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_fire);
 		
+		/**
+		 * einsatzinfos aktualisieren
+		 */
+		
+		Bundle b = getIntent().getExtras();
+		if(b!= null) {
+			einsatzID = getIntent().getExtras().getString("einsatzID");
+			
+			SharedPreferences settings = getSharedPreferences("shares",0);
+		     SharedPreferences.Editor editor = settings.edit();
+		     editor.putString("einsatzID", einsatzID);
+		     editor.commit();
+		     Log.i("einsatzIDvorhanden", einsatzID);
+		} else {
+			SharedPreferences settings = getPreferences(0);
+			einsatzID = settings.getString("einsatzID", "nosuchvalue");
+		}
+		RefreshInfo refreshInfo = new RefreshInfo();
+		refreshInfo.refresh(findViewById(R.id.einsatzinfosmenu), einsatzID);
+		
+		s = new scheduleEinsatz();
+		s.scheduleUpdateInfo(findViewById(R.id.einsatzinfosmenu), einsatzID);
+		
+		
+		LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+		Context c = getApplicationContext();
+		String windSchedule = s.scheduleWind(layoutInflater, findViewById(R.id.einsatzinfosmenu), c);
+		
+		
+		Log.i("nochanged",windSchedule);
+		if(!windSchedule.equals("nochange")) {
+			Log.i("windhaschanged",windSchedule);
+			
+		} else{
+			Log.i("nochanged",windSchedule);
+		}
 		
 		mLocationClient = new LocationClient(this, this, this);
 		//LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,getWindowManager().getDefaultDisplay().getHeight()-100);
@@ -173,6 +233,27 @@ GooglePlayServicesClient.OnConnectionFailedListener{
         try {
 			JSONObject json_wind = json.getJSONObject("wind");
 			wind = json_wind.getString("deg");
+			
+			String windDir="";
+			double windDeg = Double.parseDouble(wind);
+			if(windDeg>=22.5&&windDeg<=67.5) {
+				windDir="NO";
+			} else if (windDeg>67.5&&windDeg<=112.5) {
+				windDir="O";
+			} else if (windDeg>112.5&&windDeg<=157.5) {
+				windDir="SO";
+			} else if (windDeg>157.5&&windDeg<=202.5) {
+				windDir="S";
+			} else if (windDeg>202.5&&windDeg<=247.5) {
+				windDir="SW";
+			} else if (windDeg>247.5&&windDeg<=292.5) {
+				windDir="W";
+			} else if (windDeg>292.5&&windDeg<=337.5) {
+				windDir="NW";
+			} else if (windDeg>337.5 || windDeg<22.5) {
+				windDir="N";
+			}
+			s.setWind(windDir);
 		
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -506,15 +587,44 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 	/**private void delayedHide(int delayMillis) {
 		mHideHandler.removeCallbacks(mHideRunnable);
 		mHideHandler.postDelayed(mHideRunnable, delayMillis);
-	}*/
+	}
+	 * @throws ExecutionException 
+	 * @throws InterruptedException */
 	
-	public void startMenu(View v) {
+	public void startMenu(View v)  {
 		i= new Intent(this, MenuFire.class);
 		ImageView menu= (ImageView) findViewById(R.id.dummy_button);
-		finish();
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		String einsatzID2 = settings.getString("einsatzID", "nosuchvalue");
+		Log.i("einsatz",einsatzID2);
 		startActivity(i);		
 		overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+		
 	}
+	
+	public void startNavi(View v) throws InterruptedException, ExecutionException {
+		Location myLocation = map.getMyLocation();
+        String tag[] = { "lat", "lng" };
+        EditText ziel = (EditText) findViewById(R.id.naviGoal);
+        String zielAdr = ziel.getText().toString();
+		ArrayList all_geo_points = getDirections(myLocation.getLatitude(), myLocation.getLongitude(),zielAdr);
+		int size = all_geo_points.size();
+		List<LatLng> list = (List<LatLng>) all_geo_points.get(size-1);
+		PolylineOptions options = new PolylineOptions();
+        options.addAll(list);
+        
+		if (naviStarted==false) {
+	        //options.fillColor(Color.RED);
+	        line = map.addPolyline(options);
+	        naviStarted = true;
+	        Log.i("navifalse","if");
+	        
+		} else {
+			line.remove();
+			naviStarted = false;
+		}
+	}
+	
 	
 	public void startVideo(View v) {
 		i= new Intent(this, VideoFire.class);
@@ -621,13 +731,46 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 	
 	public void refreshInfo(View v) {
 		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosMapFire));
+		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosmenu),einsatzID);
 	}
 	
 	public void startTodo(View v) {
 		i= new Intent(this, ToDoFire.class);
 		startActivity(i);		
 				
+	}
+	
+	public void startTicker(View v) {
+		/**i= new Intent(this, TickerFire.class);
+		startActivity(i);	*/	
+		
+		LayoutInflater layoutInflater  = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);  
+	    View popupView = layoutInflater.inflate(R.layout.popup, null);  
+	             final PopupWindow popupWindow = new PopupWindow(
+	               popupView, 
+	               LayoutParams.WRAP_CONTENT,  
+	                     LayoutParams.WRAP_CONTENT); 
+	             TextView tView = (TextView)popupView.findViewById(R.id.popupText);
+	             tView.setText("Windänderung!");
+	             popupWindow.showAsDropDown(findViewById(R.id.map), 10, -130);
+	             
+	             Button btnDismiss = (Button)popupView.findViewById(R.id.dismiss);
+	             btnDismiss.setOnClickListener(new Button.OnClickListener(){
+
+			     @Override
+			     public void onClick(View v) {
+			      // TODO Auto-generated method stub
+			      popupWindow.dismiss();
+			     }});
+	             
+	             Button btnOpen = (Button)popupView.findViewById(R.id.open);
+	             btnOpen.setOnClickListener(new Button.OnClickListener(){
+
+			     @Override
+			     public void onClick(View v) {
+			    	 i= new Intent(getApplicationContext(), WindFire.class);
+			 		startActivity(i);
+			     }});
 	}
 	
 	public void back(View v) {
@@ -700,6 +843,19 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
     protected void onStop() {
         // Disconnecting the client invalidates it.
         mLocationClient.disconnect();
+        Bundle b = getIntent().getExtras();
+        if(b!= null) {
+			einsatzID = getIntent().getExtras().getString("einsatzID");
+			
+		     SharedPreferences settings = getPreferences(0);
+		     SharedPreferences.Editor editor = settings.edit();
+		     editor.putString("einsatzID", einsatzID);
+		     editor.commit();
+		     Log.i("einsatzIDvorhanden", einsatzID);
+		} else {
+			SharedPreferences settings = getPreferences(0);
+			einsatzID = settings.getString("einsatzID", "nosuchvalue");
+		}
         super.onStop();
     }
 
@@ -806,5 +962,94 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
            Toast.makeText(getApplicationContext(), "Sorry. Location services not available to you", Toast.LENGTH_LONG).show();
         }
     }
+    
+    public static ArrayList getDirections(double lat1, double lon1, String ziel) throws InterruptedException, ExecutionException {
+        String url = "http://maps.googleapis.com/maps/api/directions/xml?origin=" +lat1 + "," + lon1  + "&destination=" + ziel + "&sensor=false&units=metric";
+        String tag[] = { "lat", "lng" };
+        ArrayList list_of_geopoints = new ArrayList();
+        
+        	NaviFunction function= new NaviFunction();
+            Document doc = function.getDocument(url);
+            		
+            if (doc != null) {
+                NodeList nl1, nl2;
+                nl1 = doc.getElementsByTagName("points");
+                
+                nl2 = doc.getElementsByTagName(tag[1]);
+                if (nl1.getLength() > 0) {
+                    list_of_geopoints = new ArrayList();
+                    for (int i = 0; i < nl1.getLength(); i++) {
+                        Node node1 = nl1.item(i);
+                        
+                        //Node node2 = nl2.item(i);
+                        Log.i("points",node1.getTextContent());
+                        List<LatLng> poly = decodePoly(node1.getTextContent());
+                        list_of_geopoints.add(poly);
+                        /**double lat = Double.parseDouble(node1.getTextContent());
+                        double lng = Double.parseDouble(node2.getTextContent());
+                        list_of_geopoints.add(new LatLng(lat,lng));*/
+                        //list_of_geopoints.add(new GeoPoint((int) (lat * 1E6), (int) (lng * 1E6)));
+                    }
+                } else {
+                    // No points found
+                }
+            }
+       
+        return list_of_geopoints;
+    }
+    
+    private static List<LatLng> decodePoly(String encoded) {
+
+        List<LatLng> poly = new ArrayList<LatLng>();
+        int index = 0, len = encoded.length();
+        int lat = 0, lng = 0;
+
+        while (index < len) {
+            int b, shift = 0, result = 0;
+            do {
+                b = encoded.charAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            int dlat = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lat += dlat;
+
+            shift = 0;
+            result = 0;
+            do {
+                b = encoded.charAt(index++) - 63;
+                result |= (b & 0x1f) << shift;
+                shift += 5;
+            } while (b >= 0x20);
+            int dlng = ((result & 1) != 0 ? ~(result >> 1) : (result >> 1));
+            lng += dlng;
+
+            LatLng p = new LatLng((double) lat / 1E5, (double) lng / 1E5);
+            poly.add(p);
+        }
+        return poly;
+    }
+    
+
+	
+
+
+    public static void showAlert(Context act,String msg)
+    {
+        AlertDialog.Builder alert = new AlertDialog.Builder(act);
+        alert.setMessage(msg).setPositiveButton("OK", new DialogInterface.OnClickListener(){
+            
+
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// TODO Auto-generated method stub
+				
+			}
+
+        }).show();
+    }
+    
+  
 }
 

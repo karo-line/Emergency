@@ -31,16 +31,16 @@ public class RefreshInfo {
 	private static String KEY_INFO = "info";
 	private static String KEY_VIDEOLINK = "videoLink";
 	public static String videoLink;
+	public static EinsatzInfo einsatz = null;
 	
 	TextView einsatzinfosView;
 	TextView refreshView;
 	
-	public void refresh(View v) { 
+	public void refresh(View v, String id) { 
 		
 		einsatzinfosView = (TextView) v.findViewById(R.id.einsatzinfos);
 		refreshView = (TextView) v.findViewById(R.id.aktualisiert);
 		
-		String id = "1";
 	     
 	     OperationFunction operationFunction = new OperationFunction();
 	     JSONObject json = operationFunction.loginUser(id);
@@ -87,7 +87,8 @@ public class RefreshInfo {
 	                 
 	                 Time now = new Time();
 	                 now.setToNow();
-	                 refreshView.setText("Zuletzt aktualisiert: "+now.format("%k:%M:%S"));
+	                 String timeAct = "Zuletzt aktualisiert: "+now.format("%k:%M:%S");
+	                 refreshView.setText(timeAct);
 	                 // Clear all previous data in database
 	                 //userFunction.logoutUser(getApplicationContext());
 	                 //db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_SEX), json.getString(KEY_UID), json_user.getString(KEY_NATIONALITY), json_user.getString(KEY_BIRTHDAY), json_user.getString(KEY_REASON), json_user.getString(KEY_ALIAS));                       
@@ -105,6 +106,24 @@ public class RefreshInfo {
 	                  
 	                 // Close Login Screen
 	                 
+	                 /**
+	                  * aktuellen einsatzinfos in einsatzifo object speichern
+	                  */
+	                String ort = json_user.getString(KEY_EINSATZORT);
+	              	String plz = json_user.getString(KEY_PLZ);
+	              	String str = json_user.getString(KEY_STRASSE)+" "+json_user.getString(KEY_HAUSNUMMER);
+	              	String stockwerk =json_user.getString(KEY_STOCKWERK);
+	              	String bei = json_user.getString(KEY_ORTBEI);
+	              	String patient = json_user.getString(KEY_PATIENTNAME);
+	              	String geschlecht = json_user.getString(KEY_PATIENTSEX);
+	              	String anrufer = json_user.getString(KEY_CALLER);
+	              	String telNummer = json_user.getString(KEY_CALLERNR);
+	              	String weitereAlarmierung = rettung+" "+polizei+" "+feuerwehr;
+	              	String einsatzArt = json_user.getString(KEY_EINSATZART);
+	              	String info = json_user.getString(KEY_INFO);
+	                 einsatz = new EinsatzInfo();
+	                 einsatz.actualize(ort,  plz,  str,  stockwerk,  bei,  patient,  geschlecht,  anrufer,  telNummer,  weitereAlarmierung,  einsatzArt,  info);
+	                 einsatz.setAktualisiert(timeAct);
 	             }else{
 	                 // Error in login
 	                 //loginErrorMsg.setText("Incorrect license number");

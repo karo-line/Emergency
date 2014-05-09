@@ -31,6 +31,7 @@ import android.app.FragmentManager;
 import android.content.ClipData;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Point;
@@ -80,6 +81,8 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	ImageView deleteMarker;
 	LatLng origMarkerPos;
+	String einsatzID;
+	scheduleEinsatz s;
 	
 	public static class ErrorDialogFragment extends DialogFragment {
 
@@ -112,6 +115,22 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.map_ems);
 		
+		Bundle b = getIntent().getExtras();
+		if(b!= null) {
+			einsatzID = getIntent().getExtras().getString("einsatzID");
+			SharedPreferences settings = getSharedPreferences("shares",0);
+		     SharedPreferences.Editor editor = settings.edit();
+		     editor.putString("einsatzID", einsatzID);
+		     editor.commit();
+		} else {
+			SharedPreferences settings = getSharedPreferences("shares",0);
+			einsatzID = settings.getString("einsatzID", "nosuchvalue");
+		}
+		RefreshInfo refreshInfo = new RefreshInfo();
+		refreshInfo.refresh(findViewById(R.id.einsatzinfosMapEms), einsatzID);
+		
+		s = new scheduleEinsatz();
+		s.scheduleUpdateInfo(findViewById(R.id.einsatzinfosMapEms), einsatzID);
 		
 		mLocationClient = new LocationClient(this, this, this);
 		//LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,getWindowManager().getDefaultDisplay().getHeight()-100);
@@ -154,6 +173,12 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	
 	public void startMenu(View v) {
 		i= new Intent(this, MenuEms.class);
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		String einsatzID2 = settings.getString("einsatzID", "nosuchvalue");
+		Log.i("einsatz",einsatzID2);
+		SharedPreferences settings2 = getSharedPreferences("shares",0);
+		 String nrBericht = settings2.getString("transportBericht", "nosuchvalue");
+		 Log.i("nrBericht", nrBericht);
 		startActivity(i);		
 				
 	}
@@ -171,7 +196,7 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	
 	public void refreshInfo(View v) {
 		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosMapEms));
+		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosMapEms), einsatzID);
 	}
 	
 	

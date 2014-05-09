@@ -28,9 +28,9 @@ public class LoginFunctions {
     public LoginFunctions(){
         jsonParser = new JSONParser();
         ServerConnection sC = new ServerConnection();
-        loginURL = sC.getServerAdr("local")+"android_user_api/";
+        loginURL = sC.getServerAdr("dyndns")+"android_user_api/";
         Log.i("uri",loginURL);
-        registerURL = sC.getServerAdr("local")+"android_login_api/";
+        registerURL = sC.getServerAdr("dyndns")+"android_login_api/";
     }
      
     /**

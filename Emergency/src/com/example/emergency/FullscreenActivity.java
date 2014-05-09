@@ -27,6 +27,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.location.Location;
 import android.os.Build;
@@ -89,6 +90,8 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	ArrayList<Marker> markerList;
 	private LocationClient mLocationClient;
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+	String einsatzID;
+	scheduleEinsatz s;
 	
 	public static class ErrorDialogFragment extends DialogFragment {
 
@@ -120,6 +123,23 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 		//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	        //    WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activitynexus);
+		
+		Bundle b = getIntent().getExtras();
+		if(b!= null) {
+			einsatzID = getIntent().getExtras().getString("einsatzID");
+			SharedPreferences settings = getPreferences(0);
+		     SharedPreferences.Editor editor = settings.edit();
+		     editor.putString("einsatzID", einsatzID);
+		     editor.commit();
+		} else {
+			SharedPreferences settings = getPreferences(0);
+			einsatzID = settings.getString("einsatzID", "nosuchvalue");
+		}
+		RefreshInfo refreshInfo = new RefreshInfo();
+		refreshInfo.refresh(findViewById(R.id.einsatzinfosMapPolice), einsatzID);
+		
+		scheduleEinsatz s = new scheduleEinsatz();
+		s.scheduleUpdateInfo(findViewById(R.id.einsatzinfosMapPolice), einsatzID);
 		
 		
 		mLocationClient = new LocationClient(this, this, this);
@@ -369,7 +389,7 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	
 	public void refreshInfo(View v) {
 		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosMapPolice));
+		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosMapPolice),einsatzID);
 	}
 	
 	public void back(View v) {

@@ -9,6 +9,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -51,7 +52,9 @@ public class GefahrengutActivity extends Activity {
     private static String KEY_BERGUNG = "bergung";
     private static String KEY_KLEIDUNG = "ablegenschutzkleidung";
     private static String KEY_AUSRUESTUNG = "reinigungausruestung";
- 
+    TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +63,13 @@ public class GefahrengutActivity extends Activity {
 		//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.gefahrengut);
+		
+		 einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+ 		refresh = (TextView) findViewById(R.id.aktualisiert);
+ 		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+ 		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+ 		s = new scheduleEinsatz();
+		s.scheduleUpdateText(einsatzinfos, refresh); 
  
         // Importing all assets like buttons, text fields
 		inputNummer = (EditText) findViewById(R.id.sucheNummer);
@@ -157,8 +167,13 @@ public class GefahrengutActivity extends Activity {
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosGefahrengut));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosGefahrengut),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

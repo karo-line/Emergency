@@ -27,7 +27,7 @@ public class OperationFunction {
         jsonParser = new JSONParser();
         
         ServerConnection sC = new ServerConnection();
-        loginURL = sC.getServerAdr("local")+"android_einsatz_api/";
+        loginURL = sC.getServerAdr("dyndns")+"android_einsatz_api/";
     }
      
     /**

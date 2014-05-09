@@ -2,6 +2,7 @@ package com.example.emergency;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,9 @@ public class DashboardActivity extends Activity {
     TextView armedView;
     TextView violentView;
     TextView actionsView;
+    TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,6 +61,13 @@ public class DashboardActivity extends Activity {
         	//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	          //  WindowManager.LayoutParams.FLAG_FULLSCREEN);
             setContentView(R.layout.dashboard);
+            
+        	einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+	 		refresh = (TextView) findViewById(R.id.aktualisiert);
+	 		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+	 		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+	 		s = new scheduleEinsatz();
+			s.scheduleUpdateText(einsatzinfos, refresh);
             
             loginName = (TextView) findViewById(R.id.login_user);
             loginMail = (TextView) findViewById(R.id.login_mail);
@@ -170,8 +181,13 @@ public class DashboardActivity extends Activity {
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosPersonenList));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosPersonenList),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

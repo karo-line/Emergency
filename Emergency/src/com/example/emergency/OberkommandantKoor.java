@@ -12,6 +12,7 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
@@ -46,6 +47,9 @@ public class OberkommandantKoor extends Activity {
 	ArrayList<EditText> kommandanten;
 	HashMap<String, ArrayList<Todo>> map;
 	ArrayList<String> kommArray;
+	TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 			
@@ -54,6 +58,13 @@ public class OberkommandantKoor extends Activity {
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
 			
 			setContentView(R.layout.oberkommandant_nexus);
+			
+			einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+			refresh = (TextView) findViewById(R.id.aktualisiert);
+			einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+			refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+			s = new scheduleEinsatz();
+			s.scheduleUpdateText(einsatzinfos, refresh);
 			
 			todosMap = new HashMap<EditText, ArrayList<Todo>>();
 			//todos = new ArrayList<EditText>();
@@ -118,8 +129,11 @@ public class OberkommandantKoor extends Activity {
 				ll.addView(viewKomm);
 				ArrayList<EditText> todosEdit = new ArrayList<EditText>();
 				for(int j =0;j<todos.size();j++) {
-				
+					
+					final LinearLayout llh = new LinearLayout(getApplicationContext());
 					int viewIndex = ll.indexOfChild(viewKomm);
+					ll.addView(llh,viewIndex+j+1);
+				
 					EditText viewTodo = new EditText(getApplicationContext());
 					
 					
@@ -135,18 +149,30 @@ public class OberkommandantKoor extends Activity {
 					ImageButton delete = new ImageButton(getApplicationContext());
 					//Uri imgUri=Uri.parse("drawable/ic_action_discard");
 					delete.setImageResource(R.drawable.ic_action_discard);
-					ll.addView(viewTodo,viewIndex+j+1);
-					int todoIndex = ll.indexOfChild(viewTodo);
-					ll.addView(delete);
+					
+					LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
+	                lp.leftMargin = 30;
+	                lp.topMargin = 10;
+	                lp.width = 700;
+	                viewTodo.setLayoutParams(lp);
+					llh.addView(viewTodo);
+					
+					LinearLayout.LayoutParams lp2 = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
+	                lp2.topMargin = 5;
+	                lp2.rightMargin = 30;
+	                delete.setLayoutParams(lp2);
+					llh.addView(delete);
 					
 					/**
 					 * delete ausgewähltes todo
 					 * wird nicht mehr angezeigt und vom server entfernt
 					 */
 					delete.setOnClickListener(new View.OnClickListener() {
+						@SuppressLint("NewApi")
 						public void onClick(View view) {
 							TodoFunction todoFunction = new TodoFunction();
 							JSONObject json = todoFunction.deleteTodo(id);
+							recreate();
 						}
 					});
 					
@@ -299,9 +325,21 @@ public class OberkommandantKoor extends Activity {
 		overridePendingTransition(R.layout.fadeout, R.layout.fadein);		
 	}
 	
+	public void startTicker(View v) {
+		i= new Intent(this, TickerFire.class);
+		startActivity(i);	
+		overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+				
+	}
+	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosKoordination));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosKoordination),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

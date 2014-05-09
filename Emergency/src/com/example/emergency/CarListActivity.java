@@ -2,6 +2,7 @@ package com.example.emergency;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -23,6 +24,9 @@ public class CarListActivity extends Activity {
     TextView personView;
     TextView zulassungsdatumView;
     TextView zulassungsortView;
+    TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,13 @@ public class CarListActivity extends Activity {
         	//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	          //  WindowManager.LayoutParams.FLAG_FULLSCREEN);
             setContentView(R.layout.carlist);
+            
+        	einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+	 		refresh = (TextView) findViewById(R.id.aktualisiert);
+	 		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+	 		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+	 		s = new scheduleEinsatz();
+			s.scheduleUpdateText(einsatzinfos, refresh);
             
             kennzeichenView = (TextView) findViewById(R.id.kennzeichen);
             personView = (TextView) findViewById(R.id.person);
@@ -89,8 +100,13 @@ public class CarListActivity extends Activity {
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosCarList));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosCarList),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

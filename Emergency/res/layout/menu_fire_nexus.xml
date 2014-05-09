@@ -28,27 +28,68 @@
             android:id="@+id/fullscreen_content_controls3"
             style="?buttonBarStyle"
             android:layout_width="725dp"
-            android:layout_height="300dp"
+            android:layout_height="280dp"
             android:background="@color/white"
             android:orientation="horizontal" >
-            
-            <ImageView 
+            <RelativeLayout 
                 android:id="@+id/map"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginLeft="80dp"
-                android:src="@drawable/map"
-                android:onClick="startMap"/>
-            
-            <ImageView 
+			    android:layout_width="200dp"
+	            android:layout_height="250dp"
+	            android:layout_marginTop="20dp"
+	                android:layout_marginLeft="80dp" >
+
+	    		<ImageView 
+	                android:layout_width="200dp"
+	            	android:layout_height="200dp"
+	                
+	                android:src="@drawable/map"
+	                android:onClick="startMap"/>
+
+			    <TextView
+			        android:id="@+id/textview"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentTop="true"
+			        android:layout_marginTop="200dp"
+			        android:text="Karte"
+			        android:textSize="20dip"
+			         android:textColor="#000000"
+			         android:textStyle="bold"
+			         android:layout_gravity="center"
+			        android:layout_centerHorizontal="true" />
+
+			</RelativeLayout>
+           
+            <RelativeLayout 
                 android:id="@+id/gefahrengut_fire"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginLeft="150dp"
-                android:src="@drawable/icon_gefahrengut"
-                android:onClick="startGefahrengut"/>
+			    android:layout_width="200dp"
+	            android:layout_height="250dp"
+	            android:layout_marginTop="20dp"
+	                android:layout_marginLeft="150dp" >
+
+	    		
+	    		
+	    		<ImageView 
+	                android:layout_width="200dp"
+	                android:layout_height="200dp"
+	                android:src="@drawable/icon_gefahrengut"
+	                android:onClick="startGefahrengut"/>
+
+			    <TextView
+			        android:id="@+id/textview"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentTop="true"
+			        android:layout_marginTop="200dp"
+			        android:text="Gefahrgut"
+			        android:textSize="20dip"
+			         android:textColor="#000000"
+			         android:textStyle="bold"
+			         android:layout_gravity="center"
+			        android:layout_centerHorizontal="true" />
+
+			</RelativeLayout>
+            
             
             
             
@@ -62,20 +103,63 @@
             android:background="@color/white"
             android:orientation="horizontal">
             
-            <ImageView 
+             <RelativeLayout 
                 android:id="@+id/wind"
+			    android:layout_width="200dp"
+	            android:layout_height="250dp"
+	            android:layout_marginLeft="80dp" >
+
+	    		
+	    		<ImageView 
                 android:layout_width="200dp"
                 android:layout_height="200dp"
-                android:layout_marginLeft="80dp"
                 android:src="@drawable/icon_wind"
                 android:onClick="startWind"/>
-            <ImageView 
+	    		
+
+			    <TextView
+			        android:id="@+id/textview"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentTop="true"
+			        android:layout_marginTop="200dp"
+			        android:text="Windvorhersage"
+			        android:textSize="20dip"
+			         android:textColor="#000000"
+			         android:textStyle="bold"
+			         android:layout_gravity="center"
+			        android:layout_centerHorizontal="true" />
+
+			</RelativeLayout>
+            
+             <RelativeLayout 
                 android:id="@+id/koordination"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:layout_marginLeft="150dp"
-                android:src="@drawable/icon_elga"
-                android:onClick="startKoordination"/>
+			    android:layout_width="200dp"
+	            android:layout_height="250dp"
+	            android:layout_marginLeft="150dp" >
+
+	    		<ImageView
+	                android:layout_width="200dp"
+	                android:layout_height="200dp"
+	                android:src="@drawable/icon_elga"
+	                android:onClick="startKoordination"/>
+	    		
+
+			    <TextView
+			        android:id="@+id/textview"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentTop="true"
+			        android:layout_marginTop="200dp"
+			        android:text="Koordination"
+			        android:textSize="20dip"
+			         android:textColor="#000000"
+			         android:textStyle="bold"
+			         android:layout_gravity="center"
+			        android:layout_centerHorizontal="true" />
+
+			</RelativeLayout>
+            
             
             
           </LinearLayout>

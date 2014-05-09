@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,6 +38,9 @@ public class ToDoFire extends Activity {
 	
 	private HashMap<String, ArrayList<Todo>> map;
 	private ArrayList<String> kommArray;
+	TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 			
@@ -45,6 +49,14 @@ public class ToDoFire extends Activity {
 			requestWindowFeature(Window.FEATURE_NO_TITLE);
 			
 			setContentView(R.layout.todo_nexus);
+			
+			einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+			refresh = (TextView) findViewById(R.id.aktualisiert);
+			einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+			refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+			s = new scheduleEinsatz();
+			s.scheduleUpdateText(einsatzinfos, refresh);
+			
 			map = new HashMap<String, ArrayList<Todo>>();
 			kommArray = new ArrayList<String>();
 			ll = (LinearLayout) findViewById(R.id.todoll2);
@@ -176,9 +188,21 @@ public class ToDoFire extends Activity {
 				
 	}
 	
+	public void startTicker(View v) {
+		i= new Intent(this, TickerFire.class);
+		startActivity(i);	
+		overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+				
+	}
+	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosToDo));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosToDo),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

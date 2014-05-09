@@ -59,7 +59,7 @@
 	        android:text="Türkisch"
 	        android:textSize="20dip"
 	        android:textStyle="bold"
-	        android:id="@+id/btnETurkisch"
+	        android:id="@+id/btnTuerkisch"
 	        android:layout_marginTop="20dip"
 	        android:layout_marginLeft="30dip"
 	        android:layout_marginRight="30dip"/>

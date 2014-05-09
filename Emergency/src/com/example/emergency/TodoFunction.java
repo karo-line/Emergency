@@ -29,7 +29,7 @@ public class TodoFunction {
     	jsonParser = new JSONParser();
         jsonTodoParser = new JSONTodoParser();
         ServerConnection sC = new ServerConnection();
-        loginURL = sC.getServerAdr("local")+"android_todo_api/";
+        loginURL = sC.getServerAdr("dyndns")+"android_todo_api/";
     }
      
     /**

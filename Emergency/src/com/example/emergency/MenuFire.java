@@ -4,9 +4,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.format.Time;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -37,9 +42,11 @@ public class MenuFire extends Activity {
 	private static String KEY_ALARMIERUNGWEITERE = "alamierungWeitere";
 	private static String KEY_EINSATZART = "einsatzart";
 	private static String KEY_INFO = "info";
+	private final int FIVE_SECONDS = 120000;
 	
 	TextView einsatzinfos;
 	TextView refresh;
+	scheduleEinsatz s;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -51,32 +58,46 @@ public class MenuFire extends Activity {
 		setContentView(R.layout.menu_fire_nexus);
 		einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
 		refresh = (TextView) findViewById(R.id.aktualisiert);
+		
+		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+		
+		s = new scheduleEinsatz();
+		s.scheduleUpdateText(einsatzinfos, refresh);
+		
+		LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+		Context c = getApplicationContext();
+		String windSchedule = s.scheduleWind(layoutInflater, findViewById(R.id.textview), c);
 	}
 	
-	protected void onPostCreate(Bundle savedInstanceState) {
+	/**protected void onPostCreate(Bundle savedInstanceState) {
 		super.onPostCreate(savedInstanceState);
 
 		// Trigger the initial hide() shortly after the activity has been
 		// created, to briefly hint to the user that UI controls
 		// are available.
 		//delayedHide(100);
-	}
+	}*/
 	
 	public void startMap(View v) {
 		i= new Intent(this, StartFire.class);
-		finish();
+		s.stopHandlerText();
 		startActivity(i);		
 		overridePendingTransition(R.layout.fadeout, R.layout.fadein);		
 	}
 	
 	public void startGefahrengut(View v) {
 		i= new Intent(this, GefahrengutFire.class);
+		s.stopHandlerText();
 		startActivity(i);		
-		overridePendingTransition(R.layout.fadeout, R.layout.fadein);		
+		overridePendingTransition(R.layout.fadeout, R.layout.fadein);	
 	}
 	
 	public void startWind(View v) {
 		i= new Intent(this, WindFire.class);
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		String einsatzID2 = settings.getString("einsatzID", "nosuchvalue");
+		s.stopHandlerText();
 		overridePendingTransition(R.layout.fadeout, R.layout.fadein);
 	
 				        	startActivity(i);		
@@ -85,30 +106,52 @@ public class MenuFire extends Activity {
 	
 	public void startKoordination(View v) {
 		i= new Intent(this, KoordinationFire.class);
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		String einsatzID2 = settings.getString("einsatzID", "nosuchvalue");
+		s.stopHandlerText();
 		startActivity(i);		
 		overridePendingTransition(R.layout.fadeout, R.layout.fadein);		
 	}
 	
 	public void startVideo(View v) {
 		i= new Intent(this, VideoFire.class);
+		s.stopHandlerText();
 		startActivity(i);		
 		overridePendingTransition(R.layout.fadeout, R.layout.fadein);	
 	}
 	
 	public void startTodo(View v) {
 		i= new Intent(this, ToDoFire.class);
+		s.stopHandlerText();
+		startActivity(i);	
+		overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+				
+	}
+	
+	public void startTicker(View v) {
+		i= new Intent(this, TickerFire.class);
+		s.stopHandlerText();
 		startActivity(i);	
 		overridePendingTransition(R.layout.fadeout, R.layout.fadein);
 				
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosmenu));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosmenu),einsatzID);
+		 }
+	
+			
 	}
 		
 		public void back(View v) {
+			s.stopHandlerText();
 			 finish();
 			 
 		}
+		
+	
 }

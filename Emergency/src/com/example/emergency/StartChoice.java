@@ -60,6 +60,7 @@ public class StartChoice extends Activity {
                         //DatabaseHandler db = new DatabaseHandler(getApplicationContext());
                         //JSONObject json_user = json.getJSONObject("user");
                         String taskforce = json.getString("taskforce");
+                        String einsatzID = json.getString("einsatzID");
                         String rettung= "rettung";	
                         String feuerwehr= "feuerwehr";
                         String oberkommandant= "oberkommandant";
@@ -68,18 +69,22 @@ public class StartChoice extends Activity {
                         
                         if (taskforce.equals(rettung)){
                         	Intent startEms = new Intent(getApplicationContext(), StartEms.class);
+                        	startEms.putExtra("einsatzID", einsatzID);
                         	startActivity(startEms);
                         	finish();
                         } else if (taskforce.equals(feuerwehr)) {
                         	Intent startFire = new Intent(getApplicationContext(), StartFire.class);
+                        	startFire.putExtra("einsatzID", einsatzID);
                         	startActivity(startFire);
                         	finish();
                         } else if (taskforce.equals(oberkommandant)) {
                         	Intent startFire = new Intent(getApplicationContext(), StartFire.class);
+                        	startFire.putExtra("einsatzID", einsatzID);
                         	startActivity(startFire);
                         	finish();
                         } else if (taskforce.equals(polizei)) {
                         	Intent startPol = new Intent(getApplicationContext(), FullscreenActivity.class);
+                        	startPol.putExtra("einsatzID", einsatzID);
                         	startActivity(startPol);
                         	finish();
                         }

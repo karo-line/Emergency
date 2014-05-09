@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.util.Log;
@@ -48,7 +49,9 @@ public class GefahrengutFire extends Activity {
     private static String KEY_GESUNDHEIT = "gesundheit";
     private static String KEY_ANFAHREN = "anfahren";
     private static String KEY_SCHUTZVORKEHRUNG = "schutzvorkehrung";
- 
+    TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
  
     @SuppressLint("NewApi")
 	@Override
@@ -59,6 +62,14 @@ public class GefahrengutFire extends Activity {
 		//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.gefahrengut_fire);
+		einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+		refresh = (TextView) findViewById(R.id.aktualisiert);
+		
+		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+		
+		scheduleEinsatz s = new scheduleEinsatz();
+		s.scheduleUpdateText(einsatzinfos, refresh);
 		
         // Importing all assets like buttons, text fields
         inputNummer = (EditText) findViewById(R.id.sucheNummer);
@@ -150,9 +161,21 @@ public class GefahrengutFire extends Activity {
 				
 	}
 	
+	public void startTicker(View v) {
+		i= new Intent(this, TickerFire.class);
+		startActivity(i);	
+		overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+				
+	}
+	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosGefahrengutFire));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosGefahrengutFire),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {

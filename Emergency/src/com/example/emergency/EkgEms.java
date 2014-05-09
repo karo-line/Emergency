@@ -2,17 +2,22 @@ package com.example.emergency;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class EkgEms extends Activity {
 
 	private Intent i;
 	Button btnWeitere;
+	TextView einsatzinfos;
+	TextView refresh;
+	scheduleEinsatz s;
 	
 	protected void onCreate(Bundle savedInstanceState) {
 			
@@ -22,7 +27,12 @@ public class EkgEms extends Activity {
 			//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 			setContentView(R.layout.ekg_nexus);
-			
+			einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+	 		refresh = (TextView) findViewById(R.id.aktualisiert);
+	 		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+	 		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+	 		s = new scheduleEinsatz();
+			s.scheduleUpdateText(einsatzinfos, refresh);
 	}
 	
 	public void startMenu(View v) {
@@ -47,8 +57,13 @@ public class EkgEms extends Activity {
 	
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosEkg));
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+
+		 if(!einsatzID.equals("nosuchvalue")) {
+				RefreshInfo refreshInfo = new RefreshInfo();
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosEkg),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {
