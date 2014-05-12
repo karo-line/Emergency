@@ -34,6 +34,17 @@
 	            android:paddingLeft="20dip"
 	            android:textSize="25dip"
 	            android:textStyle="bold" />
+       		
+       		<Button android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="E-card auslesen"
+	        android:textSize="20dip"
+	        android:textStyle="bold"
+	        android:id="@+id/btnEcard"
+	        android:layout_marginTop="50dip"
+	        android:layout_marginLeft="30dip"
+	        android:layout_marginRight="30dip"/>
+       		
           </LinearLayout>
           
 		<include

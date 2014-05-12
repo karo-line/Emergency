@@ -178,7 +178,7 @@ public class OberkommandantKoor extends Activity {
 					
 				}
 				Button addTodo = new Button(getApplicationContext());
-				addTodo.setText("+ Todo");
+				addTodo.setText("+ ToDo");
 				addTodo.setLayoutParams(new LayoutParams(200,60));
 				ll.addView(addTodo);
 				
@@ -220,7 +220,7 @@ public class OberkommandantKoor extends Activity {
 					kommandanten.add(newKommandant);
 					
 					Button addTodo = new Button(getApplicationContext());
-					addTodo.setText("+ Todo");
+					addTodo.setText("+ ToDo");
 					addTodo.setLayoutParams(new LayoutParams(200,60));
 
 					/**MarginLayoutParams params = new LinearLayout.LayoutParams();

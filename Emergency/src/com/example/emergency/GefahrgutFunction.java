@@ -24,6 +24,8 @@ public class GefahrgutFunction {
     // constructor
     public GefahrgutFunction(){
         jsonParser = new JSONParser();
+        ServerConnection sC = new ServerConnection();
+        loginURL = sC.getServerAdr("dyndns")+"android_gefahrgut_api/";
     }
      
     /**

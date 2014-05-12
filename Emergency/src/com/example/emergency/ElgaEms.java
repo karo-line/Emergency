@@ -28,12 +28,24 @@ public class ElgaEms extends Activity {
 		      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 			setContentView(R.layout.elga_nexus);
 			
-			 einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
-		 		refresh = (TextView) findViewById(R.id.aktualisiert);
-		 		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
-		 		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
-		 		s = new scheduleEinsatz();
-				s.scheduleUpdateText(einsatzinfos, refresh);
+			einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+		 	refresh = (TextView) findViewById(R.id.aktualisiert);
+		 	einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+		 	refresh.setText(RefreshInfo.einsatz.getAktualisiert());
+		 	s = new scheduleEinsatz();
+			s.scheduleUpdateText(einsatzinfos, refresh);
+				
+			Button btnEcard = (Button) findViewById(R.id.btnEcard);
+			btnEcard.setOnClickListener(new View.OnClickListener() {
+
+				@Override
+				public void onClick(View arg0) {
+					// TODO Auto-generated method stub
+					i= new Intent(getApplicationContext(), ElgaListEms.class);
+	            	startActivity(i);
+				}
+					
+				});
 	}
 	
 	public void startMenu(View v) {

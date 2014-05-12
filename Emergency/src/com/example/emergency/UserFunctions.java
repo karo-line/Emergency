@@ -8,10 +8,11 @@ import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONObject;
  
 import android.content.Context;
+import android.util.Log;
  
 public class UserFunctions {
      
-    private JSONParser jsonParser;
+    private JSONTodoParser jsonParser;
      
     // Testing in localhost using wamp or xampp
     // use http://10.0.2.2/ to connect to your localhost ie http://localhost/
@@ -23,7 +24,11 @@ public class UserFunctions {
      
     // constructor
     public UserFunctions(){
-        jsonParser = new JSONParser();
+        jsonParser = new JSONTodoParser();
+        ServerConnection sC = new ServerConnection();
+        loginURL = sC.getServerAdr("dyndns")+"android_login_api/";
+        Log.i("uri",loginURL);
+        registerURL = sC.getServerAdr("dyndns")+"android_login_api/";
     }
      
     /**

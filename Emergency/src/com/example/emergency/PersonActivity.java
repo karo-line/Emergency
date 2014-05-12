@@ -3,6 +3,7 @@ package com.example.emergency;
 import java.util.HashMap;
  
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
  
@@ -12,13 +13,19 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.View.OnKeyListener;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
+import android.widget.Toast;
  
 
  
@@ -75,7 +82,31 @@ public class PersonActivity extends Activity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
         //btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
         loginErrorMsg = (TextView) findViewById(R.id.login_error);
+        
+        final LinearLayout ll = (LinearLayout) findViewById(R.id.llPerson);
  
+        
+        final EditText edittext = (EditText) findViewById(R.id.loginEmail);
+        edittext.setOnEditorActionListener(new OnEditorActionListener(){
+            @Override
+            
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
+            {
+            	Log.i("enter","inlistener");
+            boolean handled = false;
+            if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)
+            {
+            	Toast.makeText(getApplicationContext(), edittext.getText(), Toast.LENGTH_SHORT).show();
+
+                handled = true;
+            }
+            return handled;
+            }
+        });
+        
+        
+        
+        
         // Login button Click Event
         btnLogin.setOnClickListener(new View.OnClickListener() {
  
@@ -87,7 +118,52 @@ public class PersonActivity extends Activity {
  
                 // check for login response
                 try {
-                    if (json.getString(KEY_SUCCESS) != null) {
+                	JSONArray json_user=json.getJSONArray("user");
+    				int arrayLength = json_user.length();
+    				
+    				for(int i=0; i<arrayLength; i++) {
+    					final JSONObject jsonNext = json_user.getJSONObject(i);
+    					String name = jsonNext.getString("name");
+    					TextView nameView = new TextView(getApplicationContext());
+    					nameView.setText(name);
+    					nameView.setTextSize(20);
+    					nameView.setPadding(30, 30, 5, 5);
+    					int index = ll.indexOfChild(findViewById(R.id.loginEmail))+1;
+    					ll.addView(nameView,index+i);
+    					
+    					nameView.setOnClickListener(new View.OnClickListener() {
+    						 
+    			            public void onClick(View view) {
+    			            	Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
+                                try {
+									dashboard.putExtra("name", jsonNext.getString(KEY_NAME));
+									dashboard.putExtra("mail", jsonNext.getString(KEY_SEX));
+	                                dashboard.putExtra("nationality", jsonNext.getString(KEY_NATIONALITY));
+	                                dashboard.putExtra("birthday", jsonNext.getString(KEY_BIRTHDAY));
+	                                dashboard.putExtra("reason", jsonNext.getString(KEY_REASON));
+	                                dashboard.putExtra("alias", jsonNext.getString(KEY_ALIAS));
+	                                dashboard.putExtra("secname", jsonNext.getString(KEY_SECNAME));
+	                                dashboard.putExtra("birthplace", jsonNext.getString(KEY_BIRTHPLACE));
+	                                dashboard.putExtra("specialattr", jsonNext.getString(KEY_SPECIALATTR));
+	                                dashboard.putExtra("armed", jsonNext.getString(KEY_ARMED));
+	                                dashboard.putExtra("violent", jsonNext.getString(KEY_VIOLENT));
+	                                dashboard.putExtra("actions", jsonNext.getString(KEY_ACTIONS));
+								} catch (JSONException e) {
+									// TODO Auto-generated catch block
+									e.printStackTrace();
+								}
+                              
+                                startActivity(dashboard);
+                                overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+                                // Close Login Screen
+                                //finish();
+    			            }
+    					});
+    				}
+                	
+                	
+                	
+                    /**if (json.getString(KEY_SUCCESS) != null) {
                         loginErrorMsg.setText("");
                         String res = json.getString(KEY_SUCCESS);
                         if(Integer.parseInt(res) == 1){
@@ -124,7 +200,7 @@ public class PersonActivity extends Activity {
                             // Error in login
                             loginErrorMsg.setText("Person nicht im Register vorhanden!");
                         }
-                    }
+                    }*/
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -3,17 +3,22 @@ package com.example.emergency;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.format.Time;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 
+@SuppressLint("NewApi")
 public class Menu extends Activity {
 	
 	private Intent i;
@@ -177,5 +182,31 @@ public class Menu extends Activity {
 		public void back(View v) {
 			 finish();
 					
+		}
+	
+		public void startDropdown(View v) {
+			PopupMenu popup = new PopupMenu(this, v);
+		    MenuInflater inflater = popup.getMenuInflater();
+		    inflater.inflate(R.menu.popupmenu, popup.getMenu());
+		    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+		    	   
+		    	   @Override
+		    	   public boolean onMenuItemClick(MenuItem item) {
+		    		   switch(item.getItemId()){  
+		               case R.id.menu1: 
+		            	   return true;
+		               case R.id.menu2:
+		            	   i= new Intent(getApplicationContext(), StartChoice.class);
+		            	   s.stopHandlerText();
+		            	   startActivity(i);	
+		            	   overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+		            	   return true;
+		    		   }
+					return false;
+		    	   }
+
+		    	  });
+		    popup.show();
+
 		}
 }

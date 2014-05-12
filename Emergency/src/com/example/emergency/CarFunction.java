@@ -24,6 +24,8 @@ public class CarFunction {
     // constructor
     public CarFunction(){
         jsonParser = new JSONParser();
+        ServerConnection sC = new ServerConnection();
+        loginURL = sC.getServerAdr("dyndns")+"android_kennzeichen_api/";
     }
      
     /**
