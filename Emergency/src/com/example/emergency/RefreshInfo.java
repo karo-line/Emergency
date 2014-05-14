@@ -3,6 +3,9 @@ package com.example.emergency;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.emergency.entities.EinsatzInfo;
+import com.example.emergency.functions.OperationFunction;
+
 import android.text.format.Time;
 import android.view.View;
 import android.widget.TextView;

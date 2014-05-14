@@ -7,6 +7,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.emergency.activities.TruppKoordination;
+import com.example.emergency.activities.WindFire;
+import com.example.emergency.entities.TruppMann;
+import com.example.emergency.functions.TruppFunction;
+import com.example.emergency.functions.WindFunction;
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;

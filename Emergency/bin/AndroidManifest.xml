@@ -38,7 +38,7 @@
         
         
          <activity
-            android:name="com.example.emergency.StartChoice"
+            android:name="com.example.emergency.activities.StartChoice"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.emergency.FullscreenActivity"
+            android:name="com.example.emergency.activities.FullscreenActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -59,7 +59,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.emergency.Menu"
+            android:name="com.example.emergency.activities.Menu"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -69,7 +69,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.emergency.Translator"
+            android:name="com.example.emergency.activities.Translator"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -79,7 +79,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.emergency.Person"
+            android:name="com.example.emergency.activities.Person"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -89,7 +89,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.emergency.Car"
+            android:name="com.example.emergency.activities.Car"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -99,7 +99,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.emergency.StartFire"
+            android:name="com.example.emergency.activities.StartFire"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
@@ -112,7 +112,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name="com.example.emergency.PersonActivity">
+            android:name="com.example.emergency.activities.PersonActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -124,7 +124,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".RegisterActivity">
+            android:name="com.example.emergency.activities.RegisterActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -135,7 +135,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".DashboardActivity">
+            android:name="com.example.emergency.activities.DashboardActivity">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -147,7 +147,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".CarListActivity">
+            android:name="com.example.emergency.activities.CarListActivity">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -159,7 +159,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".TranslatorList">
+            android:name="com.example.emergency.activities.TranslatorList">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -171,7 +171,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".StartEms">
+            android:name="com.example.emergency.activities.StartEms">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -183,7 +183,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".MenuEms">
+            android:name="com.example.emergency.activities.MenuEms">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -195,7 +195,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".MenuFire">
+            android:name="com.example.emergency.activities.MenuFire">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -207,7 +207,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".TranslatorEms">
+            android:name="com.example.emergency.activities.TranslatorEms">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -219,7 +219,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".TranslatorListEms">
+            android:name="com.example.emergency.activities.TranslatorListEms">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -231,7 +231,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".Berichte">
+            android:name="com.example.emergency.activities.Berichte">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -243,7 +243,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".BerichteList">
+            android:name="com.example.emergency.activities.BerichteList">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -255,7 +255,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".GefahrengutActivity">
+            android:name="com.example.emergency.activities.GefahrengutActivity">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -267,7 +267,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".WindFire">
+            android:name="com.example.emergency.activities.WindFire">
              <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -279,7 +279,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".KoordinationFire">
+            android:name="com.example.emergency.activities.KoordinationFire">
             
              
          </activity>
@@ -288,119 +288,119 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".ToDoFire">
+            android:name="com.example.emergency.activities.ToDoFire">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".VideoFire">
+            android:name="com.example.emergency.activities.VideoFire">
          </activity>
           
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".GefahrengutFire">
+            android:name="com.example.emergency.activities.GefahrengutFire">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".VideoEms">
+            android:name="com.example.emergency.activities.VideoEms">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".EkgEms">
+            android:name="com.example.emergency.activities.EkgEms">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".ElgaEms">
+            android:name="com.example.emergency.activities.ElgaEms">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".VideoPolice">
+            android:name="com.example.emergency.activities.VideoPolice">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".GefahrengutResult">
+            android:name="com.example.emergency.activities.GefahrengutResult">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".GefahrengutEmsResult">
+            android:name="com.example.emergency.activities.GefahrengutEmsResult">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".OberkommandantKoor">
+            android:name="com.example.emergency.activities.OberkommandantKoor">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".BerichtTransport">
+            android:name="com.example.emergency.activities.BerichtTransport">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".TickerFire">
+            android:name="com.example.emergency.activities.TickerFire">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".TruppKoordination">
+            android:name="com.example.emergency.activities.TruppKoordination">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".ElgaChoiceEms">
+            android:name="com.example.emergency.activities.ElgaChoiceEms">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".ElgaListEms">
+            android:name="com.example.emergency.activities.ElgaListEms">
          </activity>
          
          <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".ElgaDataListEms">
+            android:name="com.example.emergency.activities.ElgaDataListEms">
          </activity>
          
           <activity
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name=".ElgaDetailEms">
+            android:name="com.example.emergency.activities.ElgaDetailEms">
          </activity>
          
         <meta-data android:name="com.google.android.gms.version"
