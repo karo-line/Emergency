@@ -75,11 +75,13 @@ public class StartChoice extends Activity {
                         } else if (taskforce.equals(feuerwehr)) {
                         	Intent startFire = new Intent(getApplicationContext(), StartFire.class);
                         	startFire.putExtra("einsatzID", einsatzID);
+                        	startFire.putExtra("taskforce", taskforce);
                         	startActivity(startFire);
                         	finish();
                         } else if (taskforce.equals(oberkommandant)) {
                         	Intent startFire = new Intent(getApplicationContext(), StartFire.class);
                         	startFire.putExtra("einsatzID", einsatzID);
+                        	startFire.putExtra("taskforce", taskforce);
                         	startActivity(startFire);
                         	finish();
                         } else if (taskforce.equals(polizei)) {

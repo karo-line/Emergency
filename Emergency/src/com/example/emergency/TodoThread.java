@@ -71,7 +71,12 @@ public class TodoThread extends AsyncTask<String,String,JSONObject> {
 	            String line = null;
 	            while ((line = reader.readLine()) != null) {
 	            	line = line.substring(0, line.length()-1);
-	                sb.append(line + "]}n");
+	            	if (line.contains("[")) {
+	            		sb.append(line + "]}n");
+	            	}
+	            	else {
+	            		sb.append(line + "}n");
+	            	}
 	                
 	            }
 	            Log.i("line", "line");

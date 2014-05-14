@@ -87,18 +87,95 @@ public class PersonActivity extends Activity {
  
         
         final EditText edittext = (EditText) findViewById(R.id.loginEmail);
-        edittext.setOnEditorActionListener(new OnEditorActionListener(){
+        edittext.setText("name");
+        edittext.setOnEditorActionListener(new OnEditorActionListener()
+        {
             @Override
-            
-            public boolean onEditorAction(TextView v, int actionId, KeyEvent event)
+            public boolean onEditorAction(TextView v, int actionId,
+                KeyEvent event)
             {
-            	Log.i("enter","inlistener");
             boolean handled = false;
-            if (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)
+            if (actionId == EditorInfo.IME_ACTION_DONE ||
+                    event.getAction() == KeyEvent.ACTION_DOWN &&
+                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER)
             {
-            	Toast.makeText(getApplicationContext(), edittext.getText(), Toast.LENGTH_SHORT).show();
+            	 String email = inputEmail.getText().toString();
+                 String password = "";
+                 Log.i("entetr","ebnrt");
+                 UserFunctions userFunction = new UserFunctions();
+                 JSONObject json = userFunction.loginUser(email, password);
+  
+                 
+                 try {
+					if (json.getString(KEY_SUCCESS) != null) {
+					     loginErrorMsg.setText("");
+					     String res = json.getString(KEY_SUCCESS);
+					     if(Integer.parseInt(res) == 1){
+					 
+					 
+					 // check for login response
+					 try {
+					 	JSONArray json_user=json.getJSONArray("user");
+						int arrayLength = json_user.length();
+						
+						for(int i=0; i<arrayLength; i++) {
+							final JSONObject jsonNext = json_user.getJSONObject(i);
+							String name = jsonNext.getString("name");
+							String gebdat = jsonNext.getString("birthday");
+							TextView nameView = new TextView(getApplicationContext());
+							nameView.setText(name+ " Geburtsdatum: "+gebdat);
+							nameView.setTextSize(20);
+							nameView.setPadding(30, 30, 5, 5);
+							int index = ll.indexOfChild(findViewById(R.id.loginEmail))+1;
+							ll.addView(nameView,index+i);
+							
+							nameView.setOnClickListener(new View.OnClickListener() {
+								 
+					            public void onClick(View view) {
+					            	Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
+					                 try {
+										dashboard.putExtra("name", jsonNext.getString(KEY_NAME));
+										dashboard.putExtra("mail", jsonNext.getString(KEY_SEX));
+					                    dashboard.putExtra("nationality", jsonNext.getString(KEY_NATIONALITY));
+					                    dashboard.putExtra("birthday", jsonNext.getString(KEY_BIRTHDAY));
+					                    dashboard.putExtra("reason", jsonNext.getString(KEY_REASON));
+					                    dashboard.putExtra("alias", jsonNext.getString(KEY_ALIAS));
+					                    dashboard.putExtra("secname", jsonNext.getString(KEY_SECNAME));
+					                    dashboard.putExtra("birthplace", jsonNext.getString(KEY_BIRTHPLACE));
+					                    dashboard.putExtra("specialattr", jsonNext.getString(KEY_SPECIALATTR));
+					                    dashboard.putExtra("armed", jsonNext.getString(KEY_ARMED));
+					                    dashboard.putExtra("violent", jsonNext.getString(KEY_VIOLENT));
+					                    dashboard.putExtra("actions", jsonNext.getString(KEY_ACTIONS));
+									} catch (JSONException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
+									}
+					               
+					                 startActivity(dashboard);
+					                 overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+					                 // Close Login Screen
+					                 //finish();
+					            }
+							});
+						}
+					 	
+					 } catch (JSONException e) {
+					     e.printStackTrace();
+					 }
 
-                handled = true;
+					handled = true;
+					     } else {
+					    	// Error: Person nciht vorhanden
+	                        loginErrorMsg.setText("Person nicht im Register vorhanden!");
+					     }
+					 }
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
             }
             return handled;
             }
@@ -116,6 +193,13 @@ public class PersonActivity extends Activity {
                 UserFunctions userFunction = new UserFunctions();
                 JSONObject json = userFunction.loginUser(email, password);
  
+                
+                try {
+					if (json.getString(KEY_SUCCESS) != null) {
+					     loginErrorMsg.setText("");
+					     String res = json.getString(KEY_SUCCESS);
+					     if(Integer.parseInt(res) == 1){
+                
                 // check for login response
                 try {
                 	JSONArray json_user=json.getJSONArray("user");
@@ -160,50 +244,24 @@ public class PersonActivity extends Activity {
     			            }
     					});
     				}
-                	
-                	
-                	
-                    /**if (json.getString(KEY_SUCCESS) != null) {
-                        loginErrorMsg.setText("");
-                        String res = json.getString(KEY_SUCCESS);
-                        if(Integer.parseInt(res) == 1){
-                            // user successfully logged in
-                            // Store user details in SQLite Database
-                            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                            JSONObject json_user = json.getJSONObject("user");
-                             
-                            // Clear all previous data in database
-                            //userFunction.logoutUser(getApplicationContext());
-                            //db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_SEX), json.getString(KEY_UID), json_user.getString(KEY_NATIONALITY), json_user.getString(KEY_BIRTHDAY), json_user.getString(KEY_REASON), json_user.getString(KEY_ALIAS));                       
-                            Log.i("username", json_user.getString(KEY_NAME));
-                            // Launch Dashboard Screen
-                            Intent dashboard = new Intent(getApplicationContext(), DashboardActivity.class);
-                            dashboard.putExtra("name", json_user.getString(KEY_NAME));
-                            dashboard.putExtra("mail", json_user.getString(KEY_SEX));
-                            dashboard.putExtra("nationality", json_user.getString(KEY_NATIONALITY));
-                            dashboard.putExtra("birthday", json_user.getString(KEY_BIRTHDAY));
-                            dashboard.putExtra("reason", json_user.getString(KEY_REASON));
-                            dashboard.putExtra("alias", json_user.getString(KEY_ALIAS));
-                            dashboard.putExtra("secname", json_user.getString(KEY_SECNAME));
-                            dashboard.putExtra("birthplace", json_user.getString(KEY_BIRTHPLACE));
-                            dashboard.putExtra("specialattr", json_user.getString(KEY_SPECIALATTR));
-                            dashboard.putExtra("armed", json_user.getString(KEY_ARMED));
-                            dashboard.putExtra("violent", json_user.getString(KEY_VIOLENT));
-                            dashboard.putExtra("actions", json_user.getString(KEY_ACTIONS));
-                            // Close all views before launching Dashboard
-                            //dashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(dashboard);
-                            overridePendingTransition(R.layout.fadeout, R.layout.fadein);
-                            // Close Login Screen
-                            finish();
-                        }else{
-                            // Error in login
-                            loginErrorMsg.setText("Person nicht im Register vorhanden!");
-                        }
-                    }*/
+                
+    				
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                
+				} else {
+				   	// Error: Person nciht vorhanden
+		             loginErrorMsg.setText("Person nicht im Register vorhanden!");
+				  }
+				 }
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
             }
         });
  

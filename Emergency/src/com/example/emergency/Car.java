@@ -1,5 +1,6 @@
 package com.example.emergency;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -8,13 +9,17 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 public class Car extends Activity {
 
@@ -57,9 +62,38 @@ public class Car extends Activity {
 			loginErrorMsg = (TextView) findViewById(R.id.login_error);
 			btnSuche = (Button) findViewById(R.id.btnSuche);
 			
+			final LinearLayout ll = (LinearLayout) findViewById(R.id.llCar);
+			
+			
+	        inputKennzeichen.setOnEditorActionListener(new OnEditorActionListener()
+	        {
+	            @Override
+	            public boolean onEditorAction(TextView v, int actionId,
+	                KeyEvent event) {
+	            boolean handled = false;
+	            if (actionId == EditorInfo.IME_ACTION_DONE ||
+	                    event.getAction() == KeyEvent.ACTION_DOWN &&
+	                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+	            	Log.i("entetr","ebnrt"); 
+	            	searchClick(inputKennzeichen, ll);
+						
+	            	handled = true;
+					
+	            }
+	            return handled;
+	            }
+	        });
+			
+			
+			
 			 btnSuche.setOnClickListener(new View.OnClickListener() {
 				 
 		            public void onClick(View view) {
+		            	
+		            	searchClick(inputKennzeichen, ll);
+		            	
+		            	
+		            	/**
 		                String kennzeichen = inputKennzeichen.getText().toString();
 		                
 		                CarFunction carFunction = new CarFunction();
@@ -100,7 +134,7 @@ public class Car extends Activity {
 		                    }
 		                } catch (JSONException e) {
 		                    e.printStackTrace();
-		                }
+		                }*/
 		            }
 		        });
 	}
@@ -130,5 +164,76 @@ public class Car extends Activity {
 	public void back(View v) {
 		 finish();
 				
+	}
+	
+	public void searchClick(EditText v, LinearLayout llCar) {
+		String kennzeichen = v.getText().toString();
+		
+        CarFunction carFunction = new CarFunction();
+        JSONObject json = carFunction.loginUser(kennzeichen);
+
+        
+        try {
+			if (json.getString(KEY_SUCCESS) != null) {
+			     loginErrorMsg.setText("");
+			     String res = json.getString(KEY_SUCCESS);
+			     if(Integer.parseInt(res) == 1){
+        
+        // check for login response
+        try {
+        	JSONArray json_user=json.getJSONArray("user");
+			int arrayLength = json_user.length();
+			
+			for(int i=0; i<arrayLength; i++) {
+				final JSONObject jsonNext = json_user.getJSONObject(i);
+				String kennz = jsonNext.getString("kennzeichen");
+				TextView nameView = new TextView(getApplicationContext());
+				nameView.setText(kennz);
+				nameView.setTextSize(20);
+				nameView.setPadding(30, 30, 5, 5);
+				int index = llCar.indexOfChild(findViewById(R.id.inputKennzeichen))+1;
+				llCar.addView(nameView,index+i);
+				
+				nameView.setOnClickListener(new View.OnClickListener() {
+					 
+		            public void onClick(View view) {
+		            	Intent carList = new Intent(getApplicationContext(), CarListActivity.class);
+                        try {
+                        	
+                            carList.putExtra("person", jsonNext.getString(KEY_PERSON));
+                            carList.putExtra("zulassungsdatum", jsonNext.getString(KEY_ZULASSUNGSDATUM));
+                            carList.putExtra("zulassungsort", jsonNext.getString(KEY_ZULASSUNGSORT));
+                            carList.putExtra("kennzeichen", jsonNext.getString(KEY_KENNZEICHEN));
+                            
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+                      
+                        startActivity(carList);
+                        overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+                        // Close Login Screen
+                        //finish();
+		            }
+				});
+			}
+        
+			
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        
+		} else {
+		   	// Error: Person nciht vorhanden
+             loginErrorMsg.setText("Person nicht im Register vorhanden!");
+		  }
+		 }
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 }

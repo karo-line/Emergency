@@ -110,12 +110,20 @@ public class MenuFire extends Activity {
 	}
 	
 	public void startKoordination(View v) {
-		i= new Intent(this, KoordinationFire.class);
+		
 		SharedPreferences settings = getSharedPreferences("shares",0);
 		String einsatzID2 = settings.getString("einsatzID", "nosuchvalue");
+		String taskforce = settings.getString("taskforce", "taskforce");
 		s.stopHandlerText();
-		startActivity(i);		
-		overridePendingTransition(R.layout.fadeout, R.layout.fadein);		
+		if(taskforce.equals("oberkommandant")) {
+			i= new Intent(this, KoordinationFire.class);
+			startActivity(i);		
+			overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+		} else if(taskforce.equals("feuerwehr")) {
+			i= new Intent(this, TruppKoordination.class);
+			startActivity(i);		
+			overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+		}
 	}
 	
 	public void startVideo(View v) {

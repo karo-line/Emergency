@@ -242,10 +242,36 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 			sub2=sub2.substring(index3+3, index4-1);
 			Log.i("adr2", sub2);
 			}
+			
+			//Abfrage starten welche Adresse bei lat lon ist
+			String adr = "http://maps.googleapis.com/maps/api/geocode/json?latlng="+lat+","+lon+"&sensor=true_or_false";
+			String x="";
+			try {
+				x = new AddressThread(adr).execute(adr).get();
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (ExecutionException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			String[] nodes2 = x.split("formatted");
+	    	int length2 = nodes2.length;
+	    	String subAdr="";
+	    	if(length2>0) {
+	    		String node2 = nodes2[1];
+	    		int indexAdr1=node2.indexOf(":");
+	    		int indexAdr2=node2.indexOf(",");
+	    		if (indexAdr1!=-1 && indexAdr2!=-1) {
+	    			subAdr=node2.substring(indexAdr1+3, indexAdr2);
+	        		}
+	    	}
+			
 			Marker marker = map.addMarker(new MarkerOptions()
 	        .position(new LatLng(lat, lon))
 	        .title("Hydrant")
-	        .snippet(sub+" "+sub2));
+	        .snippet(subAdr));
 	        marker.setVisible(true);
 	        markerList.add(marker);
 	        
