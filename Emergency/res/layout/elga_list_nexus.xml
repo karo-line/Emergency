@@ -1,0 +1,53 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".ElgaEms" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfosElga"
+    		layout="@layout/einsatzinfo" />
+
+     <ScrollView
+              android:layout_width="725dp"
+		    android:layout_height="fill_parent"
+		    android:background="@color/white" > 
+     <LinearLayout
+            android:id="@+id/llElga"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+     
+       		<TextView
+       		    android:id="@+id/elgaTitle"
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="10dip"
+	            android:text="ELGA Krankengeschichte"
+	            android:textColor="@color/black_overlay"
+	            android:paddingTop="30dip"
+	            android:paddingLeft="20dip"
+	            android:textSize="25dip"
+	            android:textStyle="bold" />
+       		
+       		
+       		
+       		
+       		
+          </LinearLayout>
+          </ScrollView>
+          
+		<include
+    		android:id="@+id/leisteElga"
+    		layout="@layout/leiste" />
+     </LinearLayout>
+</FrameLayout>

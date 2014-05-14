@@ -1,0 +1,791 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".Berichte" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfosBerichte"
+    		layout="@layout/einsatzinfo" />
+        
+      <ScrollView 
+		    android:layout_width="725dp"
+		    android:layout_height="fill_parent"
+		    android:background="@color/white" >
+     <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+            
+         <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Transport-Nachweis"
+              android:textColor="@color/black_overlay"
+              android:paddingLeft="20dip"
+              android:textSize="25dip"
+              android:layout_marginTop="30dip"
+              android:textStyle="bold"/>
+     
+	       <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+            
+	       <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Nummer"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+	       
+	       <EditText
+		            android:id="@+id/nummer"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       
+	       <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Datum"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+		        
+		   <EditText
+		            android:id="@+id/datum"
+		            android:layout_width="100dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+            
+           </LinearLayout>
+           
+	       <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+            
+	       <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Abfahrt"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+	       
+	       <EditText
+		            android:id="@+id/abfahrt"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       
+	       <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Rückkehr"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+		        
+		   <EditText
+		            android:id="@+id/rueckkehr"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		   <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Dauer"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+		        
+		   <EditText
+		            android:id="@+id/dauer"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		   <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Wagen-Nr."
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+		        
+		   <EditText
+		            android:id="@+id/wagen"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+            
+	       <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Kilometerstand, Abfahrt"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+	       
+	       <EditText
+		            android:id="@+id/kmAbfahrt"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       
+	       <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Rückkehr"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+		        
+		   <EditText
+		            android:id="@+id/kmRueckkehr"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		   <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Gefahrene km"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+		        
+		   <EditText
+		            android:id="@+id/gefahreneKM"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/familienname"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/vorname"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Familienname des Transportierten"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Vorname"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+            <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/angehoerige"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/angehoerigevorname"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="bei Angehörigen Familienname des Versicherten"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Vorname"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+            <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/verwandtschaft"
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/versicherungsnummer1"
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		   
+		   <EditText
+		            android:id="@+id/versicherungsnummer2"
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:text="Verwandtschaftsverhältnis"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:text="Vers.-Nr. des Versicherten/Geburtsdatum"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:text="Vers.-Nr. des Transportierten/Geburtsdatum"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+            <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/strasse"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/krankenkasse"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Straße/Hausnummer"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Krankenkasse"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+               <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/postleitzahl"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <EditText
+		            android:id="@+id/ort"
+		            android:layout_width="320dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/arbeitgeber"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:text="PLZ"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="320dip"
+		            android:layout_height="wrap_content"
+		            android:text="Ort"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Arbeitgeber"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+              <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/abholungsort"
+		            android:layout_width="320dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <EditText
+		            android:id="@+id/bestimmungsort"
+		            android:layout_width="320dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="320dip"
+		            android:layout_height="wrap_content"
+		            android:text="Abholungsort"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="320dip"
+		            android:layout_height="wrap_content"
+		            android:text="Bestimmungsort - Abgabestelle"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <CheckBox
+	            	android:id="@+id/rettung"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Rettung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	        <CheckBox
+		            android:id="@+id/vu"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="VU"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="50dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000"/>
+	        <CheckBox
+		            android:id="@+id/naw"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="NAW"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="45dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	        <CheckBox
+		            android:id="@+id/msd"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="MSD"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	       
+	        
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <CheckBox
+	            	android:id="@+id/krankentr"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Krankentr."
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	        <CheckBox
+		            android:id="@+id/aend"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="ÄND"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000"/>
+	        <CheckBox
+		            android:id="@+id/nah"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="NAH"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	        <CheckBox
+		            android:id="@+id/leerf"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Leerf."
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	       
+	        
+           </LinearLayout>
+           
+             <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/veranlassung"
+		            android:layout_width="675dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	    
+	       
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="320dip"
+		            android:layout_height="wrap_content"
+		            android:text="Veranlassung - Art des Unfalles"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	      
+	        
+           </LinearLayout>
+           
+            <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/diagnose"
+		            android:layout_width="675dip"
+		            android:layout_height="80dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	    
+	       
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="320dip"
+		            android:layout_height="wrap_content"
+		            android:text="Diagnose"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	      
+	        
+           </LinearLayout>
+           
+           
+           <Button android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="Speichern"
+		        android:textSize="20dip"
+		        android:textStyle="bold"
+		        android:id="@+id/btnSpeichern"
+		        android:layout_marginTop="60dip"/>
+           
+          </LinearLayout>
+          </ScrollView>
+        
+  		<include
+    		android:id="@+id/leistemenu"
+    		layout="@layout/leiste" />
+  		
+     </LinearLayout>
+</FrameLayout>
