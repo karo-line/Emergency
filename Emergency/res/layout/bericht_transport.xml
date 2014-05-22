@@ -12,7 +12,7 @@
 
         
  		<include
-    		android:id="@+id/einsatzinfosBerichte"
+    		android:id="@+id/einsatzinfos"
     		layout="@layout/einsatzinfo" />
         
       <ScrollView 
@@ -44,53 +44,25 @@
             android:background="@color/white"
             android:orientation="horizontal" >
             
-	       <TextView
+	           <LinearLayout
+            	android:id="@+id/fullscreen_content_controls2"
+           		 style="?buttonBarStyle"
+            	android:layout_width="150dp"
+            	android:layout_height="100dp"
+            	android:background="@color/white"
+            	android:orientation="vertical" >
+            	
+	               <TextView
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
-		            android:text="Nummer"
+		            android:text="Nr."
 		            android:textSize="20dip"
 		            android:paddingTop="20dip"
 		            android:paddingLeft="30dip"
 		            android:paddingRight="20dip"
 		            android:textColor="#000000" />
-	       
-	       <EditText
-		            android:id="@+id/nummer"
-		            android:layout_width="50dip"
-		            android:layout_height="wrap_content"
-		            android:textSize="20dip"
-		            android:textColor="#000000"
-		            android:background="#C0C0C0" />
-	       
-	       <TextView
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:text="Datum"
-		            android:textSize="20dip"
-		            android:paddingTop="20dip"
-		            android:paddingLeft="30dip"
-		            android:paddingRight="20dip"
-		            android:textColor="#000000" />
-		        
-		   <EditText
-		            android:id="@+id/datum"
-		            android:layout_width="100dip"
-		            android:layout_height="wrap_content"
-		            android:textSize="20dip"
-		            android:textColor="#000000"
-		            android:background="#C0C0C0" />
-            
-           </LinearLayout>
-           
-	       <LinearLayout
-            android:id="@+id/fullscreen_content_controls2"
-            style="?buttonBarStyle"
-            android:layout_width="725dp"
-            android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:orientation="horizontal" >
-            
-	       <TextView
+	               
+	               <TextView
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:text="Abfahrt"
@@ -99,16 +71,58 @@
 		            android:paddingLeft="30dip"
 		            android:paddingRight="20dip"
 		            android:textColor="#000000" />
-	       
-	       <EditText
-		            android:id="@+id/abfahrt"
-		            android:layout_width="50dip"
+	            
+	           </LinearLayout>
+            
+	           <LinearLayout
+            	android:id="@+id/fullscreen_content_controls2"
+           		 style="?buttonBarStyle"
+            	android:layout_width="70dp"
+            	android:layout_height="100dp"
+            	android:background="@color/white"
+            	android:orientation="vertical" >
+            	
+	               <EditText
+		            android:id="@+id/nummer"
+		            android:layout_width="70dip"
 		            android:layout_height="wrap_content"
 		            android:textSize="20dip"
 		            android:textColor="#000000"
+		            android:layout_marginTop = "20dp"
 		            android:background="#C0C0C0" />
-	       
-	       <TextView
+	              
+	               <EditText
+		            android:id="@+id/abfahrt"
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:layout_marginTop = "20dp"
+		            android:background="#C0C0C0" />
+	            
+	           </LinearLayout>
+	           
+	           
+	           
+	           <LinearLayout
+            	android:id="@+id/fullscreen_content_controls2"
+           		 style="?buttonBarStyle"
+            	android:layout_width="150dp"
+            	android:layout_height="100dp"
+            	android:background="@color/white"
+            	android:orientation="vertical" >
+            	
+	               <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Datum"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+	               
+	               <TextView
 		            android:layout_width="wrap_content"
 		            android:layout_height="wrap_content"
 		            android:text="Rückkehr"
@@ -117,50 +131,80 @@
 		            android:paddingLeft="30dip"
 		            android:paddingRight="20dip"
 		            android:textColor="#000000" />
-		        
-		   <EditText
-		            android:id="@+id/rueckkehr"
-		            android:layout_width="50dip"
+	            
+	           </LinearLayout>
+            
+	           <LinearLayout
+            	android:id="@+id/fullscreen_content_controls2"
+           		 style="?buttonBarStyle"
+            	android:layout_width="70dp"
+            	android:layout_height="100dp"
+            	android:background="@color/white"
+            	android:orientation="vertical" >
+            	
+	               <EditText
+		            android:id="@+id/datum"
+		            android:layout_width="70dip"
 		            android:layout_height="wrap_content"
 		            android:textSize="20dip"
 		            android:textColor="#000000"
+		            android:layout_marginTop = "20dp"
 		            android:background="#C0C0C0" />
-		   <TextView
-		            android:layout_width="wrap_content"
+	              
+	               <EditText
+		            android:id="@+id/rueckkehr"
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:layout_marginTop = "20dp"
+		            android:background="#C0C0C0" />
+	            
+	           </LinearLayout>
+	       
+	       
+	       
+	        <TextView
+		            android:layout_width="130dp"
 		            android:layout_height="wrap_content"
 		            android:text="Dauer"
 		            android:textSize="20dip"
-		            android:paddingTop="20dip"
+		            android:paddingTop="70dip"
 		            android:paddingLeft="30dip"
-		            android:paddingRight="20dip"
 		            android:textColor="#000000" />
 		        
 		   <EditText
 		            android:id="@+id/dauer"
-		            android:layout_width="50dip"
+		            android:layout_width="70dip"
 		            android:layout_height="wrap_content"
 		            android:textSize="20dip"
 		            android:textColor="#000000"
 		            android:background="#C0C0C0" />
 		   <TextView
-		            android:layout_width="wrap_content"
+		            android:layout_width="130dp"
 		            android:layout_height="wrap_content"
 		            android:text="Wagen-Nr."
 		            android:textSize="20dip"
-		            android:paddingTop="20dip"
+		            android:paddingTop="70dip"
 		            android:paddingLeft="30dip"
 		            android:paddingRight="20dip"
 		            android:textColor="#000000" />
 		        
 		   <EditText
 		            android:id="@+id/wagen"
-		            android:layout_width="50dip"
+		            android:layout_width="70dip"
 		            android:layout_height="wrap_content"
 		            android:textSize="20dip"
 		            android:textColor="#000000"
 		            android:background="#C0C0C0" />
+	       
+		        
+		   
+		   
+		   
             
            </LinearLayout>
+        
            <LinearLayout
             android:id="@+id/fullscreen_content_controls2"
             style="?buttonBarStyle"
@@ -224,6 +268,15 @@
 		  
             
            </LinearLayout>
+           <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+           
            <LinearLayout
             android:id="@+id/fullscreen_content_controls2"
             style="?buttonBarStyle"
@@ -597,6 +650,15 @@
 	        
            </LinearLayout>
            
+           <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+           
            <LinearLayout
             android:id="@+id/fullscreen_content_controls2"
             style="?buttonBarStyle"
@@ -771,6 +833,515 @@
 	        
            </LinearLayout>
            
+           <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+           
+           
+           
+            <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+           <EditText
+		            android:id="@+id/fahrerNr"
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0"
+		            android:numeric="integer" />
+	       <EditText
+		            android:id="@+id/fahrerEdit"
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <EditText
+		            android:id="@+id/sanitaeterNr"
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <EditText
+		            android:id="@+id/sanitaeterEdit"
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <CheckBox
+		            android:id="@+id/ambulante"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Ambulante"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	       <CheckBox
+		            android:id="@+id/stationaer"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Stationäre Behandlung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	       
+           </LinearLayout>
+           
+            <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+           <TextView
+               		android:layout_width="300dip"
+		            android:layout_height="wrap_content"
+		            android:text="Fahrer"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+		            
+		  
+	       <TextView
+		           android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Sanitäter"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000"/>
+	      
+	       
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+           <EditText
+		            android:id="@+id/sanitaeter2Nr"
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0"
+		            android:numeric="integer" />
+	       <EditText
+		            android:id="@+id/sanitaeter2Edit"
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <EditText
+		            android:id="@+id/arztNr"
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <EditText
+		            android:id="@+id/arztEdit"
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	      
+	       
+           </LinearLayout>
+           
+            <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+           <TextView
+               		android:layout_width="300dip"
+		            android:layout_height="wrap_content"
+		            android:text="Sanitäter"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+		            
+		  
+	       <TextView
+		           android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Arzt"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000"/>
+	      
+	       
+           </LinearLayout>
+           
+            <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+           <TextView
+               		android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Anzahl der Transportierten"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           <EditText
+		            android:id="@+id/anzahlTransp"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		            
+		  
+	       <TextView
+		           android:layout_width="100dip"
+		            android:layout_height="wrap_content"
+		            android:text="Hinfahrt"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"/>
+	       <EditText
+		            android:id="@+id/anzahlHin"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <TextView
+		           android:layout_width="100dip"
+		            android:layout_height="wrap_content"
+		            android:text="Rückfahrt"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"/>
+	       <EditText
+		            android:id="@+id/anzahlRetour"
+		            android:layout_width="50dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	      
+	       
+           </LinearLayout>
+           
+              <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/transpnr1"
+		            android:layout_width="220dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <EditText
+		            android:id="@+id/name1"
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="220dip"
+		            android:layout_height="wrap_content"
+		            android:text="Trans.-Nr."
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Name"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/transpnr2"
+		            android:layout_width="220dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <EditText
+		            android:id="@+id/name2"
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="220dip"
+		            android:layout_height="wrap_content"
+		            android:text="Trans.-Nr."
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Name"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/transpnr3"
+		            android:layout_width="220dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <EditText
+		            android:id="@+id/name3"
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="220dip"
+		            android:layout_height="wrap_content"
+		            android:text="Trans.-Nr."
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Name"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+           </LinearLayout>
+           
+           
+           <EditText
+		            android:id="@+id/transportvermerk"
+		            android:layout_width="675dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+           <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Transportvermerk /Effekten / Unterschrift"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+           
+           
+            <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+            
+           
+           <EditText
+		            android:id="@+id/krankenhaus"
+		            android:layout_width="675dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+            <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Unterschrift und Stempel des Krankenhauses"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+            
+             <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+            
+            <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Nur bei Heimtransport"
+		            android:textSize="20dip"
+		            android:textStyle="bold"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop = "20dp"
+		            android:textColor="#000000" />
+            
+            <EditText
+		            android:id="@+id/diagnoseHeimtr"
+		            android:layout_width="675dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+            <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Diagnose"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+            
+            <EditText
+		            android:id="@+id/krankenhaus"
+		            android:layout_width="675dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+            <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Unterschrift und Stempel des Krankenhauses"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+            
+            
            
            <Button android:layout_width="fill_parent"
 		        android:layout_height="wrap_content"
@@ -781,6 +1352,8 @@
 		        android:layout_marginTop="60dip"/>
            
           </LinearLayout>
+          
+     		
           </ScrollView>
         
   		<include

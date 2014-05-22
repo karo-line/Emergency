@@ -14,7 +14,14 @@ public class EinsatzInfo {
 	String einsatzArt;
 	String info;
 	String aktualisiert;
+	boolean terminate; 
 	
+	public boolean isTerminate() {
+		return terminate;
+	}
+	public void setTerminate(boolean terminate) {
+		this.terminate = terminate;
+	}
 	public String getAktualisiert() {
 		return aktualisiert;
 	}
@@ -33,7 +40,7 @@ public class EinsatzInfo {
 		this.telNummer = telNummer;
 		this.weitereAlarmierung = weitereAlarmierung;
 		this.einsatzArt = einsatzArt;
-		this.info = info;
+		this.info = info;;
 	}
 	public String getEinsatz() {
 		String einsatz = "Einsatzort: "+ ort

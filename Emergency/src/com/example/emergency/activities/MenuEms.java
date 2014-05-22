@@ -9,6 +9,7 @@ import com.example.emergency.scheduleEinsatz;
 import com.example.emergency.R.id;
 import com.example.emergency.R.layout;
 import com.example.emergency.R.menu;
+import com.example.emergency.functions.LoginFunctions;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -44,7 +45,7 @@ public class MenuEms extends Activity {
 		//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	           // WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.menu_ems_nexus);
-		einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+		einsatzinfos = (TextView) findViewById(R.id.einsatzinformation);
 		refresh = (TextView) findViewById(R.id.aktualisiert);
 		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
 		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
@@ -109,7 +110,7 @@ public class MenuEms extends Activity {
 	public void refreshInfo(View v) {
 		SharedPreferences settings = getSharedPreferences("shares",0);
 		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
-
+		 Log.i("einsatzrefresh",einsatzID);
 		 if(!einsatzID.equals("nosuchvalue")) {
 				RefreshInfo refreshInfo = new RefreshInfo();
 				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosmenu),einsatzID);
@@ -131,12 +132,28 @@ public class MenuEms extends Activity {
 		PopupMenu popup = new PopupMenu(this, v);
 	    MenuInflater inflater = popup.getMenuInflater();
 	    inflater.inflate(R.menu.popupmenu, popup.getMenu());
+	    final View menu = this.findViewById(R.id.einsatzinfosmenu);
 	    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 	    	   
-	    	   @Override
+	    	   @SuppressLint("CommitPrefEdits")
+			@Override
 	    	   public boolean onMenuItemClick(MenuItem item) {
 	    		   switch(item.getItemId()){  
 	               case R.id.menu1: 
+	            	   SharedPreferences settings = getSharedPreferences("shares",0);
+	          		 	String username = settings.getString("username", "nosuchvalue");
+	            	   LoginFunctions func = new LoginFunctions();
+	            	   JSONObject json = func.terminate(username);
+	            	   
+	            	   
+	            	   SharedPreferences.Editor editor = settings.edit();
+	            	   editor.remove("einsatzID");
+	            	   editor.putString("einsatzID", "0");
+	            	   editor.commit();
+	            	   
+	            	   RefreshInfo refreshInfo = new RefreshInfo();
+	   				refreshInfo.refresh(menu,"0");
+	            	   
 	            	   return true;
 	               case R.id.menu2:
 	            	   i= new Intent(getApplicationContext(), StartChoice.class);

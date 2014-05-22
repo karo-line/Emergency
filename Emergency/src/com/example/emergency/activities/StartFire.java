@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.w3c.dom.Document;
@@ -20,6 +21,7 @@ import com.example.emergency.R.drawable;
 import com.example.emergency.R.id;
 import com.example.emergency.R.layout;
 import com.example.emergency.functions.AddressThread;
+import com.example.emergency.functions.FahrzeugFunction;
 import com.example.emergency.functions.NaviFunction;
 import com.example.emergency.functions.OverpassThread;
 import com.example.emergency.functions.WindFunction;
@@ -56,6 +58,7 @@ import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.ClipData;
+import android.content.ClipDescription;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -93,6 +96,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
@@ -136,11 +140,14 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	 */
 	//private SystemUiHider mSystemUiHider;
 	private Intent i;
-	GoogleMap map;
+	static GoogleMap map;
 	boolean cctvStarted = false;
 	boolean naviStarted = false;
 	ArrayList<Marker> markerList;
 	public static ArrayList<Marker> markerFireCar = new ArrayList<Marker>();
+	public static HashMap<Integer, MarkerOptions> listMarker = new HashMap<Integer, MarkerOptions>();
+	public static HashMap<Marker, Integer> markerMap = new HashMap<Marker, Integer>();
+	public static HashMap<Integer, Marker> markerMapID = new HashMap<Integer, Marker>();
 	private LocationClient mLocationClient;
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	ImageView deleteMarker;
@@ -149,6 +156,8 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	Polyline line = null;
 	private final int FIVE_SECONDS = 120000;
 	scheduleEinsatz s;
+	private android.widget.FrameLayout.LayoutParams layoutParams;
+	static Bitmap bitmap;
 	
 	public static class ErrorDialogFragment extends DialogFragment {
 
@@ -294,6 +303,7 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	        .flat(true);		
 	        Marker marker = map.addMarker(markerOptions);
 	        marker.setDraggable(true);
+	        marker.showInfoWindow();
         }
         Log.i("lengtharray", String.valueOf(markerFireCar.size()));
         markerList = new ArrayList<Marker>();
@@ -382,6 +392,112 @@ GooglePlayServicesClient.OnConnectionFailedListener{
        // findViewById(R.id.map).setOnDragListener(new MyDragListener());
         findViewById(R.id.big_car).setOnClickListener(new MyClickListener());
         
+       /** findViewById(R.id.big_car).setTag("Logo");
+        findViewById(R.id.big_car).setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+               ClipData.Item item = new ClipData.Item((CharSequence)v.getTag());
+
+               String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+               ClipData dragData = new ClipData(v.getTag().toString(), 
+               mimeTypes, item);
+
+               // Instantiates the drag shadow builder.
+               View.DragShadowBuilder myShadow = new DragShadowBuilder(findViewById(R.id.big_car));
+
+               // Starts the drag
+               v.startDrag(dragData,  // the data to be dragged
+               myShadow,  // the drag shadow builder
+               null,      // no need to use local data
+               0          // flags (not currently used, set to 0)
+               );
+               return true;
+            }
+         });
+        
+        
+       
+        
+        
+        
+        findViewById(R.id.big_car).setOnDragListener( new OnDragListener(){
+            
+            int x_cord=0;
+            int y_cord=0;
+            public boolean onDrag(View v,  DragEvent event){
+            	
+            switch(event.getAction())                   
+            {
+            
+               case DragEvent.ACTION_DRAG_STARTED:
+                  layoutParams = (FrameLayout.LayoutParams) 
+                  v.getLayoutParams();
+                  Log.d("msg", "Action is DragEvent.ACTION_DRAG_STARTED");
+                  // Do nothing
+                  break;
+               case DragEvent.ACTION_DRAG_ENTERED:
+                  Log.d("msg", "Action is DragEvent.ACTION_DRAG_ENTERED");
+                  x_cord = (int) event.getX();
+                  y_cord = (int) event.getY();  
+                  
+                  break;
+               case DragEvent.ACTION_DRAG_EXITED :
+                  Log.d("msg", "Action is DragEvent.ACTION_DRAG_EXITED");
+                  x_cord = (int) event.getX();
+                  y_cord = (int) event.getY();
+                  layoutParams.leftMargin = x_cord;
+                  layoutParams.topMargin = y_cord;
+                  v.setLayoutParams(layoutParams);
+                  
+                  break;
+               case DragEvent.ACTION_DRAG_LOCATION  :
+                  Log.d("msg", "Action is DragEvent.ACTION_DRAG_LOCATION");
+                  x_cord = (int) event.getX();
+                  y_cord = (int) event.getY();
+                  
+                  break;
+               case DragEvent.ACTION_DRAG_ENDED   :
+                  Log.d("msg", "Action is DragEvent.ACTION_DRAG_ENDED");
+                  
+                  Log.d("msg", String.valueOf(x_cord)+ " "+ String.valueOf(y_cord));
+                  LatLngBounds bounds = map.getProjection().getVisibleRegion().latLngBounds;
+                  
+    			  LatLng latlngCenter = bounds.getCenter();
+    			  Drawable dr = getResources().getDrawable(R.drawable.big_car);
+    		       
+    		        Bitmap bitmap = ((BitmapDrawable) dr).getBitmap();
+    		        // Scale it to 50 x 50
+    		        Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 30, true));
+    		        bitmap = ((BitmapDrawable) d).getBitmap();
+    		        MarkerOptions markerOptions = new MarkerOptions()
+    		        .position(new LatLng(x_cord, y_cord))
+    		        .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+    		        .flat(true);		
+    		        Marker marker = map.addMarker(markerOptions);
+    		        marker.setDraggable(true);
+    		        markerFireCar.add(marker);
+    		        Log.d("info", "ended marker");
+    		        
+    		        //neues auto hinzufügen wieder einblenden
+    		        
+    		        layoutParams.leftMargin = x_cord;
+                    layoutParams.topMargin = y_cord;
+                    v.setLayoutParams(layoutParams);
+                  
+    		        
+                  break;
+               case DragEvent.ACTION_DROP:
+                  Log.d("msg", "ACTION_DROP event");
+                  // Do nothing
+                  break;
+               default: break;
+               }
+               return true;
+            }
+         });*/
+        
+        
+        
        /** Marker marker = map.addMarker(new MarkerOptions()
         .position(new LatLng(37.7750, 122.4183))
         .title("San Francisco")
@@ -405,6 +521,55 @@ GooglePlayServicesClient.OnConnectionFailedListener{
         
         deleteMarker = (ImageView) findViewById(R.id.waste);
         deleteMarker.setVisibility(View.INVISIBLE);
+        
+        
+        
+        //FahrzeugFunction aufrufen scheduler aufrufen brauche ich nach dem start von scheduler
+        //sobald schdeduler gelaufen ist müssen marker neu gesetzt werden
+       
+    	
+    	Drawable dr = getResources().getDrawable(R.drawable.big_car);
+	    
+       bitmap = ((BitmapDrawable) dr).getBitmap();
+        // Scale it to 60 x 30
+        Drawable d = new BitmapDrawable(getResources(), Bitmap.createScaledBitmap(bitmap, 60, 30, true));
+        bitmap = ((BitmapDrawable) d).getBitmap();
+    	
+        
+        
+        FahrzeugFunction func = new FahrzeugFunction();
+    	JSONObject jsonFahrzeug = func.getFahrzeuge(einsatzID);
+    	
+    	try {
+			JSONArray json_user=jsonFahrzeug.getJSONArray("user");
+			int arrayLength = json_user.length();
+			
+			
+			HashMap<Integer, MarkerOptions> markerMap = new HashMap<Integer, MarkerOptions>();
+			
+			for(int i=0; i<arrayLength; i++) {
+				JSONObject jsonNext = json_user.getJSONObject(i);
+				double lat = Double.valueOf(jsonNext.getString("lat"));
+				double lon = Double.valueOf(jsonNext.getString("lon"));
+				int rotation = Integer.valueOf(jsonNext.getString("rotation"));
+				int id = Integer.valueOf(jsonNext.getString("id"));
+
+		    	MarkerOptions markerOptions = new MarkerOptions()
+		        .position(new LatLng(lat,lon))
+		        .rotation(rotation)
+		        .flat(true);	
+		    	
+		    	listMarker.put(id, markerOptions);
+		    	
+			}
+			refreshMarker();
+    	} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        
+        
 	}
 	
 
@@ -430,6 +595,7 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 	public void onMarkerDrag(Marker marker) {
 	    
 	    Point markerScreenPosition = map.getProjection().toScreenLocation(marker.getPosition());
+	    
 	    if (overlap(markerScreenPosition, deleteMarker)) {
 	        deleteMarker.setImageResource(R.drawable.ic_action_discard2);
 	    } else {
@@ -445,15 +611,44 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 	    if (overlap(markerScreenPosition, deleteMarker)) {
 	        markerFireCar.remove(marker);
 	    	marker.remove();
-	    } else {}
+	    } else {
+	    	FahrzeugFunction func = new FahrzeugFunction();
+	    	int i = -1;
+	    	if(markerMap.get(marker) !=null) {
+	    		i = markerMap.get(marker);
+	    	}
+	    	JSONObject json = func.putFahrzeuge(einsatzID, marker.getTitle(), String.valueOf(marker.getPosition().latitude), String.valueOf(marker.getPosition().longitude), String.valueOf(marker.getRotation()), String.valueOf(i));
+	    	String success="";
+	    	try {
+				success = json.getString("success");
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+	    	if(success.equals("0")) { 
+		    	try {
+					JSONObject json_user = json.getJSONObject("user");
+					String id = json_user.getString("id");
+					
+					
+					
+					markerMap.put(marker, Integer.valueOf(id));
+					markerMapID.put(Integer.valueOf(id), marker);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+	    	}
+	    }
 	       // marker.setPosition(origMarkerPos);
 	}
 	
 	private boolean overlap(Point point, ImageView imgview) {
+		
 	    int[] imgCoords = new int[2];
 	    imgview.getLocationOnScreen(imgCoords);
-	    Log.i("locations", " ****** Img x:" + imgCoords[0] + " y:" + imgCoords[1] + "    Point x:" + point.x + "  y:" + point.y + " Width:" + imgview.getWidth() + " Height:" + imgview.getHeight());
-	    boolean overlapX = point.x < imgCoords[0] + imgview.getWidth() && point.x > imgCoords[0] - imgview.getWidth();
+	    //Log.i("locations", " ****** Img x:" + imgCoords[0] + " y:" + imgCoords[1] + "    Point x:" + point.x + "  y:" + point.y + " Width:" + imgview.getWidth() + " Height:" + imgview.getHeight());
+	    boolean overlapX = point.x+187 < imgCoords[0] + imgview.getWidth() && point.x+187 > imgCoords[0] - imgview.getWidth();
 	    boolean overlapY = point.y < imgCoords[1] + imgview.getHeight() && point.y > imgCoords[1] - imgview.getWidth();
 	    return overlapX && overlapY;
 	}
@@ -465,8 +660,10 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 			  float rotation = m.getRotation();
 			  if(rotation<360) {
 				  m.setRotation(rotation+90);
+				  m.showInfoWindow();
 			  } else {
 				  m.setRotation(90);
+				  m.showInfoWindow();
 			  }
 		       return true;
 			} else {
@@ -476,7 +673,26 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 		}
 	
 	private final class MyClickListener implements OnClickListener {
-		  public void onClick(View view) {
+		  public void onClick(View v) {
+			  /**ClipData.Item item = new ClipData.Item((CharSequence)v.getTag());
+
+	            String[] mimeTypes = {ClipDescription.MIMETYPE_TEXT_PLAIN};
+	            ClipData dragData = new ClipData(v.getTag().toString(), 
+	            mimeTypes, item);
+
+	            // Instantiates the drag shadow builder.
+	            View.DragShadowBuilder myShadow = new DragShadowBuilder(findViewById(R.id.big_car));
+
+	            // Starts the drag
+	            v.startDrag(dragData,  // the data to be dragged
+	            myShadow,  // the drag shadow builder
+	            null,      // no need to use local data
+	            0          // flags (not currently used, set to 0)
+	            );*/
+	            
+			  
+			  
+			  
 		   /** if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
 		      ClipData data = ClipData.newPlainText("", "");
 		      DragShadowBuilder shadowBuilder = new View.DragShadowBuilder(view);
@@ -487,7 +703,7 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 		    return false;
 		    }*/
 			  
-			  LatLngBounds bounds = map.getProjection().getVisibleRegion().latLngBounds;
+			LatLngBounds bounds = map.getProjection().getVisibleRegion().latLngBounds;
 			  LatLng latlngCenter = bounds.getCenter();
 			  Drawable dr = getResources().getDrawable(R.drawable.big_car);
 		       
@@ -498,13 +714,17 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 		        MarkerOptions markerOptions = new MarkerOptions()
 		        .position(latlngCenter)
 		        .icon(BitmapDescriptorFactory.fromBitmap(bitmap))
+		        .title("Auto")
 		        .flat(true);		
 		        Marker marker = map.addMarker(markerOptions);
 		        marker.setDraggable(true);
+		        marker.showInfoWindow();
 		        markerFireCar.add(marker);
 		        //in Datenbank einfügen
 		        DatabaseHandler db = new DatabaseHandler(getApplicationContext());
 		        db.addUser(marker.getPosition().latitude, marker.getPosition().longitude,markerFireCar.size());
+		        
+		  
 		  }
 		}
 	private final class MyTouchListener implements OnTouchListener {
@@ -534,43 +754,7 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 		        return true;
 		  }
 		}
-	
-	class MyDragListener implements OnDragListener {
-		  //Drawable enterShape = getResources().getDrawable(R.drawable.shape_droptarget);
-		  //Drawable normalShape = getResources().getDrawable(R.drawable.shape);
-		  
-		  @Override
-		  public boolean onDrag(View v, DragEvent event) {
-		    int action = event.getAction();
-		    switch (event.getAction()) {
-		    case DragEvent.ACTION_DRAG_STARTED:
-		    // do nothing
-		      break;
-		    case DragEvent.ACTION_DRAG_ENTERED:
-		      //v.setBackgroundDrawable(enterShape);
-		      break;
-		    case DragEvent.ACTION_DRAG_EXITED:        
-		      //v.setBackgroundDrawable(normalShape);
-		      break;
-		    case DragEvent.ACTION_DROP:
-		      // Dropped, reassign View to ViewGroup
-		      View view = (View) event.getLocalState();
-		      view.setX(event.getX());
-              view.setY(event.getY());
-		      ViewGroup owner = (ViewGroup) view.getParent();
-		      owner.removeView(view);
-		      FrameLayout container = (FrameLayout) v;
-		      container.addView(view);
-		      view.setVisibility(View.VISIBLE);
-		      break;
-		    case DragEvent.ACTION_DRAG_ENDED:
-		     // v.setBackgroundDrawable(normalShape);
-		      default:
-		      break;
-		    }
-		    return true;
-		  }
-		} 
+
 
 	/**
 	 * Touch listener to use for in-layout UI controls to delay hiding the
@@ -755,10 +939,10 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 	}
 	
 	public void startTicker(View v) {
-		/**i= new Intent(this, TickerFire.class);
-		startActivity(i);	*/	
+		i= new Intent(this, TickerFire.class);
+		startActivity(i);	
 		
-		LayoutInflater layoutInflater  = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);  
+		/**LayoutInflater layoutInflater  = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);  
 	    View popupView = layoutInflater.inflate(R.layout.popup, null);  
 	             final PopupWindow popupWindow = new PopupWindow(
 	               popupView, 
@@ -784,7 +968,7 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 			     public void onClick(View v) {
 			    	 i= new Intent(getApplicationContext(), WindFire.class);
 			 		startActivity(i);
-			     }});
+			     }});*/
 	}
 	
 	public void back(View v) {
@@ -1091,6 +1275,49 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 			}
 
         }).show();
+    }
+    
+    public static void setMarkerFireCar(HashMap<Integer, MarkerOptions> map) {
+    	listMarker = map;
+    	refreshMarker();
+    	
+    	//könnte hasmap übergeben mit der id und dem marker und dann aus markerfirecar ararylist eine hashmap machen
+    	//und bei änderungen die id rauslesen (vll id als value nehmen)
+    }
+    
+    public static void refreshMarker() {
+    	ArrayList<Integer> x = new ArrayList<Integer>(listMarker.keySet());
+    	ArrayList<Integer> y = new ArrayList<Integer>(markerMap.values());
+    	
+    	
+    	
+    	for(int i =0; i<x.size(); i++) {
+    		if(y.contains(x.get(i))) {
+    			//ich brauche den Marker um die eigenschaften zu ändern
+    			
+    			Marker m = markerMapID.get(x.get(i));
+    			MarkerOptions opt = listMarker.get(x.get(i));
+    			m.setPosition(opt.getPosition());
+    			m.setRotation(opt.getRotation());
+    			m.setTitle(opt.getTitle());
+    			
+    		} else {
+    			MarkerOptions opt = listMarker.get(x.get(i));
+         		opt.icon(BitmapDescriptorFactory.fromBitmap(bitmap));
+         		opt.title("Auto");
+         		int id = x.get(i);
+         		Marker marker = map.addMarker(opt);
+     	        marker.setDraggable(true);
+     	        marker.showInfoWindow();
+     	       
+     	        markerFireCar.add(marker);
+         		markerMap.put(marker, id);
+         		markerMapID.put(id, marker);
+    		}
+    	}
+    	
+    	
+    	
     }
     
   

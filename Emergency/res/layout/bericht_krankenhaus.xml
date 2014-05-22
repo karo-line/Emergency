@@ -1,0 +1,754 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".Berichte" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfos"
+    		layout="@layout/einsatzinfo" />
+        
+      <ScrollView 
+		    android:layout_width="725dp"
+		    android:layout_height="fill_parent"
+		    android:background="@color/white" >
+     <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+            
+         <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Krankenhausprotokoll"
+              android:textColor="@color/black_overlay"
+              android:paddingLeft="20dip"
+              android:textSize="25dip"
+              android:layout_marginTop="30dip"
+              android:textStyle="bold"/>
+         
+         
+          <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/name"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/gebdat"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Familienname, Vorname des/der Patienten/In"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Geburtsdatum des/der Patienten/In"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+           
+          <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/plz"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/strasse"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Postleitzahl, Ort des/der Patienten/In"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Straße, Hausnummer des/der Patienten/In"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/tel"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/staatsbuergerschaft"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Telefon"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Staatsbürgerschaft des/der Patienten/In"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/krankenkassa"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/versicherungsnr"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Pflichtversicherung (Krankenkassa) des/der Patienten/In"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Versicherungsnummer des/der Patienten/In"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+         
+         
+         
+           <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/nameV"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/gebdatV"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Familienname, Vorname des/der Versicherten"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Geburtsdatum des/der Versicherten"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+           
+          <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/plzV"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/strasseV"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Postleitzahl, Ort des/der Versicherten"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Straße, Hausnummer des/der Versicherten"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/versNr"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/beruf"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Versicherungsnummer des/der Versicherten"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Beruf des/der Versicherten"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/beschaeftigt"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/anschrift"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Beschäftigt bei"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Anschrift des Dienstgebers"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+         
+         
+         
+           <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+           
+            <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Angaben zur derzeitigen Erkrankung:"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Welche Beschwerden haben Sie?"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	         
+		   <EditText
+		            android:id="@+id/beschwerden"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Seit wann bestehen die Beschwerden?"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	         
+		   <EditText
+		            android:id="@+id/beschwerdenSeit"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Was haben Sie bisher gegen die Beschwerden unternommen?"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	         
+		   <EditText
+		            android:id="@+id/unternommen"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+           
+           <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Sie kommen"
+		            android:textSize="20dip"
+		            android:textStyle="bold"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           
+           <CheckBox
+	            	android:id="@+id/eigeninitiative"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="aus Eigeninitiative"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	        <CheckBox
+		            android:id="@+id/kinderarzt"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="mit Überweisung vom Kinderarzt"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000"/>
+	        <CheckBox
+		            android:id="@+id/praktischerarzt"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="mit Überweisung vom Praktischen Arzt"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	        <CheckBox
+		            android:id="@+id/facharzt"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="mit Überweisung vom Facharzt"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	        
+	        
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Transportmittel"
+		            android:textSize="20dip"
+		            android:textStyle="bold"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="40dip"
+		            android:textColor="#000000" />
+           
+           <CheckBox
+	            	android:id="@+id/privat"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Privat"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	        <CheckBox
+		            android:id="@+id/rettung"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Rettung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000"/>
+	        <CheckBox
+		            android:id="@+id/notarzt"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Notarzt"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+	        <CheckBox
+		            android:id="@+id/taxi"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Taxi"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+
+           <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+           
+         
+           
+           <Button android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="Speichern"
+		        android:textSize="20dip"
+		        android:textStyle="bold"
+		        android:id="@+id/btnSpeichern"
+		        android:layout_marginTop="60dip"/>
+           
+          </LinearLayout>
+          
+     		
+          </ScrollView>
+        
+  		<include
+    		android:id="@+id/leistemenu"
+    		layout="@layout/leiste" />
+  		
+     </LinearLayout>
+</FrameLayout>

@@ -13,7 +13,7 @@ import android.content.Context;
  
 public class GefahrgutFunction {
      
-    private JSONParser jsonParser;
+    private JSONTodoParser jsonParser;
      
     // Testing in localhost using wamp or xampp
     // use http://10.0.2.2/ to connect to your localhost ie http://localhost/
@@ -25,7 +25,7 @@ public class GefahrgutFunction {
      
     // constructor
     public GefahrgutFunction(){
-        jsonParser = new JSONParser();
+        jsonParser = new JSONTodoParser();
         ServerConnection sC = new ServerConnection();
         loginURL = sC.getServerAdr("dyndns")+"android_gefahrgut_api/";
     }

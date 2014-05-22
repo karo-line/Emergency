@@ -3,12 +3,15 @@ package com.example.emergency.activities;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import org.json.JSONObject;
+
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
 import com.example.emergency.R.id;
 import com.example.emergency.R.layout;
 import com.example.emergency.functions.AddressThread;
+import com.example.emergency.functions.LoginFunctions;
 import com.example.emergency.util.SystemUiHider;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
@@ -50,6 +53,8 @@ import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
@@ -64,6 +69,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
 
@@ -88,6 +94,7 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	ImageView deleteMarker;
 	LatLng origMarkerPos;
 	String einsatzID;
+	String username;
 	scheduleEinsatz s;
 	
 	public static class ErrorDialogFragment extends DialogFragment {
@@ -124,19 +131,23 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 		Bundle b = getIntent().getExtras();
 		if(b!= null) {
 			einsatzID = getIntent().getExtras().getString("einsatzID");
+			username = getIntent().getExtras().getString("username");
 			SharedPreferences settings = getSharedPreferences("shares",0);
 		     SharedPreferences.Editor editor = settings.edit();
 		     editor.putString("einsatzID", einsatzID);
+		     editor.putString("username", username);
 		     editor.commit();
 		} else {
 			SharedPreferences settings = getSharedPreferences("shares",0);
 			einsatzID = settings.getString("einsatzID", "nosuchvalue");
+			username = settings.getString("username", "nosuchvalue");
 		}
 		RefreshInfo refreshInfo = new RefreshInfo();
 		refreshInfo.refresh(findViewById(R.id.einsatzinfosMapEms), einsatzID);
 		
+		Log.i("username",username);
 		s = new scheduleEinsatz();
-		s.scheduleUpdateInfo(findViewById(R.id.einsatzinfosMapEms), einsatzID);
+		s.scheduleUpdateInfo(findViewById(R.id.einsatzinfosMapEms), username);
 		
 		mLocationClient = new LocationClient(this, this, this);
 		//LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,getWindowManager().getDefaultDisplay().getHeight()-100);
@@ -210,6 +221,49 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	public void back(View v) {
 		 finish();
 				
+	}
+	
+	@SuppressLint("NewApi")
+	public void startDropdown(View v) {
+		PopupMenu popup = new PopupMenu(this, v);
+	    MenuInflater inflater = popup.getMenuInflater();
+	    inflater.inflate(R.menu.popupmenu, popup.getMenu());
+	    final View menu = this.findViewById(R.id.einsatzinfosMapEms);
+	    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+	    	   
+	    	   @SuppressLint("CommitPrefEdits")
+			@Override
+	    	   public boolean onMenuItemClick(MenuItem item) {
+	    		   switch(item.getItemId()){  
+	               case R.id.menu1: 
+	            	   SharedPreferences settings = getSharedPreferences("shares",0);
+	          		 	String username = settings.getString("username", "nosuchvalue");
+	            	   LoginFunctions func = new LoginFunctions();
+	            	   JSONObject json = func.terminate(username);
+	            	   
+	            	   
+	            	   SharedPreferences.Editor editor = settings.edit();
+	            	   editor.remove("einsatzID");
+	            	   editor.putString("einsatzID", "0");
+	            	   editor.commit();
+	            	   
+	            	   RefreshInfo refreshInfo = new RefreshInfo();
+	   				refreshInfo.refresh(menu,"0");
+	            	   
+	            	   return true;
+	               case R.id.menu2:
+	            	   i= new Intent(getApplicationContext(), StartChoice.class);
+	            	   s.stopHandlerText();
+	            	   startActivity(i);	
+	            	   overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+	            	   return true;
+	    		   }
+				return false;
+	    	   }
+
+	    	  });
+	    popup.show();
+
 	}
 	
     private void getLatLong(String xml) {

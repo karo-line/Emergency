@@ -1,35 +1,30 @@
 package com.example.emergency.activities;
 
-import java.util.HashMap;
- 
-
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import unused.DatabaseHandler;
-
-import com.example.emergency.R;
-import com.example.emergency.RefreshInfo;
-import com.example.emergency.scheduleEinsatz;
-import com.example.emergency.R.id;
-import com.example.emergency.R.layout;
-import com.example.emergency.functions.GefahrgutFunction;
- 
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
+
+import com.example.emergency.R;
+import com.example.emergency.RefreshInfo;
+import com.example.emergency.scheduleEinsatz;
+import com.example.emergency.functions.GefahrgutFunction;
  
 
  
@@ -87,55 +82,35 @@ public class GefahrengutFire extends Activity {
         //btnLinkToRegister = (Button) findViewById(R.id.btnLinkToRegisterScreen);
         loginErrorMsg = (TextView) findViewById(R.id.suche_error);
  
+        final LinearLayout ll = (LinearLayout) findViewById(R.id.llgefahrgut);
+        
+        
+        inputNummer.setOnEditorActionListener(new OnEditorActionListener()
+        {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId,
+                KeyEvent event) {
+            boolean handled = false;
+            if (actionId == EditorInfo.IME_ACTION_DONE ||
+                    event.getAction() == KeyEvent.ACTION_DOWN &&
+                    event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+            	Log.i("entetr","ebnrt"); 
+            	searchClick(inputNummer, ll);
+            	InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+            	imm.hideSoftInputFromWindow(inputNummer.getWindowToken(), 0);	
+            	handled = true;
+				
+            }
+            return handled;
+            }
+        });
+        
+        
         // Login button Click Event
         btnSuche.setOnClickListener(new View.OnClickListener() {
  
             public void onClick(View view) {
-                String nummer = inputNummer.getText().toString();
-                GefahrgutFunction gefahrgutFunction = new GefahrgutFunction();
-                JSONObject json = gefahrgutFunction.loginUser(nummer);
- 
-                // check for login response
-                try {
-                    if (json.getString(KEY_SUCCESS) != null) {
-                        loginErrorMsg.setText("");
-                        String res = json.getString(KEY_SUCCESS);
-                        if(Integer.parseInt(res) == 1){
-                            // user successfully logged in
-                            // Store user details in SQLite Database
-                            DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-                            JSONObject json_user = json.getJSONObject("user");
-                             
-                            // Clear all previous data in database
-                            //userFunction.logoutUser(getApplicationContext());
-                            //db.addUser(json_user.getString(KEY_NAME), json_user.getString(KEY_SEX), json.getString(KEY_UID), json_user.getString(KEY_NATIONALITY), json_user.getString(KEY_BIRTHDAY), json_user.getString(KEY_REASON), json_user.getString(KEY_ALIAS));                       
-                            Log.i("username", json_user.getString(KEY_NAME));
-                            // Launch Dashboard Screen
-                            Intent dashboard = new Intent(getApplicationContext(), GefahrengutResult.class);
-                            dashboard.putExtra("name", json_user.getString(KEY_NAME));
-                            dashboard.putExtra("nummer", json_user.getString(KEY_NUMMER));
-                            dashboard.putExtra("brandbekaempfung", json_user.getString(KEY_BRANDBEKAEMPFUNG));
-                            dashboard.putExtra("leckage", json_user.getString(KEY_LECKAGE));
-                            dashboard.putExtra("erstehilfe", json_user.getString(KEY_ERSTEHILFE));
-                            dashboard.putExtra("brandexplosion", json_user.getString(KEY_BRANDEXPLOSION));
-                            dashboard.putExtra("gesundheit", json_user.getString(KEY_GESUNDHEIT));
-                            dashboard.putExtra("anfahren", json_user.getString(KEY_ANFAHREN));
-                            dashboard.putExtra("schutzvorkehrung", json_user.getString(KEY_SCHUTZVORKEHRUNG));
-                           
-                            // Close all views before launching Dashboard
-                            //dashboard.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                            startActivity(dashboard);
-                            overridePendingTransition(R.layout.fadeout, R.layout.fadein);
-                            // Close Login Screen
-                            finish();
-                        }else{
-                            // Error in login
-                            loginErrorMsg.setText("Person nicht im Register vorhanden!");
-                        }
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+            	searchClick(inputNummer, ll);
             }
         });
  
@@ -190,5 +165,83 @@ public class GefahrengutFire extends Activity {
 	public void back(View v) {
 		 finish();
 				
+	}
+	
+	public void searchClick(EditText v, LinearLayout llGefahrgut) {
+		
+        String nummer = v.getText().toString();
+        GefahrgutFunction gefahrgutFunction = new GefahrgutFunction();
+        JSONObject json = gefahrgutFunction.loginUser(nummer);
+
+        
+        try {
+			if (json.getString(KEY_SUCCESS) != null) {
+			     loginErrorMsg.setText("");
+			     String res = json.getString(KEY_SUCCESS);
+			     if(Integer.parseInt(res) == 1){
+        
+        // check for login response
+        try {
+        	JSONArray json_user=json.getJSONArray("user");
+			int arrayLength = json_user.length();
+			
+			for(int i=0; i<arrayLength; i++) {
+				final JSONObject jsonNext = json_user.getJSONObject(i);
+				String nameGefahrgut = jsonNext.getString(KEY_NAME);
+				String nummerGefahrgut = jsonNext.getString(KEY_NUMMER);
+				TextView nameView = new TextView(getApplicationContext());
+				nameView.setText(nummerGefahrgut+": "+nameGefahrgut);
+				nameView.setTextSize(20);
+				nameView.setPadding(30, 30, 5, 5);
+				int index = llGefahrgut.indexOfChild(findViewById(R.id.sucheNummer))+1;
+				llGefahrgut.addView(nameView,index+i);
+				
+				nameView.setOnClickListener(new View.OnClickListener() {
+					 
+		            public void onClick(View view) {
+		            	Intent dashboard = new Intent(getApplicationContext(), GefahrengutResult.class);
+                        try {
+                        	
+                        	 
+                             dashboard.putExtra("name", jsonNext.getString(KEY_NAME));
+                             dashboard.putExtra("nummer", jsonNext.getString(KEY_NUMMER));
+                             dashboard.putExtra("brandbekaempfung", jsonNext.getString(KEY_BRANDBEKAEMPFUNG));
+                             dashboard.putExtra("leckage", jsonNext.getString(KEY_LECKAGE));
+                             dashboard.putExtra("erstehilfe", jsonNext.getString(KEY_ERSTEHILFE));
+                             dashboard.putExtra("brandexplosion", jsonNext.getString(KEY_BRANDEXPLOSION));
+                             dashboard.putExtra("gesundheit", jsonNext.getString(KEY_GESUNDHEIT));
+                             dashboard.putExtra("anfahren", jsonNext.getString(KEY_ANFAHREN));
+                             dashboard.putExtra("schutzvorkehrung", jsonNext.getString(KEY_SCHUTZVORKEHRUNG));
+                            
+						} catch (JSONException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+                      
+                        startActivity(dashboard);
+                        overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+                        // Close Login Screen
+                        //finish();
+		            }
+				});
+			}
+        
+			
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        
+		} else {
+		   	// Error: Person nciht vorhanden
+             loginErrorMsg.setText("Gefahrgut nicht vorhanden!");
+		  }
+		 }
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	}
 }

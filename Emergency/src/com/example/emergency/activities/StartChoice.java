@@ -12,13 +12,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.TextView.OnEditorActionListener;
 
 public class StartChoice extends Activity {
 	
@@ -47,6 +51,26 @@ public class StartChoice extends Activity {
 	inputEmail = (EditText) findViewById(R.id.loginEmail);
     inputPassword = (EditText) findViewById(R.id.loginPassword);
 	
+    inputPassword.setOnEditorActionListener(new OnEditorActionListener()
+    {
+        @Override
+        public boolean onEditorAction(TextView v, int actionId,
+            KeyEvent event) {
+        boolean handled = false;
+        if (actionId == EditorInfo.IME_ACTION_DONE ||
+                event.getAction() == KeyEvent.ACTION_DOWN &&
+                event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
+        	 
+        	login();
+        	InputMethodManager imm = (InputMethodManager)getSystemService(INPUT_METHOD_SERVICE);
+        	imm.hideSoftInputFromWindow(inputPassword.getWindowToken(), 0);	
+        	handled = true;
+			
+        }
+        return handled;
+        }
+    });
+    
 	btnLogin.setOnClickListener(new View.OnClickListener() {
 		public void onClick(View view) {
 			String email = inputEmail.getText().toString();
@@ -66,15 +90,19 @@ public class StartChoice extends Activity {
                         //JSONObject json_user = json.getJSONObject("user");
                         String taskforce = json.getString("taskforce");
                         String einsatzID = json.getString("einsatzID");
+                        String username = json.getString("username");
+                        
                         String rettung= "rettung";	
                         String feuerwehr= "feuerwehr";
                         String oberkommandant= "oberkommandant";
                         String polizei = "polizei";
-                        Log.i("taskforce",json.getString("taskforce"));
+                        //Log.i("taskforce",json.getString("taskforce"));
                         
                         if (taskforce.equals(rettung)){
                         	Intent startEms = new Intent(getApplicationContext(), StartEms.class);
                         	startEms.putExtra("einsatzID", einsatzID);
+                        	startEms.putExtra("username", username);
+                        	Log.i("rettung",username);
                         	startActivity(startEms);
                         	finish();
                         } else if (taskforce.equals(feuerwehr)) {
@@ -124,24 +152,64 @@ public class StartChoice extends Activity {
 	
 	}
 	
-	/**public void startPolice(View v) {
-		i= new Intent(this, FullscreenActivity.class);
-		ImageView play= (ImageView) findViewById(R.id.police);
+	public void login() {
+		String email = inputEmail.getText().toString();
+        String password = inputPassword.getText().toString();
+        LoginFunctions loginFunction = new LoginFunctions();
+        JSONObject json = loginFunction.loginUser(email, password);
+        loginErrorMsg = (TextView) findViewById(R.id.login_error);
+        
+        try {
+            if (json.getString(KEY_SUCCESS) != null) {
+                loginErrorMsg.setText("");
+                String res = json.getString(KEY_SUCCESS);
+                if(Integer.parseInt(res) == 1){
+                    
+                    String taskforce = json.getString("taskforce");
+                    String einsatzID = json.getString("einsatzID");
+                    String username = json.getString("username");
+                    String rettung= "rettung";	
+                    String feuerwehr= "feuerwehr";
+                    String oberkommandant= "oberkommandant";
+                    String polizei = "polizei";
+                    Log.i("taskforce",json.getString("taskforce"));
+                    
+                    if (taskforce.equals(rettung)){
+                    	Intent startEms = new Intent(getApplicationContext(), StartEms.class);
+                    	startEms.putExtra("einsatzID", einsatzID);
+                    	startEms.putExtra("username", username);
+                    	Log.i("rettung",username);
+                    	startActivity(startEms);
+                    	finish();
+                    } else if (taskforce.equals(feuerwehr)) {
+                    	Intent startFire = new Intent(getApplicationContext(), StartFire.class);
+                    	startFire.putExtra("einsatzID", einsatzID);
+                    	startFire.putExtra("taskforce", taskforce);
+                    	startActivity(startFire);
+                    	finish();
+                    } else if (taskforce.equals(oberkommandant)) {
+                    	Intent startFire = new Intent(getApplicationContext(), StartFire.class);
+                    	startFire.putExtra("einsatzID", einsatzID);
+                    	startFire.putExtra("taskforce", taskforce);
+                    	startActivity(startFire);
+                    	finish();
+                    } else if (taskforce.equals(polizei)) {
+                    	Intent startPol = new Intent(getApplicationContext(), FullscreenActivity.class);
+                    	startPol.putExtra("einsatzID", einsatzID);
+                    	startActivity(startPol);
+                    	finish();
+                    }
+                    
+                    
+                    finish();
+                }else{
+                    // Error in login
+                    loginErrorMsg.setText("Incorrect username/password");
+                }
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 	
-				        	startActivity(i);
 	}
-	
-	public void startFire(View v) {
-		i= new Intent(this, StartFire.class);
-		ImageView play= (ImageView) findViewById(R.id.fire);
-	
-				        	startActivity(i);
-	}
-	
-	public void startEMS(View v) {
-		i= new Intent(this, StartEms.class);
-	
-				        	startActivity(i);
-	}
-	*/
 }

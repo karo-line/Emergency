@@ -53,6 +53,26 @@ public class LoginFunctions {
         // Log.e("JSON", json.toString());
         return json;
     }
+    
+    public JSONObject getEinsatz(String username){
+        // Building Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tag", "getEinsatz"));
+        params.add(new BasicNameValuePair("username", username));
+        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
+      
+        return json;
+    }
+    
+    public JSONObject terminate(String username){
+        // Building Parameters
+        List<NameValuePair> params = new ArrayList<NameValuePair>();
+        params.add(new BasicNameValuePair("tag", "terminate"));
+        params.add(new BasicNameValuePair("username", username));
+        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
+      
+        return json;
+    }
      
     /**
      * function make Login Request

@@ -33,7 +33,7 @@ public class EkgEms extends Activity {
 			//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 		      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 			setContentView(R.layout.ekg_nexus);
-			einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+			einsatzinfos = (TextView) findViewById(R.id.einsatzinformation);
 	 		refresh = (TextView) findViewById(R.id.aktualisiert);
 	 		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
 	 		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
@@ -68,7 +68,7 @@ public class EkgEms extends Activity {
 
 		 if(!einsatzID.equals("nosuchvalue")) {
 				RefreshInfo refreshInfo = new RefreshInfo();
-				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosEkg),einsatzID);
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfos),einsatzID);
 		 }
 	}
 	

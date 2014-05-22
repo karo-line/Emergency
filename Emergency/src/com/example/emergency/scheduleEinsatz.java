@@ -7,12 +7,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.emergency.activities.StartFire;
 import com.example.emergency.activities.TruppKoordination;
 import com.example.emergency.activities.WindFire;
 import com.example.emergency.entities.TruppMann;
+import com.example.emergency.functions.FahrzeugFunction;
+import com.example.emergency.functions.LoginFunctions;
 import com.example.emergency.functions.TruppFunction;
 import com.example.emergency.functions.WindFunction;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
@@ -41,11 +49,30 @@ public class scheduleEinsatz {
 		handlerText = new Handler();
 	}
 	
-	public void scheduleUpdateInfo(final View v, final String einsatzID) {
+	public void scheduleUpdateInfo(final View v, final String username) {
     	
         handlerInfo.postDelayed(new Runnable() {
             public void run() {
-                sendRefresh(v,einsatzID);         
+            	String einsatzID="0";
+            	LoginFunctions func = new LoginFunctions();
+            	JSONObject json = func.getEinsatz(username);
+            	 try {
+					if (json.getString("success") != null) {
+					     String res = json.getString("success");
+					     if(Integer.parseInt(res) == 1){
+					    	 JSONObject jObj = json.getJSONObject("user");
+					    	 einsatzID = jObj.getString("einsatzID");
+					     }
+					 }
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+                sendRefresh(v,einsatzID);  
+                refreshCar(v, einsatzID);
                 handlerInfo.postDelayed(this, FIVE_SECONDS);
             }
         }, FIVE_SECONDS);
@@ -54,6 +81,41 @@ public class scheduleEinsatz {
     public void sendRefresh(View v, String einsatzID) {
     	RefreshInfo refreshInfo = new RefreshInfo();
 		refreshInfo.refresh(v, einsatzID);
+    }
+    
+    @SuppressLint("UseSparseArrays")
+	public void refreshCar(View v, String einsatzID) {
+    	FahrzeugFunction func = new FahrzeugFunction();
+    	JSONObject json = func.getFahrzeuge(einsatzID);
+    	
+    	try {
+			JSONArray json_user=json.getJSONArray("user");
+			int arrayLength = json_user.length();
+			
+			
+			HashMap<Integer, MarkerOptions> markerMap = new HashMap<Integer, MarkerOptions>();
+			
+			for(int i=0; i<arrayLength; i++) {
+				JSONObject jsonNext = json_user.getJSONObject(i);
+				double lat = Double.valueOf(jsonNext.getString("lat"));
+				double lon = Double.valueOf(jsonNext.getString("lon"));
+				int rotation = Integer.valueOf(jsonNext.getString("rotation"));
+				int id = Integer.valueOf(jsonNext.getString("id"));
+
+		    	MarkerOptions markerOptions = new MarkerOptions()
+		        .position(new LatLng(lat,lon))
+		        .rotation(rotation)
+		        .flat(true);	
+		    	
+		    	markerMap.put(id, markerOptions);
+		    	
+			}
+			StartFire.setMarkerFireCar(markerMap);
+    	} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
     }
     
     public void scheduleUpdateText(final TextView eInfo, final TextView refresh) {
@@ -66,7 +128,11 @@ public class scheduleEinsatz {
     }
     
     public void getEinsatz(TextView eInfo, TextView refresh) {
-    	eInfo.setText(RefreshInfo.einsatz.getEinsatz());
+    	if(RefreshInfo.einsatz.isTerminate()) {
+    		eInfo.setText("Kein Einsatz");
+    	} else {
+    		eInfo.setText(RefreshInfo.einsatz.getEinsatz());
+    	}
 		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
     }
     

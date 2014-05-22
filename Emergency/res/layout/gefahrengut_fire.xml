@@ -23,7 +23,7 @@
 		    android:background="@color/white" >
         
         <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
+            android:id="@+id/llgefahrgut"
             style="?buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="fill_parent"
@@ -59,9 +59,12 @@
 		            android:layout_marginRight="30dip"
 		            android:layout_marginTop="10dip"
 		            android:textColor="#000000"
-		            android:background="#C0C0C0" />
+		            android:background="#C0C0C0"
+		            android:inputType="text" >
+		            <requestFocus />
 
-		         
+		        </EditText> 
+		        
 		        <!--  Error message -->
 		        <TextView android:id="@+id/suche_error"
 		                    android:layout_width="fill_parent"

@@ -12,7 +12,7 @@
 
         
  		<include
-    		android:id="@+id/einsatzinfosTranslatorList"
+    		android:id="@+id/einsatzinfos"
     		layout="@layout/einsatzinfo" />
         
        <!--   <TextView

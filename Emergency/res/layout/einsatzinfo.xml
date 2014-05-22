@@ -32,7 +32,7 @@
 	             android:textSize="20dip"
 	             android:layout_marginTop="20dip"/>
              <TextView 
-                 android:id="@+id/einsatzinfos"
+                 android:id="@+id/einsatzinformation"
                  android:layout_width="fill_parent"
 	             android:layout_height="wrap_content"
 	             android:textColor="#000000"

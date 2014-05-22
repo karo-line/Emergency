@@ -41,9 +41,9 @@ public class RefreshInfo {
 	
 	public void refresh(View v, String id) { 
 		
-		einsatzinfosView = (TextView) v.findViewById(R.id.einsatzinfos);
+		einsatzinfosView = (TextView) v.findViewById(R.id.einsatzinformation);
 		refreshView = (TextView) v.findViewById(R.id.aktualisiert);
-		
+		einsatz = new EinsatzInfo();
 	     
 	     OperationFunction operationFunction = new OperationFunction();
 	     JSONObject json = operationFunction.loginUser(id);
@@ -124,13 +124,29 @@ public class RefreshInfo {
 	              	String weitereAlarmierung = rettung+" "+polizei+" "+feuerwehr;
 	              	String einsatzArt = json_user.getString(KEY_EINSATZART);
 	              	String info = json_user.getString(KEY_INFO);
-	                 einsatz = new EinsatzInfo();
+	                
 	                 einsatz.actualize(ort,  plz,  str,  stockwerk,  bei,  patient,  geschlecht,  anrufer,  telNummer,  weitereAlarmierung,  einsatzArt,  info);
 	                 einsatz.setAktualisiert(timeAct);
 	             }else{
+	            	 Time now = new Time();
+	                 now.setToNow();
+	                 String timeAct = "Zuletzt aktualisiert: "+now.format("%k:%M:%S");
+	                 refreshView.setText(timeAct);
+	            	 einsatzinfosView.setText("kein Einsatz");
+	            	 einsatz.setTerminate(true);
+	            	 einsatz.setAktualisiert(timeAct);
 	                 // Error in login
 	                 //loginErrorMsg.setText("Incorrect license number");
 	             }
+	         } else {
+	        	 Time now = new Time();
+                 now.setToNow();
+                 String timeAct = "Zuletzt aktualisiert: "+now.format("%k:%M:%S");
+                 refreshView.setText(timeAct);
+            	 einsatzinfosView.setText("kein Einsatz");
+            	 einsatz.setTerminate(true);
+            	 einsatz.setAktualisiert(timeAct);
+            	 
 	         }
 	     } catch (JSONException e) {
 	         e.printStackTrace();
