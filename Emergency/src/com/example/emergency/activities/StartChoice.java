@@ -6,6 +6,9 @@ import org.json.JSONObject;
 import com.example.emergency.R;
 import com.example.emergency.R.id;
 import com.example.emergency.R.layout;
+import com.example.emergency.activities.ems.StartEms;
+import com.example.emergency.activities.fire.StartFire;
+import com.example.emergency.activities.police.FullscreenActivity;
 import com.example.emergency.functions.LoginFunctions;
 
 import android.app.Activity;

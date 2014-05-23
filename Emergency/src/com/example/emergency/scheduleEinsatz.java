@@ -7,9 +7,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.example.emergency.activities.StartFire;
-import com.example.emergency.activities.TruppKoordination;
-import com.example.emergency.activities.WindFire;
+import com.example.emergency.activities.fire.StartFire;
+import com.example.emergency.activities.fire.TruppKoordination;
+import com.example.emergency.activities.fire.WindFire;
 import com.example.emergency.entities.TruppMann;
 import com.example.emergency.functions.FahrzeugFunction;
 import com.example.emergency.functions.LoginFunctions;
@@ -23,6 +23,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.text.Layout;
 import android.util.Log;
@@ -49,7 +50,7 @@ public class scheduleEinsatz {
 		handlerText = new Handler();
 	}
 	
-	public void scheduleUpdateInfo(final View v, final String username) {
+	public void scheduleUpdateInfo(final View v, final String username, final SharedPreferences settings) {
     	
         handlerInfo.postDelayed(new Runnable() {
             public void run() {
@@ -62,6 +63,12 @@ public class scheduleEinsatz {
 					     if(Integer.parseInt(res) == 1){
 					    	 JSONObject jObj = json.getJSONObject("user");
 					    	 einsatzID = jObj.getString("einsatzID");
+					    	
+					    	 
+					    	 SharedPreferences.Editor editor = settings.edit();
+			            	   editor.remove("einsatzID");
+			            	   editor.putString("einsatzID", einsatzID);
+			            	   editor.commit();
 					     }
 					 }
 				} catch (NumberFormatException e) {
