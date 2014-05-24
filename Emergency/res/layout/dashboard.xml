@@ -13,7 +13,7 @@
 
         
  		<include
-    		android:id="@+id/einsatzinfosPersonenList"
+    		android:id="@+id/einsatzinfos"
     		layout="@layout/einsatzinfo" />
       
     
@@ -137,38 +137,9 @@
           </LinearLayout>
           </ScrollView>
        
-        
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="?buttonBarStyle"
-            android:layout_width="50dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="right|center_vertical"
-            android:background="@color/black_overlay"
-            android:orientation="vertical"
-            tools:ignore="UselessParent" >
-        
-        		<ImageView
-                android:id="@+id/dummy_button"
-                android:layout_width="55dp"
-                android:layout_height="55dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:src="@drawable/ic_menu_home"
-                android:onClick="startMenu"/>
-            
-            
-            
-            <ImageView 
-                android:id="@+id/arrow"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="380dp"
-                android:src="@drawable/icon_arrow"
-                android:onClick="back"/>
-            
-            </LinearLayout>
+      <include
+    		android:id="@+id/leistemenu"
+    		layout="@layout/leistepolice" />
    </LinearLayout>
 </FrameLayout>
 

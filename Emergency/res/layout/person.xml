@@ -44,47 +44,9 @@
             android:layout_width="910dp"
         android:layout_height="match_parent"
          android:name="com.google.android.gms.maps.MapFragment"/> -->
-        
-        <LinearLayout
-            android:id="@+id/fullscreen_content_controls3"
-            style="?buttonBarStyle"
-            android:layout_width="70dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="right|center_vertical"
-            android:background="@color/black_overlay"
-            android:orientation="vertical"
-            tools:ignore="UselessParent" >
-
-            <!-- 
-                android:id="@+id/dummy_button"
-                style="?buttonBarButtonStyle"
-                android:layout_width="20dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/dummy_button" 
-              -->
-            
-            <ImageView
-                android:id="@+id/dummy_button2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp"
-                android:src="@drawable/ic_menu_home"
-                android:onClick="startMenu"/>
-           
-            
-            <ImageView 
-                android:id="@+id/arrow2"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="538dp"
-                android:src="@drawable/icon_arrow"
-                android:onClick="back"/>
-            
-          
-        </LinearLayout>
+       <include
+    		android:id="@+id/leistemenu"
+    		layout="@layout/leistepolice" />
         
         
        

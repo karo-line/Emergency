@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import unused.DatabaseHandler;
+import unused.VideoEms;
 
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
@@ -88,7 +89,11 @@ public class GefahrengutActivity extends Activity {
 		
 		 einsatzinfos = (TextView) findViewById(R.id.einsatzinformation);
  		refresh = (TextView) findViewById(R.id.aktualisiert);
- 		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+ 		if(RefreshInfo.einsatz.isTerminate()) {
+			einsatzinfos.setText("Kein Einsatz");
+		} else {
+		einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+		}
  		refresh.setText(RefreshInfo.einsatz.getAktualisiert());
  		s = new scheduleEinsatz();
 		s.scheduleUpdateText(einsatzinfos, refresh); 
@@ -238,6 +243,11 @@ public class GefahrengutActivity extends Activity {
 	            	   s.stopHandlerText();
 	            	   startActivity(i);	
 	            	   overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+	            	   SharedPreferences settings2 = getSharedPreferences("shares",0);
+	            	   SharedPreferences.Editor editor2 = settings2.edit();
+	            	   editor2.clear();
+	            	   editor2.commit();
+	            	   finish();
 	            	   return true;
 	    		   }
 				return false;

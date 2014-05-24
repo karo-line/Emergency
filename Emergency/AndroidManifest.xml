@@ -21,13 +21,16 @@
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/> 
 <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="android.permission.GET_TASKS" />
+
 
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme"
+        android:name=".Emergency" >
         <uses-library android:name="com.google.android.maps" />
         <meta-data
     android:name="com.google.android.gms.version"
@@ -309,7 +312,7 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
-            android:name="com.example.emergency.activities.ems.VideoEms">
+            android:name="unused.VideoEms">
          </activity>
          
          <activity
@@ -407,6 +410,12 @@
             android:label="@string/app_name"
             android:theme="@style/FullscreenTheme"
             android:name="com.example.emergency.activities.ems.BerichtKrankenhaus">
+         </activity>
+         <activity
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme"
+            android:name="com.example.emergency.activities.ems.BerichtEinsatz">
          </activity>
          
         <meta-data android:name="com.google.android.gms.version"

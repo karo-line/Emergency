@@ -3,8 +3,8 @@ package com.example.emergency;
 public class ServerConnection {
 
 	//String dyndns = "http://lmattano.noip.me:8443/";
-	String local = "http://10.0.0.3/";
-	String dyndns = "http://10.0.0.3/";
+	String local = "http://10.0.0.4/";
+	String dyndns = "http://10.0.0.4/";
 	
 	public String getServerAdr(String server) {
 		

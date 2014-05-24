@@ -3,12 +3,17 @@ package com.example.emergency.activities.police;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
 import com.example.emergency.R.id;
 import com.example.emergency.R.layout;
+import com.example.emergency.activities.StartChoice;
 import com.example.emergency.functions.AddressThread;
+import com.example.emergency.functions.LoginFunctions;
 import com.example.emergency.functions.OverpassThread;
 import com.example.emergency.util.SystemUiHider;
 import com.google.android.gms.common.ConnectionResult;
@@ -42,6 +47,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -50,6 +57,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.Toast;
 
@@ -98,6 +106,7 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	private LocationClient mLocationClient;
 	private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 	String einsatzID;
+	String username;
 	scheduleEinsatz s;
 	
 	public static class ErrorDialogFragment extends DialogFragment {
@@ -134,20 +143,24 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 		Bundle b = getIntent().getExtras();
 		if(b!= null) {
 			einsatzID = getIntent().getExtras().getString("einsatzID");
-			SharedPreferences settings = getPreferences(0);
+			username = getIntent().getExtras().getString("username");
+			SharedPreferences settings = getSharedPreferences("shares",0);
 		     SharedPreferences.Editor editor = settings.edit();
 		     editor.putString("einsatzID", einsatzID);
+		     editor.putString("username", username);
 		     editor.commit();
 		} else {
-			SharedPreferences settings = getPreferences(0);
+			SharedPreferences settings = getSharedPreferences("shares",0);
 			einsatzID = settings.getString("einsatzID", "nosuchvalue");
+			username = settings.getString("username", "nosuchvalue");
 		}
+		Log.i("usernameStart",username);
 		RefreshInfo refreshInfo = new RefreshInfo();
 		refreshInfo.refresh(findViewById(R.id.einsatzinfosMapPolice), einsatzID);
 		
-		scheduleEinsatz s = new scheduleEinsatz();
-		SharedPreferences settings = getPreferences(0);
-		s.scheduleUpdateInfo(findViewById(R.id.einsatzinfosMapPolice), einsatzID, settings);
+		s = new scheduleEinsatz();
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		s.scheduleUpdateInfo(findViewById(R.id.einsatzinfosMapPolice), username, settings);
 		
 		
 		mLocationClient = new LocationClient(this, this, this);
@@ -396,13 +409,94 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosMapPolice),einsatzID);
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+		 String username = settings.getString("username", "nosuchvalue");
+		 Log.i("einsatzrefresh",einsatzID);
+		 
+		 
+		 
+		 LoginFunctions func = new LoginFunctions();
+		 JSONObject json = func.getEinsatz(username);
+		 try {
+				if (json.getString("success") != null) {
+				     String res = json.getString("success");
+				     if(Integer.parseInt(res) == 1){
+				    	 JSONObject jObj = json.getJSONObject("user");
+				    	 einsatzID = jObj.getString("einsatzID");
+				    	
+				    	 
+				    	 SharedPreferences.Editor editor = settings.edit();
+		            	   editor.remove("einsatzID");
+		            	   editor.putString("einsatzID", einsatzID);
+		            	   editor.commit();
+				     }
+				 }
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 
+		 if(!einsatzID.equals("nosuchvalue")) {
+			 RefreshInfo refreshInfo = new RefreshInfo();
+			 refreshInfo.refresh(this.findViewById(R.id.einsatzinfosMapPolice),einsatzID);
+		 }
 	}
 	
 	public void back(View v) {
 		 finish();
 				
+	}
+	
+	@SuppressLint("NewApi")
+	public void startDropdown(View v) {
+		PopupMenu popup = new PopupMenu(this, v);
+	    MenuInflater inflater = popup.getMenuInflater();
+	    inflater.inflate(R.menu.popupmenu, popup.getMenu());
+	    final View menu = this.findViewById(R.id.einsatzinfosMapPolice);
+	    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+	    	   
+	    	   @SuppressLint("CommitPrefEdits")
+			@Override
+	    	   public boolean onMenuItemClick(MenuItem item) {
+	    		   switch(item.getItemId()){  
+	               case R.id.menu1: 
+	            	   SharedPreferences settings = getSharedPreferences("shares",0);
+	          		 	String username = settings.getString("username", "nosuchvalue");
+	            	   LoginFunctions func = new LoginFunctions();
+	            	   JSONObject json = func.terminate(username);
+	            	   
+	            	   
+	            	   SharedPreferences.Editor editor = settings.edit();
+	            	   editor.remove("einsatzID");
+	            	   editor.putString("einsatzID", "0");
+	            	   editor.commit();
+	            	   
+	            	   RefreshInfo refreshInfo = new RefreshInfo();
+	   				refreshInfo.refresh(menu,"0");
+	            	   
+	            	   return true;
+	               case R.id.menu2:
+	            	   i= new Intent(getApplicationContext(), StartChoice.class);
+	            	   s.stopHandlerText();
+	            	   startActivity(i);	
+	            	   overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+	            	   SharedPreferences settings2 = getSharedPreferences("shares",0);
+	            	   SharedPreferences.Editor editor2 = settings2.edit();
+	            	   editor2.clear();
+	            	   editor2.commit();
+	            	   finish();
+	            	   return true;
+	    		   }
+				return false;
+	    	   }
+
+	    	  });
+	    popup.show();
+
 	}
 	
     private void getLatLong(String xml) {

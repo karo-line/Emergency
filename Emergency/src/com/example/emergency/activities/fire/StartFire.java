@@ -14,14 +14,18 @@ import org.w3c.dom.NodeList;
 
 import unused.DatabaseHandler;
 
+
+import com.example.emergency.BaseActivity;
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
 import com.example.emergency.R.drawable;
 import com.example.emergency.R.id;
 import com.example.emergency.R.layout;
+import com.example.emergency.activities.StartChoice;
 import com.example.emergency.functions.AddressThread;
 import com.example.emergency.functions.FahrzeugFunction;
+import com.example.emergency.functions.LoginFunctions;
 import com.example.emergency.functions.NaviFunction;
 import com.example.emergency.functions.OverpassThread;
 import com.example.emergency.functions.WindFunction;
@@ -80,6 +84,8 @@ import android.util.Log;
 import android.view.DragEvent;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.DragShadowBuilder;
@@ -95,6 +101,7 @@ import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupMenu;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -108,7 +115,7 @@ import android.widget.Toast;
  * @see SystemUiHider
  */
 @SuppressLint("NewApi")
-public class StartFire extends Activity implements 
+public class StartFire extends BaseActivity implements 
 GooglePlayServicesClient.ConnectionCallbacks, 
 GooglePlayServicesClient.OnConnectionFailedListener{
 	/**
@@ -158,6 +165,7 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	scheduleEinsatz s;
 	private android.widget.FrameLayout.LayoutParams layoutParams;
 	static Bitmap bitmap;
+	String username;
 	
 	public static class ErrorDialogFragment extends DialogFragment {
 
@@ -182,7 +190,7 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	}
 	@SuppressLint("NewApi")
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -197,30 +205,39 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 		Bundle b = getIntent().getExtras();
 		if(b!= null) {
 			einsatzID = getIntent().getExtras().getString("einsatzID");
+			Log.i("einsatzIDvorhanden", einsatzID);
 			String taskforce = getIntent().getExtras().getString("taskforce");
-			
+			username = getIntent().getExtras().getString("username");
 			SharedPreferences settings = getSharedPreferences("shares",0);
 		     SharedPreferences.Editor editor = settings.edit();
 		     editor.putString("einsatzID", einsatzID);
 		     editor.putString("taskforce", taskforce);
+		     editor.putString("username", username);
 		     editor.commit();
-		     Log.i("einsatzIDvorhanden", einsatzID);
+		     
 		} else {
-			SharedPreferences settings = getPreferences(0);
+			SharedPreferences settings = getSharedPreferences("shares",0);
 			einsatzID = settings.getString("einsatzID", "nosuchvalue");
+			username = settings.getString("username", "nosuchvalue");
+			Log.i("einsatzIDMenu", einsatzID);
 		}
 		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(findViewById(R.id.einsatzinfosmenu), einsatzID);
+		refreshInfo.refresh(findViewById(R.id.einsatzinfos), einsatzID);
 		
 		s = new scheduleEinsatz();
-		SharedPreferences settings = getPreferences(0);
-		s.scheduleUpdateInfo(findViewById(R.id.einsatzinfosmenu), einsatzID, settings);
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		s.scheduleUpdateInfo(findViewById(R.id.einsatzinfos), username, settings);
+		
 		
 		
 		LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
 		Context c = getApplicationContext();
-		String windSchedule = s.scheduleWind(layoutInflater, findViewById(R.id.einsatzinfosmenu), c);
+		String windSchedule = s.scheduleWind(layoutInflater, findViewById(R.id.einsatzinfos), c);
 		
+		
+		//start scheduler für timeDiff
+		//LayoutInflater layoutInflater = (LayoutInflater)getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+		s.scheduleKoordination(einsatzID, layoutInflater, getApplicationContext());
 		
 		Log.i("nochanged",windSchedule);
 		if(!windSchedule.equals("nochange")) {
@@ -826,10 +843,36 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 	
 	
 	public void startVideo(View v) {
-		i= new Intent(this, VideoFire.class);
+		/**i= new Intent(this, VideoFire.class);
 		ImageView play= (ImageView) findViewById(R.id.play);
 		startActivity(i);	
-		 overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+		 overridePendingTransition(R.layout.fadeout, R.layout.fadein);*/
+		// prepare the alert box                  
+        AlertDialog.Builder alertbox = new AlertDialog.Builder(this);
+         
+        // set the message to display
+        alertbox.setMessage("This is the alertbox!");
+                 
+        // set a positive/yes button and create a listener                   
+        alertbox.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+             
+            // do something when the button is clicked
+            public void onClick(DialogInterface arg0, int arg1) {
+                Toast.makeText(getApplicationContext(), "'Yes' button clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+         
+        // set a negative/no button and create a listener
+        alertbox.setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+            // do something when the button is clicked               
+            public void onClick(DialogInterface arg0, int arg1) {
+                Toast.makeText(getApplicationContext(), "'No' button clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+         
+        // display box
+        alertbox.show();
 				
 	}
 	
@@ -929,8 +972,40 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 	}
 	
 	public void refreshInfo(View v) {
-		RefreshInfo refreshInfo = new RefreshInfo();
-		refreshInfo.refresh(this.findViewById(R.id.einsatzinfosmenu),einsatzID);
+		SharedPreferences settings = getSharedPreferences("shares",0);
+		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+		 String username = settings.getString("username", "nosuchvalue");
+		 Log.i("einsatzrefresh",einsatzID);
+		 
+		 
+		 
+		 LoginFunctions func = new LoginFunctions();
+		 JSONObject json = func.getEinsatz(username);
+		 try {
+				if (json.getString("success") != null) {
+				     String res = json.getString("success");
+				     if(Integer.parseInt(res) == 1){
+				    	 JSONObject jObj = json.getJSONObject("user");
+				    	 einsatzID = jObj.getString("einsatzID");
+				    	
+				    	 
+				    	 SharedPreferences.Editor editor = settings.edit();
+		            	   editor.remove("einsatzID");
+		            	   editor.putString("einsatzID", einsatzID);
+		            	   editor.commit();
+				     }
+				 }
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		 if(!einsatzID.equals("nosuchvalue")) {
+			 RefreshInfo refreshInfo = new RefreshInfo();
+			 refreshInfo.refresh(this.findViewById(R.id.einsatzinfos),einsatzID);
+		 }
 	}
 	
 	public void startTodo(View v) {
@@ -975,6 +1050,54 @@ private final class MyMarkerDragListener implements OnMarkerDragListener {
 	public void back(View v) {
 		 finish();
 				
+	}
+	
+	@SuppressLint("NewApi")
+	public void startDropdown(View v) {
+		PopupMenu popup = new PopupMenu(this, v);
+	    MenuInflater inflater = popup.getMenuInflater();
+	    inflater.inflate(R.menu.popupmenu, popup.getMenu());
+	    final View menu = this.findViewById(R.id.einsatzinfos);
+	    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+	    	   
+	    	   @SuppressLint("CommitPrefEdits")
+			@Override
+	    	   public boolean onMenuItemClick(MenuItem item) {
+	    		   switch(item.getItemId()){  
+	               case R.id.menu1: 
+	            	   SharedPreferences settings = getSharedPreferences("shares",0);
+	          		 	String username = settings.getString("username", "nosuchvalue");
+	            	   LoginFunctions func = new LoginFunctions();
+	            	   JSONObject json = func.terminate(username);
+	            	   
+	            	   
+	            	   SharedPreferences.Editor editor = settings.edit();
+	            	   editor.remove("einsatzID");
+	            	   editor.putString("einsatzID", "0");
+	            	   editor.commit();
+	            	   
+	            	   RefreshInfo refreshInfo = new RefreshInfo();
+	   				refreshInfo.refresh(menu,"0");
+	            	   
+	            	   return true;
+	               case R.id.menu2:
+	            	   i= new Intent(getApplicationContext(), StartChoice.class);
+	            	   s.stopHandlerText();
+	            	   startActivity(i);	
+	            	   overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+	            	   SharedPreferences settings2 = getSharedPreferences("shares",0);
+	            	   SharedPreferences.Editor editor2 = settings2.edit();
+	            	   editor2.clear();
+	            	   editor2.commit();
+	            	   finish();
+	            	   return true;
+	    		   }
+				return false;
+	    	   }
+
+	    	  });
+	    popup.show();
+
 	}
 	
     private void getLatLong(String xml) {

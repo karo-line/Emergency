@@ -21,6 +21,9 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -207,7 +210,15 @@ public class scheduleEinsatz {
     	                     LayoutParams.WRAP_CONTENT); 
     	             TextView tView = (TextView)popupView.findViewById(R.id.popupText);
     	             tView.setText("Windänderung! Neue Richtung: "+windDir);
-    	             popupWindow.showAsDropDown(v, 10, -130);
+    	             //funktionsaufruf get current window
+    	             ActivityManager am = (ActivityManager)c.getSystemService(Context.ACTIVITY_SERVICE);
+    	             ComponentName cn = am.getRunningTasks(1).get(0).topActivity;
+    	            
+    	             
+    	             Activity currentActivity = ((Emergency)c.getApplicationContext()).getCurrentActivity();
+    	             View neu = currentActivity.findViewById(R.id.einsatzinfos);
+    	             
+    	             popupWindow.showAsDropDown(neu, 10, -130);
     	             
     	             Button btnDismiss = (Button)popupView.findViewById(R.id.dismiss);
     	             btnDismiss.setOnClickListener(new Button.OnClickListener(){
@@ -224,6 +235,7 @@ public class scheduleEinsatz {
     			     @Override
     			     public void onClick(View v) {
     			    	 Intent i= new Intent(c, WindFire.class);
+    			    	 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     			 		c.startActivity(i);
     			     }});
         	return windDir;
@@ -274,7 +286,7 @@ public class scheduleEinsatz {
 	               LayoutParams.WRAP_CONTENT,  
 	                     LayoutParams.WRAP_CONTENT); 
 	             TextView tView = (TextView)popupView.findViewById(R.id.popupText);
-	             tView.setText("Zeit ist abgelaufen bei Truppe: "+trupp);
+	             tView.setText("Zeit ist abgelaufen bei: "+name);
 	             popupWindow.showAsDropDown(v, 10, -130);
 	             
 	             Button btnDismiss = (Button)popupView.findViewById(R.id.dismiss);
@@ -312,6 +324,86 @@ public class scheduleEinsatz {
 		    	
 		    	
 		    }
+		}
+	    	
+	    }
+	
+public void scheduleKoordination(final String einsatzID, final LayoutInflater layoutInflater, final Context c) {
+    	
+    	handlerText.postDelayed(new Runnable() {
+            public void run() {
+            	try {
+					getTimeDiff2(einsatzID, layoutInflater, c);
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}         
+            	handlerText.postDelayed(this, 60000);
+            }
+        }, 60000);
+    	
+    }
+    
+	public void getTimeDiff2(String einsatzID, LayoutInflater layoutInflater, final Context c) throws JSONException {
+	    	
+	    TruppFunction truppFunction = new TruppFunction();
+	    JSONObject json = truppFunction.getTruppenDiff(einsatzID);
+	    
+	    JSONArray json_user=json.getJSONArray("user");
+		int arrayLength = json_user.length();
+
+		for(int i=0; i<arrayLength; i++) {
+			JSONObject jsonNext = json_user.getJSONObject(i);
+		    String trupp = jsonNext.getString("trupp");
+		    String difftime = jsonNext.getString("difftime");
+		    String timeBack = jsonNext.getString("timeBack");
+		    String name = jsonNext.getString("name");
+		    
+		   char min =  difftime.charAt(0);
+		    if(min == '-') {
+		    	
+		    	 View popupView = layoutInflater.inflate(R.layout.popup, null);  
+	             final PopupWindow popupWindow = new PopupWindow(
+	               popupView, 
+	               LayoutParams.WRAP_CONTENT,  
+	                     LayoutParams.WRAP_CONTENT); 
+	             TextView tView = (TextView)popupView.findViewById(R.id.popupText);
+	             tView.setText("Zeit ist abgelaufen bei: "+name);
+	             
+	             Activity currentActivity = ((Emergency)c.getApplicationContext()).getCurrentActivity();
+	             
+	             
+	            if(currentActivity.getComponentName().getClassName().equals("com.example.emergency.activities.fire.TruppKoordination")) {
+	            	//do nothing
+	            	Log.i("currentTruppAct", currentActivity.getComponentName().getClassName());
+	            } else {
+	            	Log.i("currentNotTrupp", currentActivity.getComponentName().getClassName());
+	            	View neu = currentActivity.findViewById(R.id.einsatzinfos);
+		             popupWindow.showAsDropDown(neu, 10, -130);
+	            
+	             
+	             Button btnDismiss = (Button)popupView.findViewById(R.id.dismiss);
+	             btnDismiss.setOnClickListener(new Button.OnClickListener(){
+
+			     @Override
+			     public void onClick(View v) {
+			      // TODO Auto-generated method stub
+			      popupWindow.dismiss();
+			     }});
+	             
+	             Button btnOpen = (Button)popupView.findViewById(R.id.open);
+	             btnOpen.setOnClickListener(new Button.OnClickListener(){
+
+			     @Override
+			     public void onClick(View v) {
+			    	 Intent i= new Intent(c, TruppKoordination.class);
+			    	 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			 		c.startActivity(i);
+			     }});
+	            }
+		    
+		    }
+		 
 		}
 	    	
 	    }

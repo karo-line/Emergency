@@ -73,7 +73,14 @@
                 android:layout_weight="1"
                 android:text="@string/dummy_button" 
               -->
-            
+            <ImageView
+                android:id="@+id/menu"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/ic_menu_moreoverflow_normal_holo_light"
+                android:onClick="startDropdown"/>
             <ImageView
                 android:id="@+id/dummy_button"
                 android:layout_width="55dp"
@@ -88,7 +95,7 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="280dp"
+                android:layout_marginTop="230dp"
                 android:src="@drawable/icon_cctv"
                 android:onClick="startCctv"/>
             

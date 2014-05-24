@@ -1,0 +1,1473 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".Berichte" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfos"
+    		layout="@layout/einsatzinfo" />
+        
+      <ScrollView 
+		    android:layout_width="725dp"
+		    android:layout_height="fill_parent"
+		    android:background="@color/white" >
+     <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+            
+         <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Einsatzprotokoll"
+              android:textColor="@color/black_overlay"
+              android:paddingLeft="20dip"
+              android:textSize="25dip"
+              android:layout_marginTop="30dip"
+              android:textStyle="bold"/>
+         
+         <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Patient"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         
+          <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/name"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/gebdat"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		   
+		   <RadioGroup
+        		android:id="@+id/radioSex"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+ 
+        	<RadioButton
+            	android:id="@+id/radioMale"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="männlich" 
+            	android:checked="true"
+            	android:textColor="#000000" />
+ 
+        	<RadioButton
+            	android:id="@+id/radioFemale"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="weiblich"
+            	android:textColor="#000000" />
+ 
+    		</RadioGroup>
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="100dp"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:text="Name"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Geburtsdatum"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+          <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Transport zum Rettungsmittel"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+          <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <RadioGroup
+        		android:id="@+id/transportRettungsmittel"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+ 
+        	<RadioButton
+            	android:id="@+id/radioSelbst"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Pat. geht selbst/unterstützt" 
+            	android:checked="true"
+            	android:textColor="#000000" />
+ 
+        	<RadioButton
+            	android:id="@+id/radioKrankentrage"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="mit Krankentrage"
+            	android:textColor="#000000" />
+        	
+        	<RadioButton
+            	android:id="@+id/radioTragesessel"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="mit Tragesessel"
+            	android:textColor="#000000"/>
+ 
+        	<RadioButton
+            	android:id="@+id/radioWeiteres"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="" />
+        	
+ 
+    		</RadioGroup>
+			 <EditText
+		            android:id="@+id/editWeiteres"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		  
+            
+           </LinearLayout>
+           
+          <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Transport"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+          
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <RadioGroup
+        		android:id="@+id/transportRettungsmittel"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+ 
+        	<RadioButton
+            	android:id="@+id/radioSizend"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="sitzend" 
+            	android:checked="true"
+            	android:textColor="#000000" />
+ 
+        	<RadioButton
+            	android:id="@+id/radioLiegend"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="liegend"
+            	android:textColor="#000000" />
+        	
+ 
+        	<RadioButton
+            	android:id="@+id/radioWeiteresTransport"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="" />
+        	
+ 
+    		</RadioGroup>
+			 <EditText
+		            android:id="@+id/editWeiteresTransport"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	
+           </LinearLayout>
+           
+           <CheckBox
+	            	android:id="@+id/zustand"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Zustand d. pat. erfordert keine weiteren sanitätsdienstlichen Maßnahmen"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           
+           
+         <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+           
+         <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Einsatz"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Anwesende Kräfte"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+           <CheckBox
+	            	android:id="@+id/exekutive"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Exekutive"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />    
+	       <EditText
+		            android:id="@+id/exekutiveTxt"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <CheckBox
+	            	android:id="@+id/arzt"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Arzt"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+	         
+		   <EditText
+		            android:id="@+id/arztTxt"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+           <CheckBox
+	            	android:id="@+id/feuerwehr"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Feuerwehr"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />    
+	       <EditText
+		            android:id="@+id/feuerwehrTxt"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <CheckBox
+	            	android:id="@+id/sonst"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="sonst."
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+	         
+		   <EditText
+		            android:id="@+id/sonstTxt"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Transportbegleitung durch"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <CheckBox
+	            	android:id="@+id/arztTrans"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Arzt"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />    
+	       <EditText
+		            android:id="@+id/ArztTransTxt"
+		            android:layout_width="400dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	       <CheckBox
+	            	android:id="@+id/exekutiveTrans"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Exekutive"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+	         
+		   <EditText
+		            android:id="@+id/exekutiveTransTxt"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	
+           </LinearLayout>
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <CheckBox
+	            	android:id="@+id/verweigert"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Pat. verweigert Transport bzw. Hilfeleistung (Revers!)"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+		            
+	       <CheckBox
+	            	android:id="@+id/naNachgefordert"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="NA nachgefordert"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+
+           </LinearLayout>
+           
+         <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+         
+         <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Notfallanamnese"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/notfallgeschehen"
+		            android:layout_width="675dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+         <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Notfallgeschehen"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/vorerkrankungen"
+		            android:layout_width="675dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+         <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Vorerkrankungen / Allergien / laufende Medikation"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+         
+         <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="vorgefunden in Lage"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+         
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <CheckBox
+	            	android:id="@+id/lageGehend"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="gehend/stehend"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+		            
+	       <CheckBox
+	            	android:id="@+id/lageSitzend"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="sitzend"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+	
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <CheckBox
+	            	android:id="@+id/lageLiegend"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="liegend"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+		            
+	       <CheckBox
+	            	android:id="@+id/lageSitzend"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="sitzend"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+		            
+	       <EditText
+		            android:id="@+id/lageWeitere"
+		            android:layout_width="675dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	
+           </LinearLayout>
+         
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Vitalfunktion"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Bewusstsein"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           <RadioGroup
+        		android:id="@+id/bewusstsein"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+ 
+        	<RadioButton
+            	android:id="@+id/wach"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="wach" 
+            	android:checked="true"
+            	android:textColor="#000000" />
+ 
+        	<RadioButton
+            	android:id="@+id/erregungszustand"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Erregungszustand"
+            	android:textColor="#000000" />
+        	
+ 
+        	<RadioButton
+            	android:id="@+id/getruebt"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="getrübt"
+            	android:textColor="#000000" />
+        	
+        	<RadioButton
+            	android:id="@+id/ohneBewusstsein"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="ohne Bewusstsein"
+            	android:textColor="#000000" />
+        	
+        	<RadioButton
+            	android:id="@+id/sonstigesBewusstsein"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="" />
+
+    		</RadioGroup>
+           <EditText
+		            android:id="@+id/sonstigesBewusstseinTxt"
+		            android:layout_width="100dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+           </LinearLayout>
+           
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Atmung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           <RadioGroup
+        		android:id="@+id/atmung"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+ 
+             <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+        	<RadioButton
+            	android:id="@+id/unauffaelligAtmung"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="unauffällig" 
+            	android:checked="true"
+            	android:textColor="#000000" />
+ 
+        	<RadioButton
+            	android:id="@+id/hyperventilationAtmung"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Hyperventilation" 
+            	android:textColor="#000000"/>
+        	
+ 
+        	<RadioButton
+            	android:id="@+id/nichtausreichend"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="nicht ausreichend"
+            	android:textColor="#000000" />
+        	
+        	<RadioButton
+            	android:id="@+id/verlegung"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Verlegung" 
+            	android:textColor="#000000"/>
+        	</LinearLayout>
+        	<LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+        	<RadioButton
+            	android:id="@+id/zyanose"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Zyanose" 
+            	android:textColor="#000000"/>
+        	<RadioButton
+            	android:id="@+id/keineAtmung"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="keine Atmung"
+            	android:textColor="#000000" />
+        	
+        	<RadioButton
+            	android:id="@+id/sonstigesBewusstsein"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="" />
+        	
+        	<EditText
+		            android:id="@+id/sonstigesAtmungTxt"
+		            android:layout_width="100dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+        	
+        	</LinearLayout>
+    		</RadioGroup>
+           
+           
+           
+           
+           
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Kreislauf"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           
+            <RadioGroup
+        		android:id="@+id/kreislauf"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+ 
+             <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+        	<RadioButton
+            	android:id="@+id/unauffaelligKreislauf"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="unauffällig" 
+            	android:checked="true" 
+            	android:textColor="#000000"/>
+ 
+        	<RadioButton
+            	android:id="@+id/hypertonie"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Hypertonie" 
+            	android:textColor="#000000"/>
+        	
+ 
+        	<RadioButton
+            	android:id="@+id/hypotonie"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Hypotonie" 
+            	android:textColor="#000000"/>
+        	
+        	<RadioButton
+            	android:id="@+id/tachycardie"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Tachycardie" 
+            	android:textColor="#000000"/>
+        	
+        	<RadioButton
+            	android:id="@+id/bradycardie"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Bradycardie" 
+            	android:textColor="#000000"/>
+        	</LinearLayout>
+        	<LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+        	<RadioButton
+            	android:id="@+id/arrhythmie"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Arrhythmie"
+            	android:textColor="#000000" />
+        	<RadioButton
+            	android:id="@+id/schock"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="Schock" 
+            	android:textColor="#000000"/>
+        	<RadioButton
+            	android:id="@+id/keinKreislauf"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="kein Kreislauf" 
+            	android:textColor="#000000"/>
+        	
+        	<RadioButton
+            	android:id="@+id/sonstigesKreislauf"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="" />
+        	
+        	<EditText
+		            android:id="@+id/sonstigesKreislaufTxt"
+		            android:layout_width="100dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+        	
+        	</LinearLayout>
+    		</RadioGroup>
+           
+           
+           
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Pupillen"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="rechts"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           <RadioGroup
+        		android:id="@+id/pupillenR"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+ 
+        	<RadioButton
+            	android:id="@+id/engR"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="eng" 
+            	android:checked="true" 
+            	android:textColor="#000000"/>
+ 
+        	<RadioButton
+            	android:id="@+id/mittelR"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="mittel" 
+            	android:textColor="#000000"/>
+        	
+ 
+        	<RadioButton
+            	android:id="@+id/weitR"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="weit" 
+            	android:textColor="#000000"/>
+        	
+ 
+    		</RadioGroup>
+    		<CheckBox
+	            	android:id="@+id/lichtstarrR"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="lichtstarr"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+           
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="links"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           <RadioGroup
+        		android:id="@+id/pupillenL"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+ 
+        	<RadioButton
+            	android:id="@+id/engL"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="eng" 
+            	android:checked="true" 
+            	android:textColor="#000000"/>
+ 
+        	<RadioButton
+            	android:id="@+id/mittelL"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="mittel"
+            	android:textColor="#000000" />
+        	
+ 
+        	<RadioButton
+            	android:id="@+id/weitL"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="weit" 
+            	android:textColor="#000000"/>
+        	
+ 
+    		</RadioGroup>
+    		<CheckBox
+	            	android:id="@+id/lichtstarrL"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="lichtstarr"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+           
+           
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Messwerte"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/atemfrequenz"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/herzfrequenz"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		   <EditText
+		            android:id="@+id/blutdruck"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Atemfrequenz"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Herzfrequenz"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Blutdruck"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           <EditText
+		            android:id="@+id/sonstigesMesswerte"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="sonstiges"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+           
+           
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Verletzungen bzw. Schmerzen"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           
+           <CheckBox
+	            	android:id="@+id/lichtstarrL"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="MDS-Schema"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+		            
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Schmerz"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           
+           <RadioGroup
+        		android:id="@+id/schmerz"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+ 
+            <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+        	<RadioButton
+            	android:id="@+id/keinSchmerz"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="kein" 
+            	android:checked="true"
+            	android:textColor="#000000" />
+ 
+        	<RadioButton
+            	android:id="@+id/leichtSchmerz"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="leicht" 
+            	android:textColor="#000000"/>
+        	
+ 
+        	<RadioButton
+            	android:id="@+id/mittelSchmerz"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="mittel" 
+            	android:textColor="#000000"/>
+        	</LinearLayout>
+        	
+        	<LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+        	
+        	<RadioButton
+            	android:id="@+id/schwerSchmerz"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="schwer"
+            	android:textColor="#000000" />
+        	
+ 
+        	<RadioButton
+            	android:id="@+id/nichtBeurteilbarSchmerz"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="nicht beurteilbar" 
+            	android:textColor="#000000"/>
+        	
+        	</LinearLayout>
+    		</RadioGroup>
+    		
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+        	
+               <CheckBox
+	            	android:id="@+id/polytrauma"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Polytrauma"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+		            
+               <CheckBox
+	            	android:id="@+id/akutesAbdomen"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="akutes Abdomen"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+		            
+               <CheckBox
+	            	android:id="@+id/starkeBlutung"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="starke Blutung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+               
+               
+               
+           </LinearLayout>
+           
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+        	
+               <CheckBox
+	            	android:id="@+id/veraetzung"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Verätzung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+		            
+               <CheckBox
+	            	android:id="@+id/erfrierung"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Erfrierung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+		            
+               <CheckBox
+	            	android:id="@+id/inhalationstrauma"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="V. a. Inhalationstrauma"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+
+           </LinearLayout>
+           <CheckBox
+	            	android:id="@+id/verbrennung"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Vrebrennung/Verbrühung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="40dip"
+		            android:textColor="#000000" /> 
+         
+  
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	       <EditText
+		            android:id="@+id/einGrad"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+	         
+		   <EditText
+		            android:id="@+id/zweiGrad"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		   <EditText
+		            android:id="@+id/dreiGrad"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		 
+		  
+            
+           </LinearLayout>
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="% 1.Grad"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="% 2.Grad"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	        
+	        <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="% 3.Grad"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+	
+           </LinearLayout>
+           
+           <EditText
+		            android:id="@+id/sonstigesSchmerzen"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+           <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="sonstiges"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+           
+           
+            <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+            
+            
+         <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Maßnahmen"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+         
+         <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Defibrillation / EH"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+         
+         <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Sonstiges"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         <EditText
+		            android:id="@+id/anmerkungen"
+		            android:layout_width="675dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+        <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="Anmerkungen, besondere Vorkomnisse"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+        <EditText
+		            android:id="@+id/Material"
+		            android:layout_width="675dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+       	<TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="verbrauchtes Material"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+           
+      
+
+           <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+           
+         
+           
+           <Button android:layout_width="fill_parent"
+		        android:layout_height="wrap_content"
+		        android:text="Speichern"
+		        android:textSize="20dip"
+		        android:textStyle="bold"
+		        android:id="@+id/btnSpeichern"
+		        android:layout_marginTop="60dip"/>
+           
+          </LinearLayout>
+          
+     		
+          </ScrollView>
+        
+  		<include
+    		android:id="@+id/leistemenu"
+    		layout="@layout/leiste" />
+  		
+     </LinearLayout>
+</FrameLayout>

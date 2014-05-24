@@ -112,17 +112,20 @@ public class StartChoice extends Activity {
                         	Intent startFire = new Intent(getApplicationContext(), StartFire.class);
                         	startFire.putExtra("einsatzID", einsatzID);
                         	startFire.putExtra("taskforce", taskforce);
+                        	startFire.putExtra("username", username);
                         	startActivity(startFire);
                         	finish();
                         } else if (taskforce.equals(oberkommandant)) {
                         	Intent startFire = new Intent(getApplicationContext(), StartFire.class);
                         	startFire.putExtra("einsatzID", einsatzID);
                         	startFire.putExtra("taskforce", taskforce);
+                        	startFire.putExtra("username", username);
                         	startActivity(startFire);
                         	finish();
                         } else if (taskforce.equals(polizei)) {
                         	Intent startPol = new Intent(getApplicationContext(), FullscreenActivity.class);
                         	startPol.putExtra("einsatzID", einsatzID);
+                        	startPol.putExtra("username", username);
                         	startActivity(startPol);
                         	finish();
                         }
@@ -188,17 +191,21 @@ public class StartChoice extends Activity {
                     	Intent startFire = new Intent(getApplicationContext(), StartFire.class);
                     	startFire.putExtra("einsatzID", einsatzID);
                     	startFire.putExtra("taskforce", taskforce);
+                    	startFire.putExtra("username", username);
                     	startActivity(startFire);
                     	finish();
                     } else if (taskforce.equals(oberkommandant)) {
                     	Intent startFire = new Intent(getApplicationContext(), StartFire.class);
                     	startFire.putExtra("einsatzID", einsatzID);
                     	startFire.putExtra("taskforce", taskforce);
+                    	startFire.putExtra("username", username);
                     	startActivity(startFire);
                     	finish();
                     } else if (taskforce.equals(polizei)) {
                     	Intent startPol = new Intent(getApplicationContext(), FullscreenActivity.class);
                     	startPol.putExtra("einsatzID", einsatzID);
+                    	startPol.putExtra("username", username);
+                    	Log.i("polizei",username);
                     	startActivity(startPol);
                     	finish();
                     }

@@ -51,7 +51,11 @@ public class Berichte extends Activity {
 			
 			einsatzinfos = (TextView) findViewById(R.id.einsatzinformation);
 			refresh = (TextView) findViewById(R.id.aktualisiert);
+			if(RefreshInfo.einsatz.isTerminate()) {
+				einsatzinfos.setText("Kein Einsatz");
+			} else {
 			einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+			}
 			refresh.setText(RefreshInfo.einsatz.getAktualisiert());
 			
 			s = new scheduleEinsatz();
@@ -81,9 +85,9 @@ public class Berichte extends Activity {
 			btnEinsatz.setOnClickListener(new View.OnClickListener() {
 				 
 		            public void onClick(View view) {
-		            	/**i= new Intent(getApplicationContext(), BerichtEinsatz.class);
+		            	i= new Intent(getApplicationContext(), BerichtEinsatz.class);
 		            	startActivity(i);
-		            	overridePendingTransition(R.layout.fadeout, R.layout.fadein);	*/
+		            	overridePendingTransition(R.layout.fadeout, R.layout.fadein);
 		            }
 			});
 			
@@ -192,6 +196,11 @@ public class Berichte extends Activity {
 	            	   s.stopHandlerText();
 	            	   startActivity(i);	
 	            	   overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+	            	   SharedPreferences settings2 = getSharedPreferences("shares",0);
+	            	   SharedPreferences.Editor editor2 = settings2.edit();
+	            	   editor2.clear();
+	            	   editor2.commit();
+	            	   finish();
 	            	   return true;
 	    		   }
 				return false;

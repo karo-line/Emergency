@@ -62,10 +62,14 @@ public class Car extends Activity {
 		      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
 			setContentView(R.layout.car);
 			
-			einsatzinfos = (TextView) findViewById(R.id.einsatzinfos);
+			einsatzinfos = (TextView) findViewById(R.id.einsatzinformation);
 			refresh = (TextView) findViewById(R.id.aktualisiert);
 			
+			if(RefreshInfo.einsatz.isTerminate()) {
+				einsatzinfos.setText("Kein Einsatz");
+			} else {
 			einsatzinfos.setText(RefreshInfo.einsatz.getEinsatz());
+			}
 			refresh.setText(RefreshInfo.einsatz.getAktualisiert());
 			
 			s = new scheduleEinsatz();
@@ -167,10 +171,38 @@ public class Car extends Activity {
 	public void refreshInfo(View v) {
 		SharedPreferences settings = getSharedPreferences("shares",0);
 		 String einsatzID = settings.getString("einsatzID", "nosuchvalue");
+		 String username = settings.getString("username", "nosuchvalue");
+		 Log.i("einsatzrefresh",einsatzID);
+		 
+		 
+		 
+		 LoginFunctions func = new LoginFunctions();
+		 JSONObject json = func.getEinsatz(username);
+		 try {
+				if (json.getString("success") != null) {
+				     String res = json.getString("success");
+				     if(Integer.parseInt(res) == 1){
+				    	 JSONObject jObj = json.getJSONObject("user");
+				    	 einsatzID = jObj.getString("einsatzID");
+				    	
+				    	 
+				    	 SharedPreferences.Editor editor = settings.edit();
+		            	   editor.remove("einsatzID");
+		            	   editor.putString("einsatzID", einsatzID);
+		            	   editor.commit();
+				     }
+				 }
+			} catch (NumberFormatException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		 if(!einsatzID.equals("nosuchvalue")) {
 				RefreshInfo refreshInfo = new RefreshInfo();
-				refreshInfo.refresh(this.findViewById(R.id.einsatzinfosCar),einsatzID);
+				refreshInfo.refresh(this.findViewById(R.id.einsatzinfos),einsatzID);
 		 }
 	}
 	
@@ -184,7 +216,7 @@ public class Car extends Activity {
 		PopupMenu popup = new PopupMenu(this, v);
 	    MenuInflater inflater = popup.getMenuInflater();
 	    inflater.inflate(R.menu.popupmenu, popup.getMenu());
-	    final View menu = this.findViewById(R.id.einsatzinfosmenu);
+	    final View menu = this.findViewById(R.id.einsatzinfos);
 	    popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
 	    	   
 	    	   @SuppressLint("CommitPrefEdits")
@@ -212,6 +244,11 @@ public class Car extends Activity {
 	            	   s.stopHandlerText();
 	            	   startActivity(i);	
 	            	   overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+	            	   SharedPreferences settings2 = getSharedPreferences("shares",0);
+	            	   SharedPreferences.Editor editor2 = settings2.edit();
+	            	   editor2.clear();
+	            	   editor2.commit();
+	            	   finish();
 	            	   return true;
 	    		   }
 				return false;

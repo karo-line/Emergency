@@ -6,6 +6,8 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import unused.VideoEms;
+
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
@@ -291,6 +293,11 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	            	   s.stopHandlerText();
 	            	   startActivity(i);	
 	            	   overridePendingTransition(R.layout.fadeout, R.layout.fadein);
+	            	   SharedPreferences settings2 = getSharedPreferences("shares",0);
+	            	   SharedPreferences.Editor editor2 = settings2.edit();
+	            	   editor2.clear();
+	            	   editor2.commit();
+	            	   finish();
 	            	   return true;
 	    		   }
 				return false;

@@ -13,7 +13,7 @@
 
         
  		<include
-    		android:id="@+id/einsatzinfosGefahrengutFire"
+    		android:id="@+id/einsatzinfos"
     		layout="@layout/einsatzinfo" />
       
     
