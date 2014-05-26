@@ -130,7 +130,7 @@ public class ToDoFire extends BaseActivity {
 				TextView viewKomm = new TextView(getApplicationContext());
 				viewKomm.setText(kommArray.get(i));
 				viewKomm.setTextColor(getResources().getColor(R.color.black_overlay));
-				viewKomm.setTextSize(20);
+				viewKomm.setTextSize(25);
 				viewKomm.setPadding(5, 10, 5, 5);
 				ll.addView(viewKomm);
 				
@@ -152,6 +152,7 @@ public class ToDoFire extends BaseActivity {
 					}
 					cb.setText(todos.get(j).getTodoText());
 					cb.setTextColor(getResources().getColor(R.color.black_overlay));
+					cb.setTextSize(20);
 					int id = Resources.getSystem().getIdentifier("btn_check_holo_light", "drawable", "android");
 					cb.setButtonDrawable(id);
 					final int idtodo = todos.get(j).getId();

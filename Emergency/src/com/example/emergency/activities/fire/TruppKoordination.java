@@ -201,7 +201,7 @@ public class TruppKoordination extends BaseActivity {
 				
 				LinearLayout.LayoutParams lpT = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
                 lpT.leftMargin = 30;
-                lpT.width = 400;
+                lpT.width = 300;
                 viewKomm.setLayoutParams(lpT);
 				llh1.addView(viewKomm);
 				
@@ -211,7 +211,7 @@ public class TruppKoordination extends BaseActivity {
 				dauer.setTextSize(20);
 				LinearLayout.LayoutParams lpD = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
                 lpD.leftMargin = 30;
-                lpD.width = 150;
+                lpD.width = 60;
                 dauer.setLayoutParams(lpD);
 				llh1.addView(dauer);
 				
@@ -226,7 +226,7 @@ public class TruppKoordination extends BaseActivity {
 				dauerTxt.setTextSize(20);
 				LinearLayout.LayoutParams lpDt = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
                 lpDt.leftMargin = 10;
-                lpDt.width = 120;
+                lpDt.width = 150;
                 dauerTxt.setLayoutParams(lpDt);
 				llh1.addView(dauerTxt);
 				dauerList.put(viewKomm.getText().toString(), dauerTxt);
@@ -234,8 +234,8 @@ public class TruppKoordination extends BaseActivity {
 				final Button start = new Button(getApplicationContext());
 				start.setText("Losschicken");
 				LinearLayout.LayoutParams lpb = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
-                //lpb.rightMargin = 30;
-                lpb.width = 100;
+                lpb.leftMargin = 20;
+                lpb.width = 150;
                 start.setLayoutParams(lpb);
                 start.setId(1);
 				//llh1.addView(start);
@@ -272,7 +272,7 @@ public class TruppKoordination extends BaseActivity {
 					LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
 	                lp.leftMargin = 30;
 	                lp.topMargin = 10;
-	                lp.width = 400;
+	                lp.width = 300;
 	                viewTodo.setLayoutParams(lp);
 					llh.addView(viewTodo);
 					
@@ -480,7 +480,7 @@ public class TruppKoordination extends BaseActivity {
 					Button start = new Button(getApplicationContext());
 					start.setText("Losschicken");
 					LinearLayout.LayoutParams lpb = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
-	                lpb.rightMargin = 30;
+	                lpb.leftMargin = 20;
 	                lpb.width = 200;
 	                start.setLayoutParams(lpb);
 					llh1.addView(start);
@@ -785,8 +785,8 @@ public class TruppKoordination extends BaseActivity {
         Button start2 = new Button(getApplicationContext());
 		start2.setText("Losschicken");
 		LinearLayout.LayoutParams lpb = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT);
-        //lpb.rightMargin = 30;
-        lpb.width = 100;
+        lpb.leftMargin = 20;
+        lpb.width = 150;
         start2.setLayoutParams(lpb);
         
             

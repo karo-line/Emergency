@@ -159,7 +159,7 @@ public class scheduleEinsatz {
     	handlerText.postDelayed(new Runnable() {
             public void run() {
             	sWind =compareWind( layoutInflater,  v, c);         
-            	handlerText.postDelayed(this, 60000);
+            	handlerText.postDelayed(this, 300000);
             }
         }, 60000);
     	Log.i("windschedule",sWind);
@@ -216,9 +216,11 @@ public class scheduleEinsatz {
     	            
     	             
     	             Activity currentActivity = ((Emergency)c.getApplicationContext()).getCurrentActivity();
+    	             if(currentActivity!=null) {
     	             View neu = currentActivity.findViewById(R.id.einsatzinfos);
     	             
     	             popupWindow.showAsDropDown(neu, 10, -130);
+    	             }
     	             
     	             Button btnDismiss = (Button)popupView.findViewById(R.id.dismiss);
     	             btnDismiss.setOnClickListener(new Button.OnClickListener(){
@@ -372,7 +374,7 @@ public void scheduleKoordination(final String einsatzID, final LayoutInflater la
 	             
 	             Activity currentActivity = ((Emergency)c.getApplicationContext()).getCurrentActivity();
 	             
-	             
+	            if(currentActivity!=null) {
 	            if(currentActivity.getComponentName().getClassName().equals("com.example.emergency.activities.fire.TruppKoordination")) {
 	            	//do nothing
 	            	Log.i("currentTruppAct", currentActivity.getComponentName().getClassName());
@@ -400,6 +402,7 @@ public void scheduleKoordination(final String einsatzID, final LayoutInflater la
 			    	 i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			 		c.startActivity(i);
 			     }});
+	            }
 	            }
 		    
 		    }

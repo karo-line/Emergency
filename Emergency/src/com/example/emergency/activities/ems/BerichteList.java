@@ -3,6 +3,7 @@ package com.example.emergency.activities.ems;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.emergency.BaseActivity;
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
@@ -31,7 +32,7 @@ import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class BerichteList extends Activity {
+public class BerichteList extends BaseActivity {
 
 	private Intent i;
 	Button btnWeitere;
@@ -39,7 +40,7 @@ public class BerichteList extends Activity {
 	TextView refresh;
 	scheduleEinsatz s;
 	
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 			
 			super.onCreate(savedInstanceState);
 			

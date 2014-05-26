@@ -1,0 +1,95 @@
+<!-- <?xml version="1.0" encoding="utf-8"?> -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".CarListActivity" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfos"
+    		layout="@layout/einsatzinfo" />
+      
+    
+        <ScrollView 
+		    android:layout_width="915dp"
+		    android:layout_height="fill_parent"
+		    android:background="@color/white" >
+        
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="?buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+	            
+	          <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Kennzeichenfahndung"
+              android:textColor="@color/black_overlay"
+              android:paddingLeft="20dip"
+              android:textSize="30dip"
+              android:layout_marginTop="30dip"
+              android:textStyle="bold"/>
+    
+     <TextView android:id="@+id/kennzeichen"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="20dip"
+                    android:paddingLeft="40dip"
+                    android:layout_marginTop="20dip"/>
+     <TextView android:id="@+id/person"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="20dip"
+                    android:paddingLeft="40dip"
+                    android:paddingTop="15dip"/>
+     <TextView android:id="@+id/zulassungsdatum"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="20dip"
+                    android:paddingLeft="40dip"
+                    android:paddingTop="15dip"/>
+      <TextView android:id="@+id/zulassungsort"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="#000000"
+                    android:textSize="20dip"
+                    android:paddingLeft="40dip"
+                    android:paddingTop="15dip"/>
+      
+      
+     
+    <Button android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Neue Suche"
+        android:textSize="20dip"
+        android:textStyle="bold"
+        android:layout_gravity="end"
+        android:id="@+id/btnLogout"
+        android:textColor="#000000"
+        android:layout_marginRight="30dip"
+        android:layout_marginTop="30dip"/>
+            
+            
+          </LinearLayout>
+          </ScrollView>
+       
+        
+      <include
+    		android:id="@+id/leistemenu"
+    		layout="@layout/leistepolice" />
+   </LinearLayout>
+</FrameLayout>
+
+

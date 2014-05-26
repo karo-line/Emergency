@@ -223,6 +223,7 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 		}
 		RefreshInfo refreshInfo = new RefreshInfo();
 		refreshInfo.refresh(findViewById(R.id.einsatzinfos), einsatzID);
+	
 		
 		s = new scheduleEinsatz();
 		SharedPreferences settings = getSharedPreferences("shares",0);

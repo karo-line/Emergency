@@ -1,0 +1,170 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".Menu" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfos"
+    		layout="@layout/einsatzinfo" />
+        
+       <!--   <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="910dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:keepScreenOn="true"
+        android:text="@string/dummy_content"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold" /> -->
+      
+     <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="915dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+     
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls3"
+            style="?buttonBarStyle"
+            android:layout_width="915dp"
+            android:layout_height="280dp"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+            
+            <RelativeLayout 
+                android:id="@+id/map"
+			    android:layout_width="200dp"
+	            android:layout_height="250dp"
+	            android:layout_marginTop="20dp"
+	            android:layout_marginLeft="100dp" >
+	         
+            <ImageView 
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/map"
+                android:onClick="startMap"/>
+            <TextView
+			        android:id="@+id/textview"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentTop="true"
+			        android:layout_marginTop="200dp"
+			        android:text="Karte"
+			        android:textSize="20dip"
+			         android:textColor="#000000"
+			         android:textStyle="bold"
+			         android:layout_gravity="center"
+			        android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            
+            <RelativeLayout 
+                android:id="@+id/translate"
+			    android:layout_width="200dp"
+	            android:layout_height="250dp"
+	            android:layout_marginTop="20dp"
+	            android:layout_marginLeft="150dp" >
+	         
+            <ImageView  
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/translation_icon"
+                android:onClick="startTranslator"/>
+            <TextView
+			        android:id="@+id/textview"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentTop="true"
+			        android:layout_marginTop="200dp"
+			        android:text="Übersetzer"
+			        android:textSize="20dip"
+			         android:textColor="#000000"
+			         android:textStyle="bold"
+			         android:layout_gravity="center"
+			        android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            
+            
+            
+            
+            </LinearLayout>
+            
+        <LinearLayout
+            android:id="@+id/fullscreen_content_controls"
+            style="?buttonBarStyle"
+            android:layout_width="915dp"
+            android:layout_height="300dp"
+            android:background="@color/white"
+            android:orientation="horizontal">
+            
+            <RelativeLayout 
+                 android:id="@+id/person"
+			    android:layout_width="200dp"
+	            android:layout_height="250dp"
+	            android:layout_marginLeft="100dp" >
+	         <ImageView 
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/person"
+                android:onClick="startPerson"/>
+           
+            <TextView
+			        android:id="@+id/textview"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentTop="true"
+			        android:layout_marginTop="200dp"
+			        android:text="Personenfahndung"
+			        android:textSize="20dip"
+			         android:textColor="#000000"
+			         android:textStyle="bold"
+			         android:layout_gravity="center"
+			        android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            
+            <RelativeLayout 
+                android:id="@+id/car"
+			    android:layout_width="200dp"
+	            android:layout_height="250dp"
+	            android:layout_marginLeft="150dp" >
+            <ImageView 
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/car_icon"
+                android:onClick="startCar"/>
+	     
+           
+            <TextView
+			        android:id="@+id/textview"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentTop="true"
+			        android:layout_marginTop="200dp"
+			        android:text="KFZ-Fahndung"
+			        android:textSize="20dip"
+			         android:textColor="#000000"
+			         android:textStyle="bold"
+			         android:layout_gravity="center"
+			        android:layout_centerHorizontal="true" />
+            </RelativeLayout>
+            
+            
+            
+          </LinearLayout>
+          </LinearLayout>
+          
+        <include
+    		android:id="@+id/leistemenu"
+    		layout="@layout/leistepolice" />
+     </LinearLayout>
+</FrameLayout>

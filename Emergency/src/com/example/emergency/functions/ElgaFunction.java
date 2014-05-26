@@ -58,7 +58,12 @@ public class ElgaFunction {
         params.add(new BasicNameValuePair("tag", detail_tag));
         params.add(new BasicNameValuePair("befunde", befunde));
         params.add(new BasicNameValuePair("id", id));
-        JSONObject json = jsonParser.getJSONFromUrl(loginURL, params);
+        JSONObject json ;
+        if(befunde.equals("labor")) {
+        	json = jsonTodoParser.getJSONFromUrl(loginURL, params);
+        } else {
+        	json = jsonParser.getJSONFromUrl(loginURL, params);
+        }
 
         return json;
     }

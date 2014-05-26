@@ -1,0 +1,57 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".KoordinationFire" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfos"
+    		layout="@layout/einsatzinfo" />
+
+      
+     <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="915dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+     
+       		<TextView
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="10dip"
+	            android:text="Koordination"
+	            android:textColor="@color/black_overlay"
+	            android:paddingTop="30dip"
+	            android:paddingLeft="20dip"
+	            android:textSize="25dip"
+	            android:textStyle="bold" />
+       		
+       		<Button
+		            android:id="@+id/oberkommandant"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="20dip"
+		            android:text="ToDos erstellen" />
+       		
+       		<Button
+		            android:id="@+id/truppkoordinieren"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="20dip"
+		            android:text="Trupp koordinieren" />
+       </LinearLayout>
+          
+		<include
+    		android:id="@+id/leisteKoordination"
+    		layout="@layout/leistefire" />
+     </LinearLayout>
+</FrameLayout>

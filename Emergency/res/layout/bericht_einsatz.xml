@@ -50,7 +50,7 @@
             android:id="@+id/fullscreen_content_controls2"
             style="?buttonBarStyle"
             android:layout_width="725dp"
-            android:layout_height="wrap_content"
+            android:layout_height="50dp"
             android:background="@color/white"
             android:orientation="horizontal" >
            
@@ -103,7 +103,7 @@
             android:id="@+id/fullscreen_content_controls2"
             style="?buttonBarStyle"
             android:layout_width="725dp"
-            android:layout_height="100dp"
+            android:layout_height="50dp"
             android:background="@color/white"
             android:orientation="horizontal" >
            
@@ -1371,6 +1371,1076 @@
 		            android:layout_marginTop="20dip"
 		            android:textColor="#000000" />
          
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+	        
+             <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="E = Einsatzort"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="40dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+              <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="T = Transport"
+		            android:textSize="20dip"
+		            android:layout_marginTop="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:textColor="#000000" />
+               
+         
+		 </LinearLayout> 
+         
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+	        
+             <TextView
+		            android:layout_width="20dip"
+		            android:layout_height="wrap_content"
+		            android:text="E"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="40dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+              <TextView
+		            android:layout_width="20dip"
+		            android:layout_height="wrap_content"
+		            android:text="T"
+		            android:textSize="20dip"
+		            android:layout_marginTop="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:textColor="#000000" />
+               <TextView
+		            android:layout_width="100dip"
+		            android:layout_height="wrap_content"
+		            android:text="Atmung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+		 </LinearLayout> 
+         
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/massnahmenE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/massnahmenT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="keine Maßnahmen"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>   
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/freimachenE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/freimachenT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Freimachen/halten"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout> 
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/absaugenE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/absaugenT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Absaugen"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>  
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/beatmungE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/beatmungT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Beatmung"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/sauerstoffE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/sauerstoffT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Sauerstoffabgabe"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/sauerstoffEdit"
+		            android:layout_width="250dip"
+		            android:layout_height="30dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+         
+         
+		 </LinearLayout>
+		 <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="O2 l/min"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="280dip"
+		            android:textColor="#000000" />
+		 
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+	        
+             <TextView
+		            android:layout_width="20dip"
+		            android:layout_height="wrap_content"
+		            android:text="E"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="40dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+              <TextView
+		            android:layout_width="20dip"
+		            android:layout_height="wrap_content"
+		            android:text="T"
+		            android:textSize="20dip"
+		            android:layout_marginTop="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:textColor="#000000" />
+               <TextView
+		            android:layout_width="100dip"
+		            android:layout_height="wrap_content"
+		            android:text="Kreislauf"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+		 </LinearLayout> 
+         
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/massnahmenKreislaufE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/massnahmenKreislaufT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="keine Maßnahmen"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>   
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/herzdruckE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/herzdruckT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Herzdruckmassage"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout> 
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/defE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/defT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Defibrillation AED"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>  
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/blutstillungE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/blutstillungT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="sonst. Blutstillung"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/abbindungE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/abbindungT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Abbindung"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/abbindungEdit"
+		            android:layout_width="250dip"
+		            android:layout_height="30dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+         
+         
+		 </LinearLayout>
+		 <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="Abbindungszeit"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="230dip"
+		            android:textColor="#000000" />
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+	        
+             <TextView
+		            android:layout_width="20dip"
+		            android:layout_height="wrap_content"
+		            android:text="E"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="40dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+              <TextView
+		            android:layout_width="20dip"
+		            android:layout_height="wrap_content"
+		            android:text="T"
+		            android:textSize="20dip"
+		            android:layout_marginTop="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:textColor="#000000" />
+               <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Überwachung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+		 </LinearLayout> 
+         
+         
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/blutdruckE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/blutdruckT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Blutdruck/Puls"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>  
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/infusionE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/infusionT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="laufende Infusion"
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/uerberwachungWE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/uerberwachungWT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/uerberwachungWEdit"
+		            android:layout_width="250dip"
+		            android:layout_height="30dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+         
+         
+		 </LinearLayout>
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/uerberwachungWzE"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/uerberwachungWzT"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/uerberwachungWzEdit"
+		            android:layout_width="250dip"
+		            android:layout_height="30dip"
+		            android:textSize="20dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+         
+         
+		 </LinearLayout>
+		 
+               <TextView
+		            android:layout_width="100dip"
+		            android:layout_height="wrap_content"
+		            android:text="Bergung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         
+        
+         <CheckBox
+	            	android:id="@+id/bergungKeine"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="keine"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+        
+		 
+         <CheckBox
+	            	android:id="@+id/bergegriff"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Bergegriff"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+    
+		 
+         <CheckBox
+	            	android:id="@+id/bergetuch"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Bergetuch"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+       
+		 
+		 
+         <CheckBox
+	            	android:id="@+id/schaufeltrage"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Schaufeltrage"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+     
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/bergungWeitere"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         
+         
+         <EditText
+		            android:id="@+id/bergungEdit"
+		            android:layout_width="250dip"
+		            android:layout_height="30dip"
+		            android:textSize="20dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+         
+         
+		 </LinearLayout>
+		 
+		 
+               <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Immobilisation"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         <CheckBox
+	            	android:id="@+id/keineImmobilisation"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="keine"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         
+        
+         <CheckBox
+	            	android:id="@+id/hws"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="HWS-Schiene"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+        
+		 
+         <CheckBox
+	            	android:id="@+id/vakuumschiene"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Vakuumschiene"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+    
+		 
+         <CheckBox
+	            	android:id="@+id/vakMatraze"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Vak.-Matratze"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+       
+		 
+		 
+         <CheckBox
+	            	android:id="@+id/ked"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="KED"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+     
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/immobilisationWeitere"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         
+         
+         <EditText
+		            android:id="@+id/immobilisationEdit"
+		            android:layout_width="250dip"
+		            android:layout_height="30dip"
+		            android:textSize="20dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+         
+         
+		 </LinearLayout>
+		 
+		 
+		       <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="spez. Maßnahmen"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         
+        
+         <CheckBox
+	            	android:id="@+id/massnahmenKeine"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="keine"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+        
+		 
+         <CheckBox
+	            	android:id="@+id/helmabnahme"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Helmabnahme"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+    
+		 
+         <CheckBox
+	            	android:id="@+id/wundversorgung"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Wundversorgung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+       
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+	        
+             <TextView
+		            android:layout_width="20dip"
+		            android:layout_height="wrap_content"
+		            android:text="E"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="40dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+              <TextView
+		            android:layout_width="20dip"
+		            android:layout_height="wrap_content"
+		            android:text="T"
+		            android:textSize="20dip"
+		            android:layout_marginTop="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:textColor="#000000" />
+               <TextView
+		            android:layout_width="100dip"
+		            android:layout_height="wrap_content"
+		            android:text="Lagerung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="10dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+		 </LinearLayout> 
+         
+         
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/lagerung1E"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/lagerung1T"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>  
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/lagerung2E"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/lagerung2T"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/lagerung3E"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/lagerung3T"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/lagerung4E"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/lagerung4T"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/lagerung5E"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/lagerung5T"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/lagerung6E"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/lagerung6T"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/lagerung7E"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/lagerung7T"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		 </LinearLayout>
+		 
+		 <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/lagerung8E"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/lagerung8T"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text=""
+		            android:textSize="20dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/lagerung8Edit"
+		            android:layout_width="250dip"
+		            android:layout_height="30dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+         
+         
+		 </LinearLayout>
+		 <TextView
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:text="andere"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="80dip"
+		            android:textColor="#000000" />
+		 
+         
+         
+         
+		 
+          <EditText
+		            android:id="@+id/sonstigeMassnahmen"
+		            android:layout_width="675dip"
+		            android:layout_height="150dip"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+        <TextView
+		            android:layout_width="420dip"
+		            android:layout_height="wrap_content"
+		            android:text="sonstige Maßnahmen"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		            android:textColor="#000000" />
+		 
+         
          <View
     			android:layout_width="fill_parent"
    				android:layout_height="1dip"
@@ -1389,6 +2459,248 @@
 		            android:layout_marginTop="20dip"
 		            android:textColor="#000000" />
          
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="70dp"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <TextView
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:text="KL-Stillstand"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/klstillstand"
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:layout_marginTop = "10dp"
+		            android:background="#C0C0C0" />
+         
+         <TextView
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:text="NA eingetroffen"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/naeingetroffen"
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:layout_marginTop = "10dp"
+		            android:background="#C0C0C0" />
+         <TextView
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:text="Übergabe an NA"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/uebergabeNa"
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:layout_marginTop = "10dp"
+		            android:background="#C0C0C0" />
+         <TextView
+		            android:layout_width="200dip"
+		            android:layout_height="wrap_content"
+		            android:text="Ende d. Reanimation"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+         
+         <EditText
+		            android:id="@+id/endeReanim"
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:layout_marginTop = "10dp"
+		            android:background="#C0C0C0" />
+         
+         </LinearLayout>
+         
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="50dp"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <TextView
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:text="vermutl. Zeit"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="100dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+         
+         <TextView
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:text="Zeit"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="100dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+     
+         <TextView
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:text="Zeit"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="100dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+         
+         <TextView
+		            android:layout_width="70dip"
+		            android:layout_height="wrap_content"
+		            android:text="Zeit"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="100dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+         
+         
+         </LinearLayout>
+         
+         <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="primär erfolgreich"
+		            android:textSize="20dip"
+		            android:paddingTop="20dip"
+		            android:paddingLeft="30dip"
+		            android:paddingRight="20dip"
+		            android:textColor="#000000" />
+         <RadioGroup
+        		android:id="@+id/radioErfolgreich"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content" >
+ 
+        	<RadioButton
+            	android:id="@+id/radioErfolgreichJa"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="ja" 
+            	android:checked="true"
+            	android:textColor="#000000" />
+ 
+        	<RadioButton
+            	android:id="@+id/radioErfolgreichNein"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="nein"
+            	android:textColor="#000000" />
+ 
+    		</RadioGroup>
+        </LinearLayout>
+         <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Erste Hilfe"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         
+         
+         
+         <CheckBox
+	            	android:id="@+id/keineEH"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="keine"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/hlw"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="HLW"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		            
+         <CheckBox
+	            	android:id="@+id/padefi"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="PA-Defibrillaion"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		            
+         
+		        
+		   <EditText
+		            android:id="@+id/sonstEHMassnahmen"
+		            android:layout_width="250dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		           android:layout_marginLeft="30dip"
+		           android:layout_marginTop="20dip"
+		            android:background="#C0C0C0" />
+		    <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="sonst. EH-Maßnahmen"
+		            android:textSize="20dip"
+		            android:paddingLeft="30dip"
+		            android:textColor="#000000" />
+		   
+         <CheckBox
+	            	android:id="@+id/nichtbeurteilbar"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="nicht beurteilbar"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         
+         
          <View
     			android:layout_width="fill_parent"
    				android:layout_height="1dip"
@@ -1397,6 +2709,232 @@
     			android:layout_marginLeft = "20dp"
     			android:layout_marginRight = "20dp"
 			/>
+         
+          <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="NFS / NF-Komp."
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           <CheckBox
+	            	android:id="@+id/arztAnwesend"
+		            android:layout_width="450dip"
+		            android:layout_height="wrap_content"
+		            android:text="kein Arzt anwesend, verständigt um"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		            
+           <EditText
+		            android:id="@+id/arztAnwesendTxt"
+		            android:layout_width="180dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		            
+           </LinearLayout>
+           <TextView
+		            android:layout_width="130dp"
+		            android:layout_height="wrap_content"
+		            android:text="Zeit"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="480dip"
+		            android:textColor="#000000" />
+		            
+          <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+         <CheckBox
+	            	android:id="@+id/angeordnet"
+		            android:layout_width="450dip"
+		            android:layout_height="wrap_content"
+		            android:text="durch Arzt angeordnet"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		            
+         <EditText
+		            android:id="@+id/angeordnetTxt"
+		            android:layout_width="180dip"
+		            android:layout_height="wrap_content"
+		            android:textSize="20dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0" />
+		            
+         </LinearLayout>
+         
+          <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Name/DienstNr."
+		            android:textSize="20dip"
+		            android:layout_marginLeft="480dip"
+		            android:textColor="#000000" />
+         
+         <CheckBox
+	            	android:id="@+id/venZugang"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="venöser Zugang"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		            
+          <CheckBox
+	            	android:id="@+id/kristalloid"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="kristalloide Infusionslösung"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/arzneimittelliste"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Medikamente laut Arzneimittelliste"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		            
+         <CheckBox
+	            	android:id="@+id/intubation"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="endotracheale Intubation ohne Prämedikation"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		            
+         <EditText
+		            android:id="@+id/artDosierung"
+		            android:layout_width="600dip"
+		            android:layout_height="100dip"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop = "20dp"
+		            android:background="#C0C0C0" />
+		    <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Art, Dosierung (Infusion/Medikamente), Tubus"
+		            android:textSize="20dip"
+		            android:paddingLeft="30dip"
+		            android:textColor="#000000" />
+          
+          <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+          
+           <TextView
+		            android:layout_width="600dip"
+		            android:layout_height="wrap_content"
+		            android:text="Verlauf / NACA"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+           <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="725dp"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal" >
+           <CheckBox
+	            	android:id="@+id/gleich"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="gleich"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+         <CheckBox
+	            	android:id="@+id/gebessert"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="gebessert"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" /> 
+		            
+         <CheckBox
+	            	android:id="@+id/verschlechtert"
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="verschlechtert"
+		            android:textSize="20dip"
+		            android:layout_marginLeft="30dip"
+		             android:layout_marginTop="20dip"
+		            android:textColor="#000000" />
+         
+         </LinearLayout>
+         
+           <EditText
+		            android:id="@+id/anmerkungenVerlauf"
+		            android:layout_width="600dip"
+		            android:layout_height="100dip"
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		           android:layout_marginLeft="30dip"
+		           android:layout_marginTop="20dip"
+		            android:background="#C0C0C0" />
+		    <TextView
+		            android:layout_width="wrap_content"
+		            android:layout_height="wrap_content"
+		            android:text="Anmerkungen"
+		            android:textSize="20dip"
+		            android:paddingLeft="30dip"
+		            android:textColor="#000000" />
+		    <Spinner
+		    	android:id="@+id/naca_spinner"
+		    	android:layout_width="fill_parent"
+		    	android:layout_height="50dip"
+		    	android:textSize="20dip"
+		    	android:background="@color/black_overlay"
+		    	android:layout_marginTop="20dip"
+		    	android:layout_marginLeft="30dip"
+	        	android:layout_marginRight="30dip" />
+         
+           
+           <View
+    			android:layout_width="fill_parent"
+   				android:layout_height="1dip"
+    			android:background="#000000"
+    			android:layout_marginTop = "20dp"
+    			android:layout_marginLeft = "20dp"
+    			android:layout_marginRight = "20dp"
+			/>
+         
          
          <TextView
 		            android:layout_width="600dip"
@@ -1418,7 +2956,7 @@
         <TextView
 		            android:layout_width="420dip"
 		            android:layout_height="wrap_content"
-		            android:text="Anmerkungen, besondere Vorkomnisse"
+		            android:text="Anmerkungen, besondere Vorkommnisse"
 		            android:textSize="20dip"
 		            android:layout_marginLeft="30dip"
 		            android:textColor="#000000" />

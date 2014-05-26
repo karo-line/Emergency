@@ -1,0 +1,115 @@
+<!-- <?xml version="1.0" encoding="utf-8"?> -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".Car" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfos"
+    		layout="@layout/einsatzinfo" />
+      
+    
+        <ScrollView 
+		    android:layout_width="915dp"
+		    android:layout_height="fill_parent"
+		    android:background="@color/white" >
+        
+        <LinearLayout
+            android:id="@+id/llCar"
+            style="?buttonBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+	            
+	           <TextView
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="10dip"
+	            android:text="Kennzeichenfahndung"
+	            android:textColor="@color/black_overlay"
+	            android:paddingTop="30dip"
+	            android:paddingLeft="20dip"
+	            android:textSize="30dip"
+	            android:textStyle="bold" />
+		        <!--  Email Label -->
+		        <TextView
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:text="Kennzeichen"
+		            android:textSize="25dip"
+		            android:paddingTop="50dip"
+		            android:paddingLeft="30dip"
+		            android:textColor="#000000" />
+		        <!--  Email TextField -->
+		        <EditText
+		            android:id="@+id/inputKennzeichen"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:textSize="25dip"
+		            android:layout_marginLeft="30dip"
+		            android:layout_marginRight="30dip"
+		            android:layout_marginTop="10dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0"
+		            android:inputType="text"  >
+		        <requestFocus />
+		        </EditText>
+		         
+		        <!--  Password Label 
+		        <TextView
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_marginTop="15dip"
+		            android:text="Password" 
+		            android:textSize="20dip"
+		            android:textColor="#000000"/>
+		          Password TextField -->
+		       <!--  <EditText
+		            android:id="@+id/loginPassword"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:password="true" 
+		            android:textSize="20dip"
+		            android:textColor="#000000"
+		            android:background="#C0C0C0"/> -->
+		         
+		        <!--  Error message -->
+		        <TextView android:id="@+id/login_error"
+		                    android:layout_width="fill_parent"
+		                    android:layout_height="wrap_content"
+		                    android:textColor="#e30000"
+		                    android:paddingTop="10dip"
+		                    android:paddingLeft="30dip"
+		                    android:textStyle="bold"/>
+		 
+		        <!--  Login Button -->       
+		        <Button
+		            android:id="@+id/btnSuche"
+		            android:layout_width="fill_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_gravity="end"
+		            android:layout_marginRight="30dip"
+		            android:text="Suchen" 
+		            android:textColor="#000000"/>
+		        
+		        
+            
+            
+          </LinearLayout>
+          </ScrollView>
+       
+        
+    <include
+    		android:id="@+id/leistemenu"
+    		layout="@layout/leistepolice" />
+   </LinearLayout>
+</FrameLayout>

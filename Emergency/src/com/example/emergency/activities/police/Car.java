@@ -282,7 +282,7 @@ public class Car extends Activity {
 				String kennz = jsonNext.getString("kennzeichen");
 				TextView nameView = new TextView(getApplicationContext());
 				nameView.setText(kennz);
-				nameView.setTextSize(20);
+				nameView.setTextSize(25);
 				nameView.setPadding(30, 30, 5, 5);
 				int index = llCar.indexOfChild(findViewById(R.id.inputKennzeichen))+1;
 				llCar.addView(nameView,index+i);

@@ -277,7 +277,7 @@ public class GefahrengutFire extends BaseActivity {
 				String nummerGefahrgut = jsonNext.getString(KEY_NUMMER);
 				TextView nameView = new TextView(getApplicationContext());
 				nameView.setText(nummerGefahrgut+": "+nameGefahrgut);
-				nameView.setTextSize(20);
+				nameView.setTextSize(25);
 				nameView.setPadding(30, 30, 5, 5);
 				int index = llGefahrgut.indexOfChild(findViewById(R.id.sucheNummer))+1;
 				llGefahrgut.addView(nameView,index+i);

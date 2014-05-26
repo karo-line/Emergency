@@ -6,9 +6,13 @@ import org.json.JSONObject;
 import com.example.emergency.entities.EinsatzInfo;
 import com.example.emergency.functions.OperationFunction;
 
+import android.app.Activity;
+import android.content.Context;
 import android.text.format.Time;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class RefreshInfo {
 
@@ -46,7 +50,11 @@ public class RefreshInfo {
 		einsatz = new EinsatzInfo();
 	     
 	     OperationFunction operationFunction = new OperationFunction();
-	     JSONObject json = operationFunction.loginUser(id);
+	     JSONObject json;
+
+	     try {
+	    	 json = operationFunction.loginUser(id);
+	     
 	
 	     // check for login response
 	     try {
@@ -151,5 +159,11 @@ public class RefreshInfo {
 	     } catch (JSONException e) {
 	         e.printStackTrace();
 	     }
+	     
+	     } catch (Exception e) {
+	    	 
+		    	// Toast.makeText(c.getApplicationContext(), "Sorry. Location services not available to you", Toast.LENGTH_LONG).show();
+		    	Log.i("noconnection","noconnection");
+		     }
 	}
 }

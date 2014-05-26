@@ -15,4 +15,15 @@
         <item>Norwegisch</item>
     </string-array>
     
+<string-array name="naca">
+        <item>Bitte auswählen</item>
+        <item>I geringfügige Störung</item>
+        <item>II ambulante Abklärung</item>
+        <item>III schwere Störung</item>
+        <item>IV mögl. akute Lebensgefahr</item>
+        <item>V akute Lebensgefahr</item>
+        <item>VI Reanimation</item>
+        <item>VII Tod</item>
+    </string-array>
+    
 </resources>

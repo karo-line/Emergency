@@ -3,11 +3,13 @@ package com.example.emergency.activities.ems;
 import java.util.ArrayList;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.http.conn.HttpHostConnectException;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import unused.VideoEms;
 
+import com.example.emergency.BaseActivity;
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
@@ -84,7 +86,7 @@ import android.widget.Toast;
  * @see SystemUiHider
  */
 @SuppressLint("NewApi")
-public class StartEms extends Activity implements 
+public class StartEms extends BaseActivity implements 
 GooglePlayServicesClient.ConnectionCallbacks, 
 GooglePlayServicesClient.OnConnectionFailedListener{
 	
@@ -124,13 +126,20 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 	}
 	@SuppressLint("NewApi")
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		//getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 	      //      WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		setContentView(R.layout.map_ems);
+		String device = android.os.Build.MODEL;
+		
+		//if(device.equals("Nexus 7")) {
+			setContentView(R.layout.map_ems);
+			Log.i("device", device);
+		//} else {
+			//setContentView(R.layout-sw720dpmap_ems);
+		//}
 		
 		Bundle b = getIntent().getExtras();
 		if(b!= null) {
@@ -225,8 +234,11 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 		 
 		 
     	LoginFunctions func = new LoginFunctions();
-    	JSONObject json = func.getEinsatz(username);
+    	JSONObject json;
+    	try {
+	    	 json = func.getEinsatz(username);
     	 try {
+    		 Log.i("tryStart","noconnection");
 				if (json.getString("success") != null) {
 				     String res = json.getString("success");
 				     if(Integer.parseInt(res) == 1){
@@ -246,7 +258,16 @@ GooglePlayServicesClient.OnConnectionFailedListener{
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				Log.i("error","error");
 			}
+    	} catch (Exception e) {
+	    	 
+	    	// Toast.makeText(c.getApplicationContext(), "Sorry. Location services not available to you", Toast.LENGTH_LONG).show();
+	    	Log.i("noconnectionStart","noconnection");
+	     } 
     	 if(!einsatzID.equals("nosuchvalue")) {
     		 RefreshInfo refreshInfo = new RefreshInfo();
     		 refreshInfo.refresh(this.findViewById(R.id.einsatzinfosMapEms), einsatzID);

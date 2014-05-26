@@ -3,6 +3,7 @@ package com.example.emergency.activities.ems;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.emergency.BaseActivity;
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
@@ -30,7 +31,7 @@ import android.widget.TextView;
  
 
  
-public class GefahrengutEmsResult extends Activity {
+public class GefahrengutEmsResult extends BaseActivity {
     Intent i;
 	
 	UserFunctions userFunctions;

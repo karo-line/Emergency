@@ -141,7 +141,7 @@ public class PersonActivity extends Activity {
 							String gebdat = jsonNext.getString("birthday");
 							TextView nameView = new TextView(getApplicationContext());
 							nameView.setText(name+ " Geburtsdatum: "+gebdat);
-							nameView.setTextSize(20);
+							nameView.setTextSize(25);
 							nameView.setPadding(30, 30, 5, 5);
 							int index = ll.indexOfChild(findViewById(R.id.loginEmail))+1;
 							ll.addView(nameView,index+i);

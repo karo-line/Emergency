@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.example.emergency.BaseActivity;
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
@@ -27,14 +28,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.Spinner;
 import android.widget.TextView;
 
-public class BerichtEinsatz extends Activity {
+public class BerichtEinsatz extends BaseActivity {
 
 	private Intent i;
 	Button btnSpeichern;
@@ -75,7 +78,7 @@ public class BerichtEinsatz extends Activity {
 	TextView refresh;
 	scheduleEinsatz s;
 	
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 			
 			super.onCreate(savedInstanceState);
 			
@@ -97,34 +100,173 @@ public class BerichtEinsatz extends Activity {
 			s = new scheduleEinsatz();
 			s.scheduleUpdateText(einsatzinfos, refresh);
 			
+			Spinner spinner = (Spinner) findViewById(R.id.naca_spinner);
+			// Create an ArrayAdapter using the string array and a default spinner layout
+			ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+			        R.array.naca, android.R.layout.simple_spinner_item);
+			// Specify the layout to use when the list of choices appears
+			adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+			// Apply the adapter to the spinner
+			spinner.setAdapter(adapter);
+			
 			/**name = (EditText) findViewById(R.id.name);
 			gebdat = (EditText) findViewById(R.id.gebdat);
-			 plz = (EditText) findViewById(R.id.plz);
-			 strasse = (EditText) findViewById(R.id.strasse);
-			 tel = (EditText) findViewById(R.id.tel);
-			 staatsbuergerschaft = (EditText) findViewById(R.id.staatsbuergerschaft);
-			 krankenkassa = (EditText) findViewById(R.id.krankenkassa);
-			 versicherungsnr = (EditText) findViewById(R.id.versicherungsnr);
-			 nameV = (EditText) findViewById(R.id.nameV);
-			 gebdatV = (EditText) findViewById(R.id.gebdatV);
-			 plzV = (EditText) findViewById(R.id.plzV);
-			 strasseV = (EditText) findViewById(R.id.strasseV);
-			 versNr = (EditText) findViewById(R.id.versNr);
-			 beruf = (EditText) findViewById(R.id.beruf);
-			 beschaeftigt = (EditText) findViewById(R.id.beschaeftigt);
-			 anschrift = (EditText) findViewById(R.id.anschrift);
-			 beschwerden = (EditText) findViewById(R.id.beschwerden);
-			 beschwerdenSeit = (EditText) findViewById(R.id.beschwerdenSeit);
-			 unternommen = (EditText) findViewById(R.id.unternommen);
+			radiobtn
+			radiobtn
+			 editWeiteres = (EditText) findViewById(R.id.editWeiteres);
+			 radiobtn
+			 editWeiteresTransport = (EditText) findViewById(R.id.editWeiteresTransport);
+			 zustand = (Checkbox) findViewById(R.id.zustand);
+			 exekutive = (Checkbox) findViewById(R.id.exekutive);
+			 exekutiveTxt = (EditText) findViewById(R.id.exekutiveTxt);
+			 arzt = (Checkbox) findViewById(R.id.arzt);
+			 arztTxt = (EditText) findViewById(R.id.arztTxt);
+			 feuerwehr = (Checkbox) findViewById(R.id.feuerwehr);
+			 feuerwehrTxt = (EditText) findViewById(R.id.feuerwehrTxt);
+			 sonst = (Checkbox) findViewById(R.id.sonst);
+			 sonstTxt = (EditText) findViewById(R.id.sonstTxt);
+			 arztTrans = (Checkbox) findViewById(R.id.arztTrans);
+			 arztTransTxt = (EditText) findViewById(R.id.arztTransTxt);
+			 exekutiveTrans = (Checkbox) findViewById(R.id.exekutiveTrans);
+			 exekutiveTransTxt = (EditText) findViewById(R.id.exekutiveTransTxt);
+			 verweigert = (Checkbox) findViewById(R.id.verweigert);
+			 naNachgefordert = (Checkbox) findViewById(R.id.naNachgefordert);
 			
-			 eigeninitiative = (CheckBox) findViewById(R.id.eigeninitiative);
-			 kinderarzt = (CheckBox) findViewById(R.id.kinderarzt);
-			 praktischerarzt = (CheckBox) findViewById(R.id.praktischerarzt);
-			 facharzt = (CheckBox) findViewById(R.id.facharzt);
-			 privat = (CheckBox) findViewById(R.id.privat);
-			 rettung = (CheckBox) findViewById(R.id.rettung);
-			 notarzt = (CheckBox) findViewById(R.id.notarzt);
-			 taxi = (CheckBox) findViewById(R.id.taxi);
+			 lageGehend = (CheckBox) findViewById(R.id.lageGehend);
+			 lageSitzend = (CheckBox) findViewById(R.id.lageSitzend);
+			 lageLiegend = (CheckBox) findViewById(R.id.lageLiegend);
+			 lageSitzend = (CheckBox) findViewById(R.id.lageSitzend);
+			 lageWeitere = (EditText) findViewById(R.id.lageWeitere);
+			 radiogr
+			 sonstigesBewusstseinTxt = (EditText) findViewById(R.id.sonstigesBewusstseinTxt);
+			 radiogr
+			 sonstigesAtmungTxt = (EditText) findViewById(R.id.sonstigesAtmungTxt);
+			 radiogr
+			 sonstigesKreislaufTxt = (EditText) findViewById(R.id.sonstigesKreislaufTxt);
+			 radiogr
+			 sonstigesKreislaufTxt = (EditText) findViewById(R.id.sonstigesKreislaufTxt);
+			 lichtstarrR = (CheckBox) findViewById(R.id.lichtstarrR);
+			 radiogr
+			 lichtstarrL = (CheckBox) findViewById(R.id.lichtstarrL);
+			 atemfrequenz = (EditText) findViewById(R.id.atemfrequenz);
+			 herzfrequenz = (EditText) findViewById(R.id.herzfrequenz);
+			 blutdruck = (EditText) findViewById(R.id.blutdruck);
+			 mds = (CheckBox) findViewById(R.id.mds);
+			 radio
+			 polytrauma = (CheckBox) findViewById(R.id.polytrauma);
+			 akutesAbdomen = (CheckBox) findViewById(R.id.akutesAbdomen);
+			 starkeBlutung = (CheckBox) findViewById(R.id.starkeBlutung);
+			 veraetzung = (CheckBox) findViewById(R.id.veraetzung);
+			 erfrierung = (CheckBox) findViewById(R.id.erfrierung);
+			 inhalationstrauma = (CheckBox) findViewById(R.id.inhalationstrauma);
+			 verbrennung = (CheckBox) findViewById(R.id.verbrennung);
+			 einGrad = (EditText) findViewById(R.id.einGrad);
+			 zweiGrad = (EditText) findViewById(R.id.zweiGrad);
+			 dreiGrad = (EditText) findViewById(R.id.dreiGrad);
+			 sonstigesSchmerzen = (EditText) findViewById(R.id.sonstigesSchmerzen);
+			 
+			 massnahmenE = (CheckBox) findViewById(R.id.massnahmenE);
+			 massnahmenT = (CheckBox) findViewById(R.id.massnahmenT);
+			 freimachenE = (CheckBox) findViewById(R.id.freimachenE);
+			 freimachenT = (CheckBox) findViewById(R.id.freimachenT);
+			 absaugenE = (CheckBox) findViewById(R.id.absaugenE);
+			 absaugenT = (CheckBox) findViewById(R.id.absaugenT);
+			 beatmungE = (CheckBox) findViewById(R.id.beatmungE);
+			 beatmungT = (CheckBox) findViewById(R.id.beatmungT);
+			 sauerstoffE = (CheckBox) findViewById(R.id.sauerstoffE);
+			 sauerstoffT = (CheckBox) findViewById(R.id.sauerstoffT);
+			 sauerstoffEdit = (EditText) findViewById(R.id.sauerstoffEdit);
+			 
+			  massnahmenKreislaufE = (CheckBox) findViewById(R.id.massnahmenKreislaufE);
+			 massnahmenKreislaufE = (CheckBox) findViewById(R.id.massnahmenKreislaufE);
+			 herzdruckE = (CheckBox) findViewById(R.id.herzdruckE);
+			 herzdruckT = (CheckBox) findViewById(R.id.herzdruckT);
+			 defE = (CheckBox) findViewById(R.id.defE);
+			 defT = (CheckBox) findViewById(R.id.defT);
+			 blutstillungE = (CheckBox) findViewById(R.id.blutstillungE);
+			 blutstillungT = (CheckBox) findViewById(R.id.blutstillungT);
+			 abbindungE = (CheckBox) findViewById(R.id.abbindungE);
+			 abbindungT = (CheckBox) findViewById(R.id.abbindungT);
+			 abbindungEdit = (EditText) findViewById(R.id.abbindungEdit);
+			 
+			  blutdruckE = (CheckBox) findViewById(R.id.blutdruckE);
+			 blutdruckT = (CheckBox) findViewById(R.id.blutdruckT);
+			 infusionE = (CheckBox) findViewById(R.id.infusionE);
+			 infusionT = (CheckBox) findViewById(R.id.infusionT);
+			 uerberwachungWE = (CheckBox) findViewById(R.id.uerberwachungWE);
+			 uerberwachungWT = (CheckBox) findViewById(R.id.uerberwachungWT);
+			 uerberwachungWzE = (CheckBox) findViewById(R.id.uerberwachungWzE);
+			 uerberwachungWzT = (CheckBox) findViewById(R.id.uerberwachungWzT);
+			 uerberwachungWEdit = (EditText) findViewById(R.id.uerberwachungWEdit);
+			 uerberwachungWzEdit = (EditText) findViewById(R.id.uerberwachungWzEdit);
+			 
+			  bergungKeine = (CheckBox) findViewById(R.id.bergungKeine);
+			 bergegriff = (CheckBox) findViewById(R.id.bergegriff);
+			 bergetuch = (CheckBox) findViewById(R.id.bergetuch);
+			 schaufeltrage = (CheckBox) findViewById(R.id.schaufeltrage);
+			 bergungWeitere = (CheckBox) findViewById(R.id.bergungWeitere);
+			 bergungEdit = (EditText) findViewById(R.id.bergungEdit);
+			 
+			  keineImmobilisation = (CheckBox) findViewById(R.id.keineImmobilisation);
+			 hws = (CheckBox) findViewById(R.id.hws);
+			 vakuumschiene = (CheckBox) findViewById(R.id.vakuumschiene);
+			 vakMatraze = (CheckBox) findViewById(R.id.vakMatraze);
+			 ked = (CheckBox) findViewById(R.id.ked);
+			 immobilisationWeitere = (CheckBox) findViewById(R.id.immobilisationWeitere);
+			 immobilisationEdit = (EditText) findViewById(R.id.immobilisationEdit);
+			 
+			  massnahmenKeine = (CheckBox) findViewById(R.id.massnahmenKeine);
+			 helmabnahme = (CheckBox) findViewById(R.id.helmabnahme);
+			 wundversorgung = (CheckBox) findViewById(R.id.wundversorgung);
+			 
+			  lagerung1E = (CheckBox) findViewById(R.id.lagerung1E);
+			 lagerung1T = (CheckBox) findViewById(R.id.lagerung1T);
+			 lagerung2E = (CheckBox) findViewById(R.id.lagerung2E);
+			 lagerung2T = (CheckBox) findViewById(R.id.lagerung2T);
+			 lagerung3E = (CheckBox) findViewById(R.id.lagerung3E);
+			 lagerung3T = (CheckBox) findViewById(R.id.lagerung3T);
+			 lagerung4E = (CheckBox) findViewById(R.id.lagerung4E);
+			 lagerung4T = (CheckBox) findViewById(R.id.lagerung4T);
+			 lagerung5E = (CheckBox) findViewById(R.id.lagerung5E);
+			 lagerung5T = (CheckBox) findViewById(R.id.lagerung5T);
+			 lagerung6E = (CheckBox) findViewById(R.id.lagerung6E);
+			 lagerung6T = (CheckBox) findViewById(R.id.lagerung6T);
+			 lagerung7E = (CheckBox) findViewById(R.id.lagerung7E);
+			 lagerung7T = (CheckBox) findViewById(R.id.lagerung7T);
+			 lagerung8E = (CheckBox) findViewById(R.id.lagerung8E);
+			 lagerung8T = (CheckBox) findViewById(R.id.lagerung8T);
+			 lagerung8Edit = (EditText) findViewById(R.id.lagerung8Edit);
+			 
+			 sonstigeMassnahmen = (EditText) findViewById(R.id.sonstigeMassnahmen);
+			 
+			 klstillstand = (EditText) findViewById(R.id.klstillstand);
+			 naeingetroffen = (EditText) findViewById(R.id.naeingetroffen);
+			 uebergabeNa = (EditText) findViewById(R.id.uebergabeNa);
+			 endeReanim = (EditText) findViewById(R.id.endeReanim);
+			 radio
+			 keineEH = (CheckBox) findViewById(R.id.keineEH);
+			 hlw = (CheckBox) findViewById(R.id.hlw);
+			 padefi = (CheckBox) findViewById(R.id.padefi);
+			 sonstEHMassnahmen = (EditText) findViewById(R.id.sonstEHMassnahmen);
+			 nichtbeurteilbar = (CheckBox) findViewById(R.id.nichtbeurteilbar);
+			 
+			 arztAnwesend = (CheckBox) findViewById(R.id.arztAnwesend);
+			 arztAnwesendTxt = (EditText) findViewById(R.id.arztAnwesendTxt);
+			 angeordnet = (CheckBox) findViewById(R.id.angeordnet);
+			 angeordnetTxt = (EditText) findViewById(R.id.angeordnetTxt);
+			 venZugang = (CheckBox) findViewById(R.id.venZugang);
+			 kristalloid = (CheckBox) findViewById(R.id.kristalloid);
+			 intubation = (CheckBox) findViewById(R.id.intubation);
+			 artDosierung = (EditText) findViewById(R.id.artDosierung);
+			 
+			 gleich = (CheckBox) findViewById(R.id.gleich);
+			 gebessert = (CheckBox) findViewById(R.id.gebessert);
+			 verschlechtert = (CheckBox) findViewById(R.id.verschlechtert);
+			 anmerkungenVerlauf = (EditText) findViewById(R.id.anmerkungenVerlauf);
+			 spinner
+			 anmerkungen = (EditText) findViewById(R.id.anmerkungen);
+			 material = (EditText) findViewById(R.id.material);
+			 
 			
 			 //sollte man eigentlich mit eindeutiger zuordnung zum einsatz machen da es pro einsatz nur einen gibt
 			 SharedPreferences settings = getSharedPreferences("shares",0);

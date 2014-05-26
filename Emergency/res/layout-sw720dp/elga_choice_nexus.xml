@@ -1,0 +1,97 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".ElgaEms" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfos"
+    		layout="@layout/einsatzinfo" />
+
+      
+     <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="915dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+     
+       		<TextView
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_marginBottom="10dip"
+	            android:text="ELGA - Auswahl Datenabruf"
+	            android:textColor="@color/black_overlay"
+	            android:paddingTop="30dip"
+	            android:paddingLeft="20dip"
+	            android:textSize="25dip"
+	            android:textStyle="bold" />
+       		
+       		
+       		<CheckBox android:id="@+id/checkbox_briefArzt"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:textColor="#000000"
+        		android:text="Entlassungsberichte Arzt"
+        		android:onClick="onCheckboxClicked"
+        		android:layout_marginTop="50dip"
+	        	android:layout_marginLeft="10dip"/>
+       		
+       		<CheckBox android:id="@+id/checkbox_briefPflege"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:textColor="#000000"
+        		android:text="Entlassungsberichte Pflege"
+        		android:onClick="onCheckboxClicked"
+        		android:layout_marginLeft="10dip"/>
+       		
+       		<CheckBox android:id="@+id/checkbox_labor"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:textColor="#000000"
+        		android:text="Laborbefund"
+        		android:onClick="onCheckboxClicked"
+        		android:layout_marginLeft="10dip"/>
+       		
+       		<CheckBox android:id="@+id/checkbox_diagnostik"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:textColor="#000000"
+        		android:text="Befund bildgebende Diagnostik"
+        		android:onClick="onCheckboxClicked"
+        		android:layout_marginLeft="10dip"/>
+       		
+       		<CheckBox android:id="@+id/checkbox_eMed"
+        		android:layout_width="wrap_content"
+        		android:layout_height="wrap_content"
+        		android:textColor="#000000"
+        		android:text="e-Medikation"
+        		android:onClick="onCheckboxClicked"
+        		android:layout_marginLeft="10dip"/>
+       		
+       		<Button android:layout_width="wrap_content"
+	        	android:layout_height="wrap_content"
+	        	android:text="Daten auslesen"
+	        	android:textSize="20dip"
+	        	android:textStyle="bold"
+	        	android:id="@+id/btnAuslesen"
+	        	android:layout_marginTop="80dip"
+	        	android:layout_marginLeft="510dip"
+	        	android:layout_marginRight="30dip"/>
+       		
+       		
+          </LinearLayout>
+          
+		<include
+    		android:id="@+id/leisteElga"
+    		layout="@layout/leiste" />
+     </LinearLayout>
+</FrameLayout>

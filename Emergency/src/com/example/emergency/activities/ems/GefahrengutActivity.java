@@ -10,6 +10,7 @@ import org.json.JSONObject;
 import unused.DatabaseHandler;
 import unused.VideoEms;
 
+import com.example.emergency.BaseActivity;
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
@@ -45,7 +46,7 @@ import android.widget.TextView.OnEditorActionListener;
  
 
  
-public class GefahrengutActivity extends Activity {
+public class GefahrengutActivity extends BaseActivity {
     
 	private Intent i;
 	

@@ -1,0 +1,91 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0099cc"
+    tools:context=".Berichte" >
+    
+	<LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true" >
+
+        
+ 		<include
+    		android:id="@+id/einsatzinfos"
+    		layout="@layout/einsatzinfo" />
+        
+      
+     <LinearLayout
+            android:id="@+id/fullscreen_content_controls2"
+            style="?buttonBarStyle"
+            android:layout_width="915dp"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical" >
+            
+         <TextView android:layout_width="fill_parent"
+              android:layout_height="wrap_content"
+              android:text="Berichte"
+              android:textColor="@color/black_overlay"
+              android:paddingLeft="20dip"
+              android:textSize="25dip"
+              android:layout_marginTop="30dip"
+              android:textStyle="bold"/>
+     
+	        <Button android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Transportschein"
+	        android:textSize="20dip"
+	        android:textStyle="bold"
+	        android:id="@+id/btnTransport"
+	        android:layout_marginTop="30dip"
+	        android:layout_marginLeft="30dip"
+	        android:layout_marginRight="30dip"
+	        android:textColor="#000000"/>
+	        
+	        <Button android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Einsatzprotokoll"
+	        android:textSize="20dip"
+	        android:textStyle="bold"
+	        android:id="@+id/btnEinsatz"
+	        android:layout_marginTop="20dip"
+	        android:layout_marginLeft="30dip"
+	        android:layout_marginRight="30dip"
+	        android:textColor="#000000"/>
+	        
+	        <Button android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Krankenhausprotokoll"
+	        android:textSize="20dip"
+	        android:textStyle="bold"
+	        android:id="@+id/btnKrankenhaus"
+	        android:layout_marginTop="20dip"
+	        android:layout_marginLeft="30dip"
+	        android:layout_marginRight="30dip"
+	        android:textColor="#000000"/>
+	        
+	 
+	        
+	        <Button android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:text="Weitere..."
+	        android:textSize="20dip"
+	        android:textStyle="bold"
+	        android:id="@+id/btnWeitere"
+	        android:layout_marginTop="50dip"
+	        android:layout_marginLeft="30dip"
+	        android:layout_marginRight="30dip"
+	        android:textColor="#000000"/>
+            
+           
+          </LinearLayout>
+           
+        
+  		<include
+    		android:id="@+id/leistemenu"
+    		layout="@layout/leiste" />
+  		
+     </LinearLayout>
+</FrameLayout>

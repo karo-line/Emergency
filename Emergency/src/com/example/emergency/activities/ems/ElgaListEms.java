@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import unused.VideoEms;
 
+import com.example.emergency.BaseActivity;
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
@@ -31,7 +32,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-public class ElgaListEms extends Activity {
+public class ElgaListEms extends BaseActivity {
 
 	private Intent i;
 	Button btnWeitere;
@@ -44,7 +45,7 @@ public class ElgaListEms extends Activity {
 	boolean diagnostik;
 	boolean eMed;
 	
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 			
 			super.onCreate(savedInstanceState);
 			

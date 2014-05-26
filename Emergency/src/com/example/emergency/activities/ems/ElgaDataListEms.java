@@ -6,6 +6,7 @@ import org.json.JSONObject;
 
 import unused.VideoEms;
 
+import com.example.emergency.BaseActivity;
 import com.example.emergency.R;
 import com.example.emergency.RefreshInfo;
 import com.example.emergency.scheduleEinsatz;
@@ -36,7 +37,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-public class ElgaDataListEms extends Activity {
+public class ElgaDataListEms extends BaseActivity {
 
 	private Intent i;
 	Button btnWeitere;
@@ -49,7 +50,7 @@ public class ElgaDataListEms extends Activity {
 	boolean diagnostik;
 	boolean eMed;
 	
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 			
 			super.onCreate(savedInstanceState);
 			
@@ -74,7 +75,7 @@ public class ElgaDataListEms extends Activity {
 			
 			final String server = getIntent().getExtras().getString("server");
 			
-			title.setText(server);
+			
 			
 			ElgaFunction elgaFunction = new ElgaFunction();
 			JSONObject json = elgaFunction.getElgaData(server, "1");
@@ -90,14 +91,34 @@ public class ElgaDataListEms extends Activity {
 					String body = "";
 					String bodyId = "";
 					if(server.equals("briefArzt")) {
+						title.setText("Entlassungsbrief Arzt");
 						datum = jsonNext.getString("datum");
 						body = jsonNext.getString("diagnoseentlassung");
 						bodyId = jsonNext.getString("briefId");
 						
 					} else if(server.equals("briefPflege")) {
+						title.setText("Entlassungsbrief Pflege");
 						datum = jsonNext.getString("datum");
 						body = jsonNext.getString("pflegediagnose");
 						bodyId = jsonNext.getString("briefId");
+						
+					} else if(server.equals("labor")) {
+						title.setText("Laborbefunde");
+						datum = jsonNext.getString("zeitAuftragserfassung");
+						body = jsonNext.getString("befundtext");
+						bodyId = jsonNext.getString("id");
+						
+					}else if(server.equals("diagnostik")) {
+						title.setText("Befunde bildgebende Diagnostik");
+						datum = jsonNext.getString("datum");
+						body = jsonNext.getString("anforderung");
+						bodyId = jsonNext.getString("id");
+						
+					}else if(server.equals("eMed")) {
+						title.setText("e-Medikation");
+						datum = jsonNext.getString("datum");
+						body = jsonNext.getString("handelsname");
+						bodyId = jsonNext.getString("id");
 					}
 					
 					//anderen server abfragen
